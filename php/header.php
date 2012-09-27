@@ -16,18 +16,24 @@
     </tr>
     <tr>
         <td width="133px" align="center">
-            Inicio
+            <a href="index.php">
+                Inicio
+            </a>
         </td>
         <td width="133px" align="center">
-            Mensagens
+            <a href="message.php">
+                Mensagens
+            </a>
         </td>
         <td  align="center">
-            Perfil
+            <a href="profile.php">
+                Perfil
+            </a>
         </td>
         <td width="300px" align="center">
-            User: <input type="text" size="10" style="font-size: 10px;"> 
-            Pass: <input type="password" size="10" style="font-size: 10px;">
-            <input type="submit" style="font-size: 10px;">
+            User: <input type="text" size="10" style="font-size: 10px;" /> 
+            Pass: <input type="password" size="10" style="font-size: 10px;" />
+            <input type="submit" value="login" style="font-size: 10px;" />
         </td>
     </tr>
 </table>
