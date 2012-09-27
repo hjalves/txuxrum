@@ -7,7 +7,7 @@
 <html>
     <head>
         <title> :: -- CHATRUM -- ::</title>
-        
+        <font size="1px" />
         
     </head>
     <body>
@@ -16,6 +16,7 @@
                 <tr>
                     <td>
                         <?php include("header.php"); ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -27,7 +28,7 @@
                         footer
                     </td>
                 </tr>
-            <table>
+            </table>
         </div>
         
         
