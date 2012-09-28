@@ -10,8 +10,8 @@
 
 <table width="100%" border="1px" cellspacing="0px" cellpadding="0px">
     <tr>
-        <td colspan="4">
-            baner
+        <td colspan="4" align="center">
+            baner<br />e<br />cenas
         </td>
     </tr>
     <tr>

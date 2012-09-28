@@ -1,6 +1,6 @@
 <?php /* Index file - chat rooms list */
     require_once('dbauth.php');
-    
+    require('varfunc.php');  
 ?>
 
 <!DOCTYPE html>
@@ -21,12 +21,14 @@
                 </tr>
                 <tr>
                     <td>
-                        body
+                        <div>
+                            cenas
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        footer
+                        <?php vf_printfooter(); ?>
                     </td>
                 </tr>
             </table>

@@ -1,5 +1,6 @@
 <?php /* Chat room */
     require_once('dbauth.php');
+    require('varfunc.php');
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@
                 </tr>
                 <tr>
                     <td>
-                        footer
+                        <?php vf_printfooter(); ?>
                     </td>
                 </tr>
             </table>
