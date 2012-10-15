@@ -5,10 +5,11 @@
     if (!$included)
         exit;
     
-    /* Vars */
+    /* ## Vars ## */
     
     
-    /* Functions */
+    /* ## Functions ## */
+    /* print footer */
     function vf_printfooter() {
         echo <<<END
 <div align="center">
@@ -17,4 +18,22 @@
 END;
     }
     
+    /* print chat item */
+    function vf_printchatitem($title, $atitle, $user, $date) {
+        echo <<<END
+<table width="100%" border="1px" cellspacing="0px" cellpadding="0px">
+    <tr>
+        <td width="75%">
+            <div><a href="$atitle">$title</a></div>
+            <div>$user - $date</div>
+        </td>
+        <td>
+            <div>more info</div>
+            <div>more options</div>
+        </td>
+    </tr>
+</table>
+END;
+    }
+        
 ?>

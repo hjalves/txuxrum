@@ -8,32 +8,32 @@
     
 ?>
 
-<table width="100%" border="1px" cellspacing="0px" cellpadding="0px">
+<table width="100%" border="0px" cellspacing="0px" cellpadding="0px">
     <tr>
-        <td colspan="4" align="center">
-            baner<br />e<br />cenas
+        <td colspan="4" align="center" class="title">
+            Txuxrum
         </td>
     </tr>
     <tr>
-        <td width="133px" align="center">
+        <td width="133px" align="center" class="menuitem">
             <a href="index.php">
                 Inicio
             </a>
         </td>
-        <td width="133px" align="center">
+        <td width="133px" align="center" class="menuitem">
             <a href="message.php">
                 Mensagens
             </a>
         </td>
-        <td  align="center">
+        <td  align="center" class="menuitem">
             <a href="profile.php">
                 Perfil
             </a>
         </td>
-        <td width="300px" align="center">
-            User: <input type="text" size="10" style="font-size: 10px;" /> 
-            Pass: <input type="password" size="10" style="font-size: 10px;" />
-            <input type="submit" value="login" style="font-size: 10px;" />
+        <td width="300px" align="center" class="login">
+            User: <input type="text" size="10" class="logininput" /> 
+            Pass: <input type="password" size="10" class="logininput" />
+            <input type="submit" value="login" class="loginbutton" />
         </td>
     </tr>
 </table>

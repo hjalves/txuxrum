@@ -1,0 +1,68 @@
+body
+            {   background-color:   #0a0a0a;
+                font:               15px arial, sans-serif;
+                color:              #ffffff;}
+                
+td
+            {   background-color:   #ffffff;
+                font:               12px arial, sans-serif;
+                color:              #000000;}
+                
+.menuitem, .login
+            {   background-color:   #C2C2FF;
+                font:               11px arial, sans-serif;
+                color:              #282850;
+            }
+.menuitem a:visited, .menuitem a:link, .menuitem a:active
+            {
+                font:               11px arial, sans-serif;
+                color:              #282850;
+                text-decoration:    none;
+            }
+
+.menuitem:hover
+            {   
+                background-color:   #82A6BE;
+            }
+                
+.logininput
+            {   background-color:   #EAF5FF;
+                color:              #282850;
+                font:               11px arial, sans-serif;
+                border:             solid 1px #82A6BE;
+                padding:            0px;
+                padding-left:       2px;
+                padding-right:      2px;
+                margin:             2px;
+            }
+.loginbutton
+            {   background-color:   #EAF5FF;
+                color:              #282850;
+                font:               11px arial, sans-serif;
+                border:             solid 1px #82A6BE;
+                margin:             2px;
+            }
+
+.footer
+            {
+                background-color:   #282850;
+                color:              #EAF5FF;
+                font:               11px arial, sans-serif;
+            }
+
+.title
+            {
+                background-color:   #282850;
+                color:              #EAF5FF;
+                font:               25px arial, sans-serif;
+            }
+            
+.mainframe
+            {
+                border:             solid 1px #666666;
+            }
+
+.bodyframe
+            {
+                padding:            10px;
+            }

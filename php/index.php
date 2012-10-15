@@ -9,11 +9,11 @@
     <head>
         <title> :: -- CHATRUM -- ::</title>
         <font size="1px" />
-        
+        <LINK href="gangnamstyle.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div align="center">
-            <table width="700px" border="1px" cellspacing="0px" cellpadding="0px">
+            <table width="700px" border="0px" cellspacing="0px" cellpadding="0px" class="mainframe">
                 <tr>
                     <td>
                         <?php include("header.php"); ?>
@@ -21,13 +21,16 @@
                 </tr>
                 <tr>
                     <td>
-                        <div>
-                            cenas
+                        <div class="bodyframe">
+                            <?php
+                                vf_printchatitem("Exemplo de titulo", "link", "utilizador", "junho");
+                                vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
+                            ?>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="footer">
                         <?php vf_printfooter(); ?>
                     </td>
                 </tr>
