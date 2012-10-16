@@ -26,107 +26,39 @@
                             
                             
                             
-                            <div class="chatroom">                            
-                                <div class="chatroom-left">
-                                    <div class="chatroom-title">
-                                        Titulo - preview
+                            <div class="msgrec">                            
+                                <div class="msgrec-inside">
+                                    <div class="msgrec-from">
+                                            From
                                     </div>
-                                    <div>
-                                        <div class="chatroom-user">
-                                            user
-                                        </div>
-                                        <div class="chatroom-date">
-                                            date
-                                        </div>
+                                    <div class="msgrec-date">
+                                        date
                                     </div>
-                                </div>
-                                <div class="chatroom-right">
-                                    <div class="chatroom-info">
-                                        more info
-                                    </div>
-                                    <div class="chatroom-options">
-                                        more options
+                                    <div class="msgrec-body">
+                                            Mensagem
                                     </div>
                                 </div>
                                 <div id="nextSetOfContent"></div>
                             </div>
                             
-                           <div class="chatroom">                            
-                                <div class="chatroom-left">
-                                    <div class="chatroom-title">
-                                        Titulo - preview
+                            <div class="msgsnt">                            
+                                <div class="msgsnt-inside">
+                                    <div class="msgsnt-from">
+                                            To
                                     </div>
-                                    <div>
-                                        <div class="chatroom-user">
-                                            user
-                                        </div>
-                                        <div class="chatroom-date">
-                                            date
-                                        </div>
+                                    <div class="msgsnt-date">
+                                        date
                                     </div>
-                                </div>
-                                <div class="chatroom-right">
-                                    <div class="chatroom-info">
-                                        more info
-                                    </div>
-                                    <div class="chatroom-options">
-                                        more options
+                                    <div class="msgsnt-body">
+                                            Mensagem
                                     </div>
                                 </div>
                                 <div id="nextSetOfContent"></div>
                             </div>
                             
-                            <div class="chatroom">                            
-                                <div class="chatroom-left">
-                                    <div class="chatroom-title">
-                                        Titulo - preview
-                                    </div>
-                                    <div>
-                                        <div class="chatroom-user">
-                                            user
-                                        </div>
-                                        <div class="chatroom-date">
-                                            date
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="chatroom-right">
-                                    <div class="chatroom-info">
-                                        more info
-                                    </div>
-                                    <div class="chatroom-options">
-                                        more options
-                                    </div>
-                                </div>
-                                <div id="nextSetOfContent"></div>
-                            </div>
-                            
-                            <div class="chatroom">                            
-                                <div class="chatroom-left">
-                                    <div class="chatroom-title">
-                                        Titulo - preview
-                                    </div>
-                                    <div>
-                                        <div class="chatroom-user">
-                                            user
-                                        </div>
-                                        <div class="chatroom-date">
-                                            date
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="chatroom-right">
-                                    <div class="chatroom-info">
-                                        more info
-                                    </div>
-                                    <div class="chatroom-options">
-                                        more options
-                                    </div>
-                                </div>
-                                <div id="nextSetOfContent"></div>
-                            </div>
-                            
-                            
+                           
+
+             
                         </div>
                     </td>
                 </tr>

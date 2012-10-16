@@ -113,3 +113,71 @@ td
 /**** PRIVATE MESSAGES ****/
 
 
+
+.msgrec
+            {   
+                width:              60%;
+                
+                background-color:   #CFF0CF;
+                padding:            2px;
+                margin-top:         7px;
+                margin-bottom:      7px;
+                
+                border-left:        4px solid #192719;
+                border-right:       4px solid #CFF0CF;
+            }
+.msgrec-inside
+            {   
+                 background-color:   #C2DAC2;
+            }
+.msgrec-from
+            {   
+                float:              left;
+                width:              55%;
+            }
+.msgrec-date
+            {   
+                float:              right;
+                width:              35%;
+            }
+.msgrec-body
+            {   
+                
+            }
+
+.msgsnt
+            {   
+                width:              60%;
+                
+                background-color:   #FFFFA0;
+                padding:            2px;
+                margin-top:         7px;
+                margin-bottom:      7px;
+                
+                border-left:        4px solid #FFFFA0;
+                border-right:       4px solid #806600;
+            }
+.msgsnt-inside
+            {   
+                 background-color:   #FFFFB8;
+            }
+.msgsnt-from
+            {   
+                float:              left;
+                width:              55%;
+            }
+.msgsnt-date
+            {   
+                float:              right;
+                width:              35%;
+            }
+.msgsnt-body
+            {   
+                
+            }
+
+
+
+
+
+
