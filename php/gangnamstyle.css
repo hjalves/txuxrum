@@ -1,3 +1,4 @@
+/**** GLOBAL ****/
 body
             {   background-color:   #0a0a0a;
                 font:               15px arial, sans-serif;
@@ -6,8 +7,37 @@ body
 td
             {   background-color:   #ffffff;
                 font:               12px arial, sans-serif;
-                color:              #000000;}
-                
+                color:              #000000;
+            }
+
+.mainframe
+            {
+                border:             solid 1px #666666;
+            }
+
+.bodyframe
+            {
+                padding:            10px;
+            }
+.title
+            {
+                background-color:   #282850;
+                color:              #EAF5FF;
+                font:               25px arial, sans-serif;
+            }
+.footer
+            {
+                background-color:   #282850;
+                color:              #EAF5FF;
+                font:               11px arial, sans-serif;
+            } 
+
+#nextSetOfContent
+            {
+                clear: both;
+            }
+
+/**** MENU BAR ****/
 .menuitem, .login
             {   background-color:   #C2C2FF;
                 font:               11px arial, sans-serif;
@@ -19,12 +49,11 @@ td
                 color:              #282850;
                 text-decoration:    none;
             }
-
 .menuitem:hover
             {   
                 background-color:   #82A6BE;
             }
-                
+
 .logininput
             {   background-color:   #EAF5FF;
                 color:              #282850;
@@ -43,26 +72,44 @@ td
                 margin:             2px;
             }
 
-.footer
+/**** CHAT ROOMS ****/
+.chatroom
+            {   
+                background-color:   #E7EDED;
+                padding:            2px;
+                margin-top:         7px;
+                margin-bottom:      7px;
+                
+                border-left:        4px solid #282850;
+            }          
+.chatroom-left
             {
-                background-color:   #282850;
-                color:              #EAF5FF;
-                font:               11px arial, sans-serif;
+                background-color:   #D5D8D8;
+                float:              left;
+                width:              60%;
+            }
+.chatroom-right
+            {   
+                background-color:   #C4C4CF;
+                border-left:        3px solid #87879D;
+                float:              right;
+                width:              39%;
+            }
+.chatroom-title, .chatroom-user, .chatroom-date, .chatroom-options, .chatroom-info
+            {
+                margin: 3px;
+            }
+.chatroom-user
+            {
+                float:              left;
+                width:              55%;
+            }
+.chatroom-date
+            {   
+                float:              right;
+                width:              35%;
             }
 
-.title
-            {
-                background-color:   #282850;
-                color:              #EAF5FF;
-                font:               25px arial, sans-serif;
-            }
-            
-.mainframe
-            {
-                border:             solid 1px #666666;
-            }
+/**** PRIVATE MESSAGES ****/
 
-.bodyframe
-            {
-                padding:            10px;
-            }
+

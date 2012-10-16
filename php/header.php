@@ -27,7 +27,7 @@
         </td>
         <td  align="center" class="menuitem">
             <a href="profile.php">
-                Perfil
+                Membros
             </a>
         </td>
         <td width="300px" align="center" class="login">

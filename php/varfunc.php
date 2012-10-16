@@ -21,18 +21,30 @@ END;
     /* print chat item */
     function vf_printchatitem($title, $atitle, $user, $date) {
         echo <<<END
-<table width="100%" border="1px" cellspacing="0px" cellpadding="0px">
-    <tr>
-        <td width="75%">
-            <div><a href="$atitle">$title</a></div>
-            <div>$user - $date</div>
-        </td>
-        <td>
-            <div>more info</div>
-            <div>more options</div>
-        </td>
-    </tr>
-</table>
+<div class="chatroom">                            
+    <div class="chatroom-left">
+        <div class="chatroom-title">
+            <a href="$atitle">$title</a>
+        </div>
+        <div>
+            <div class="chatroom-user">
+                $user
+            </div>
+            <div class="chatroom-date">
+                $date
+            </div>
+        </div>
+    </div>
+    <div class="chatroom-right">
+        <div class="chatroom-info">
+            more info
+        </div>
+        <div class="chatroom-options">
+            more options
+        </div>
+    </div>
+    <div id="nextSetOfContent"></div>
+</div>
 END;
     }
         

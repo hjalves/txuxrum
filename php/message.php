@@ -21,8 +21,112 @@
                 </tr>
                 <tr>
                     <td>
-                        <div class="bodyframe">
-                            private messages
+                        <div class="bodyframe" width="100%">
+                            
+                            
+                            
+                            
+                            <div class="chatroom">                            
+                                <div class="chatroom-left">
+                                    <div class="chatroom-title">
+                                        Titulo - preview
+                                    </div>
+                                    <div>
+                                        <div class="chatroom-user">
+                                            user
+                                        </div>
+                                        <div class="chatroom-date">
+                                            date
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chatroom-right">
+                                    <div class="chatroom-info">
+                                        more info
+                                    </div>
+                                    <div class="chatroom-options">
+                                        more options
+                                    </div>
+                                </div>
+                                <div id="nextSetOfContent"></div>
+                            </div>
+                            
+                           <div class="chatroom">                            
+                                <div class="chatroom-left">
+                                    <div class="chatroom-title">
+                                        Titulo - preview
+                                    </div>
+                                    <div>
+                                        <div class="chatroom-user">
+                                            user
+                                        </div>
+                                        <div class="chatroom-date">
+                                            date
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chatroom-right">
+                                    <div class="chatroom-info">
+                                        more info
+                                    </div>
+                                    <div class="chatroom-options">
+                                        more options
+                                    </div>
+                                </div>
+                                <div id="nextSetOfContent"></div>
+                            </div>
+                            
+                            <div class="chatroom">                            
+                                <div class="chatroom-left">
+                                    <div class="chatroom-title">
+                                        Titulo - preview
+                                    </div>
+                                    <div>
+                                        <div class="chatroom-user">
+                                            user
+                                        </div>
+                                        <div class="chatroom-date">
+                                            date
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chatroom-right">
+                                    <div class="chatroom-info">
+                                        more info
+                                    </div>
+                                    <div class="chatroom-options">
+                                        more options
+                                    </div>
+                                </div>
+                                <div id="nextSetOfContent"></div>
+                            </div>
+                            
+                            <div class="chatroom">                            
+                                <div class="chatroom-left">
+                                    <div class="chatroom-title">
+                                        Titulo - preview
+                                    </div>
+                                    <div>
+                                        <div class="chatroom-user">
+                                            user
+                                        </div>
+                                        <div class="chatroom-date">
+                                            date
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chatroom-right">
+                                    <div class="chatroom-info">
+                                        more info
+                                    </div>
+                                    <div class="chatroom-options">
+                                        more options
+                                    </div>
+                                </div>
+                                <div id="nextSetOfContent"></div>
+                            </div>
+                            
+                            
                         </div>
                     </td>
                 </tr>
