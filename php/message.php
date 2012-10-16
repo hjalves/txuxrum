@@ -23,40 +23,15 @@
                     <td>
                         <div class="bodyframe" width="100%">
                             
-                            
-                            
-                            
-                            <div class="msgrec">                            
-                                <div class="msgrec-inside">
-                                    <div class="msgrec-from">
-                                            From
-                                    </div>
-                                    <div class="msgrec-date">
-                                        date
-                                    </div>
-                                    <div class="msgrec-body">
-                                            Mensagem
-                                    </div>
-                                </div>
-                                <div id="nextSetOfContent"></div>
-                            </div>
-                            
-                            <div class="msgsnt">                            
-                                <div class="msgsnt-inside">
-                                    <div class="msgsnt-from">
-                                            To
-                                    </div>
-                                    <div class="msgsnt-date">
-                                        date
-                                    </div>
-                                    <div class="msgsnt-body">
-                                            Mensagem
-                                    </div>
-                                </div>
-                                <div id="nextSetOfContent"></div>
-                            </div>
-                            
-                           
+                            <?php
+                                vf_printmessagesent("to", "ja foi ontem", "Tao? Tudo bem?");
+                                vf_printmessagesent("to", "ja foi ontem", "Tao? Tudo bem?");
+                                vf_printmessagerec("to", "ja foi ontem", "Tao? Tudo bem?");
+                                vf_printmessagesent("to", "ja foi ontem", "Tao? Tudo bem?");
+                                vf_printmessagerec("to", "ja foi ontem", "Tao? Tudo bem?");
+                                vf_printmessagesent("to", "ja foi ontem", "Tao? Tudo bem?");
+                                
+                           ?>
 
              
                         </div>

@@ -47,5 +47,45 @@ END;
 </div>
 END;
     }
+    
+    /* print message item received */
+    function vf_printmessagerec($from, $date, $msg) {
+        echo <<<END
+<div class="msgrec">                            
+    <div class="msgrec-inside">
+        <div class="msgrec-from">
+                $from
+        </div>
+        <div class="msgrec-date">
+            $date
+        </div>
+        <div class="msgrec-body">
+                $msg
+        </div>
+    </div>
+    <div id="nextSetOfContent"></div>
+</div>
+END;
+    }
+    
+    /* print message item sent */
+    function vf_printmessagesent($to, $date, $msg) {
+        echo <<<END
+<div class="msgsnt">                            
+    <div class="msgsnt-inside">
+        <div class="msgsnt-from">
+                $to
+        </div>
+        <div class="msgsnt-date">
+            $date
+        </div>
+        <div class="msgsnt-body">
+                $msg
+        </div>
+    </div>
+    <div id="nextSetOfContent"></div>
+</div>
+END;
+    }
         
 ?>
