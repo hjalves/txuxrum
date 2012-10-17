@@ -18,7 +18,7 @@
 END;
     }
     
-    /* print chat item */
+    /* print chatroom item */
     function vf_printchatitem($title, $atitle, $user, $date) {
         echo <<<END
 <div class="chatroom">                            
@@ -41,6 +41,43 @@ END;
         </div>
         <div class="chatroom-options">
             more options
+        </div>
+    </div>
+    <div id="nextSetOfContent"></div>
+</div>
+END;
+    }
+    
+    /* print chatroom header */
+    function vf_printchatheader($title, $theme) {
+        echo <<<END
+<div class="chathead">
+    <div class="chathead-title">
+        $title
+    </div>
+    <div class="chathead-theme">
+        $theme
+    </div>
+</div>
+<div>
+    &nbsp; <!-- space -->
+</div>
+END;
+    }
+    
+    /* print chatroom message item */
+    function vf_printchatmsg($user, $date, $msg) {
+        echo <<<END
+<div class="chatmsg">                            
+    <div class="chatmsg-inside">
+        <div class="chatmsg-from">
+            $user
+        </div>
+        <div class="chatmsg-date">
+            $date
+        </div>
+        <div class="chatmsg-body">
+            $msg
         </div>
     </div>
     <div id="nextSetOfContent"></div>

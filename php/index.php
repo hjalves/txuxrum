@@ -23,9 +23,16 @@
                     <td>
                         <div class="bodyframe">
                             <?php
-                                vf_printchatitem("Exemplo de titulo", "link", "utilizador", "junho");
-                                vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
+                                //vf_printchatitem("Exemplo de titulo", "link", "utilizador", "junho");
+                                //vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
                             ?>
+                            
+                            <div class="chatpanel">
+                                <>
+                            </div>
+                            
+                           
+                            
                         </div>
                     </td>
                 </tr>

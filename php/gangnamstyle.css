@@ -109,11 +109,57 @@ td
                 float:              right;
                 width:              35%;
             }
+            
+.chatmsg
+            {   
+                width:              60%;
+                
+                background-color:   #E7EDED;
+                padding:            2px;
+                margin-top:         2px;
+                margin-bottom:      2px;
+                
+                border-left:        4px solid #E7EDED;
+                border-right:       4px solid #E7EDED;
+            }
+.chatmsg-inside
+            {   
+                 background-color:   #D5D8D8;
+            }
+.chatmsg-from
+            {   
+                float:              left;
+                width:              55%;
+            }
+.chatmsg-date
+            {   
+                float:              right;
+                width:              35%;
+            }
+.chatmsg-body
+            {   
+                
+            }
+
+.chathead
+            {
+                background-color:   #C2C2FF;
+                width:              100%;
+                text-align:         center;
+                
+                border-top:         4px solid #282850;
+            }
+.chathead-title
+            {
+                padding-top:        8px;
+            }
+.chathead-theme
+            {
+                padding-top:        8px;
+                padding-bottom:     8px;
+            }
 
 /**** PRIVATE MESSAGES ****/
-
-
-
 .msgrec
             {   
                 width:              60%;
