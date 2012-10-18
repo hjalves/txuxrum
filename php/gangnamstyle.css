@@ -272,13 +272,18 @@ td
 
 
 /**** PRIVATE MESSAGES ****/
+.messagebox
+            {
+                float:              left;
+                width:              60%;
+            }
+
 .msgrec
             {   
-                width:              60%;
+                width:              100%;
                 
                 background-color:   #CFF0CF;
                 padding:            2px;
-                margin-top:         7px;
                 margin-bottom:      7px;
                 
                 border-left:        4px solid #192719;
@@ -305,11 +310,10 @@ td
 
 .msgsnt
             {   
-                width:              60%;
+                width:              100%;
                 
                 background-color:   #FFFFA0;
                 padding:            2px;
-                margin-top:         7px;
                 margin-bottom:      7px;
                 
                 border-left:        4px solid #FFFFA0;
@@ -334,7 +338,37 @@ td
                 
             }
 
-
+.msgpanel
+            {   
+                width:              35%;
+                background-color:   #C2C2FF;
+                padding:            5px;
+                float:              right;
+            }
+.msgpanel-filter
+            {   
+                background-color:   #E7EDED;
+                margin-bottom:      10px;
+                padding:            5px;
+                border-left:        solid 2px #282850;
+            }
+.msgpanel-filter-title
+            {
+                background-color:   #D5D8D8;
+                padding:            3px;
+                margin-bottom:      10px;
+            }
+.msgpanel-filter-div-search, .msgpanel-filter-div-button
+            {
+                background-color:   #FAFAFA;
+                color:              #282850;
+                font:               11px arial, sans-serif;
+                border:             solid 1px #82A6BE;
+                padding:            0px;
+                padding-left:       2px;
+                padding-right:      2px;
+                margin:             2px;
+            }
 
 
 
