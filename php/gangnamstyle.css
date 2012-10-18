@@ -171,14 +171,14 @@ td
                 padding:            5px;
                 float:              right;
             }
-.chatpanel-rate, .chatpanel-ulist, .chatpanel-close
+.chatpanel-rate, .chatpanel-ulist, .chatpanel-close, .chatpanel-edit
             {   
                 background-color:   #E7EDED;
                 margin-bottom:      10px;
                 padding:            5px;
                 border-left:        solid 2px #282850;
             }
-.chatpanel-rate-title, .chatpanel-ulist-title, .chatpanel-close-title, .chatpanel-ulist-addtitle
+.chatpanel-rate-title, .chatpanel-ulist-title, .chatpanel-close-title, .chatpanel-ulist-addtitle, .chatpanel-edit-title
             {
                 background-color:   #D5D8D8;
                 padding:            3px;
@@ -203,6 +203,17 @@ td
             {
                 padding-left:       15px;
                 padding-right:      15px;
+            }
+.chatpanel-edit-addinput, .chatpanel-edit-addbutton, .chatpanel-edit-addinput, .chatpanel-edit-addbutton
+            {
+                background-color:   #FAFAFA;
+                color:              #282850;
+                font:               11px arial, sans-serif;
+                border:             solid 1px #82A6BE;
+                padding:            0px;
+                padding-left:       2px;
+                padding-right:      2px;
+                margin:             2px;
             }
 
 .searchbox
@@ -258,6 +269,7 @@ td
                 width:              95%;
                 resize:             vertical;
             }
+
 
 /**** PRIVATE MESSAGES ****/
 .msgrec

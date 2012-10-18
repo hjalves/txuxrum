@@ -108,6 +108,20 @@
                                         <input type="submit" value="close" class="chatpanel-close-button" />
                                     </div>
                                 </div>
+                                <div class="chatpanel-edit">
+                                    <div class="chatpanel-edit-title">
+                                        Edit this topic
+                                    </div>
+                                    <div class="chatpanel-edit-div">
+                                        Title <br />
+                                        <input type="text" size="20" class="chatpanel-edit-addinput" />
+                                        <input type="submit" value="edit" class="chatpanel-edit-addbutton" />
+                                        <br /><br />
+                                        Theme <br />
+                                        <input type="text" size="20" class="chatpanel-edit-addinput" />
+                                        <input type="submit" value="edit" class="chatpanel-edit-addbutton" />
+                                    </div>
+                                </div>
                             </div>
                             
                             
