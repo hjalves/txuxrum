@@ -37,15 +37,15 @@
                             </div>
                         
                             
-                            <div class="msgpanel">
-                                <div class="msgpanel-filter">
-                                    <div class="msgpanel-filter-title">
+                            <div class="msgpanel panelframe">
+                                <div class="msgpanel-filter panelframe-item">
+                                    <div class="msgpanel-filter-title panelframe-item-title">
                                         Message of you and $user
                                     </div>
                                     <div class="msgpanel-filter-div">
-                                        <input type="text" size="20" class="msgpanel-filter-div-search" />
-                                        <input type="submit" value="filter" class="msgpanel-filter-div-button" />
-                                        <input type="submit" value="clear filter" class="msgpanel-filter-div-button" />
+                                        <input type="text" size="20" class="msgpanel-filter-div-search panelframe-input" />
+                                        <input type="submit" value="filter" class="msgpanel-filter-div-button panelframe-button" />
+                                        <input type="submit" value="clear filter" class="msgpanel-filter-div-button panelframe-button" />
                                     </div>
                                 </div>
                             </div>    

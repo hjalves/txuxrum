@@ -60,66 +60,66 @@
                                 
                             ?>
                             
-                            <div class="postbox">
-                                <div class="postbox-inside">
+                            <div class="postbox textframe">
+                                <div class="postbox-inside textframe-inside">
                                     <div class="postbox-text">
-                                    <textarea rows="4" cols="50" class="postbox-text-area"></textarea>
+                                    <textarea rows="4" cols="50" class="postbox-text-area panelframe-input"></textarea>
                                     </div>
                                     <div class="postbox-attach">
                                         Attach files
                                     </div>
                                     <div class="postbox-submit">
-                                        <input type="submit" value="post" class="chatpanel-ulist-addbutton" />
+                                        <input type="submit" value="post" class="panelframe-button" />
                                     </div>    
                                 </div>
                             </div>
                             
                             </div>
                             
-                            <div class="chatpanel">
-                                <div class="chatpanel-rate">
-                                    <div class="chatpanel-rate-title">
+                            <div class="chatpanel panelframe">
+                                <div class="chatpanel-rate panelframe-item">
+                                    <div class="chatpanel-rate-title panelframe-item-title">
                                         Rate this room
                                     </div>
                                     <div class="chatpanel-rate-rate">
                                         No | Maybe | Yes
                                     </div>
                                 </div>
-                                <div class="chatpanel-ulist">
-                                    <div class="chatpanel-ulist-title">
+                                <div class="chatpanel-ulist panelframe-item">
+                                    <div class="chatpanel-ulist-title panelframe-item-title">
                                         Users in this topic
                                     </div>
                                     <div class="chatpanel-ulist-list">
                                         user1<br>user2
                                     </div>
-                                    <div class="chatpanel-ulist-addtitle">
+                                    <div class="chatpanel-ulist-addtitle panelframe-item-title">
                                         Add new user
                                     </div>
                                     <div class="chatpanel-ulist-add">
-                                        <input type="text" size="20" class="chatpanel-ulist-addinput" />
-                                        <input type="submit" value="add" class="chatpanel-ulist-addbutton" />
+                                        <input type="text" size="20" class="chatpanel-ulist-addinput panelframe-input" />
+                                        <input type="submit" value="add" class="chatpanel-ulist-addbutton panelframe-button" />
                                     </div>
                                 </div>
-                                <div class="chatpanel-close">
-                                    <div class="chatpanel-close-title">
+                                <div class="chatpanel-close panelframe-item">
+                                    <div class="chatpanel-close-title  panelframe-item-title">
                                         Close this topic
                                     </div>
                                     <div class="chatpanel-close-div button">
-                                        <input type="submit" value="close" class="chatpanel-close-button" />
+                                        <input type="submit" value="close" class="chatpanel-close-button panelframe-button" />
                                     </div>
                                 </div>
-                                <div class="chatpanel-edit">
-                                    <div class="chatpanel-edit-title">
+                                <div class="chatpanel-edit panelframe-item">
+                                    <div class="chatpanel-edit-title  panelframe-item-title">
                                         Edit this topic
                                     </div>
                                     <div class="chatpanel-edit-div">
                                         Title <br />
-                                        <input type="text" size="20" class="chatpanel-edit-addinput" />
-                                        <input type="submit" value="edit" class="chatpanel-edit-addbutton" />
+                                        <input type="text" size="20" class="chatpanel-edit-addinput panelframe-input" />
+                                        <input type="submit" value="edit" class="chatpanel-edit-addbutton panelframe-button" />
                                         <br /><br />
                                         Theme <br />
-                                        <input type="text" size="20" class="chatpanel-edit-addinput" />
-                                        <input type="submit" value="edit" class="chatpanel-edit-addbutton" />
+                                        <input type="text" size="20" class="chatpanel-edit-addinput panelframe-input" />
+                                        <input type="submit" value="edit" class="chatpanel-edit-addbutton panelframe-button" />
                                     </div>
                                 </div>
                             </div>

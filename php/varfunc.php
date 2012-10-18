@@ -68,8 +68,8 @@ END;
     /* print chatroom message item */
     function vf_printchatmsg($user, $date, $msg) {
         echo <<<END
-<div class="chatmsg">                            
-    <div class="chatmsg-inside">
+<div class="chatmsg textframe">                            
+    <div class="chatmsg-inside textframe-inside">
         <div class="chatmsg-from">
             $user
         </div>
@@ -88,8 +88,8 @@ END;
     /* print message item received */
     function vf_printmessagerec($from, $date, $msg) {
         echo <<<END
-<div class="msgrec">                            
-    <div class="msgrec-inside">
+<div class="msgrec textframe">                            
+    <div class="msgrec-inside textframe-inside">
         <div class="msgrec-from">
                 $from
         </div>
@@ -108,8 +108,8 @@ END;
     /* print message item sent */
     function vf_printmessagesent($to, $date, $msg) {
         echo <<<END
-<div class="msgsnt">                            
-    <div class="msgsnt-inside">
+<div class="msgsnt textframe">                            
+    <div class="msgsnt-inside textframe-inside">
         <div class="msgsnt-from">
                 $to
         </div>

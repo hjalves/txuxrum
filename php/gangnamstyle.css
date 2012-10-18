@@ -17,7 +17,7 @@ td
 
 .bodyframe
             {
-                padding:            10px;
+                padding:            5px;
             }
 .title
             {
@@ -30,16 +30,78 @@ td
                 background-color:   #282850;
                 color:              #EAF5FF;
                 font:               11px arial, sans-serif;
-            } 
+            }
 
+/**** SHARED ****/
 #nextSetOfContent
             {
                 clear: both;
             }
 
+.textframe
+            {
+                background-color:   #E7EDED;
+             
+                width:              100%;   
+                
+                margin-bottom:      3px;
+                border-left:        4px solid #E7EDED;
+                border-right:       4px solid #E7EDED;
+                padding:            2px;
+            }
+.textframe-inside
+            {
+                background-color:   #D5D8D8;
+                
+                padding:            5px;
+            }
+.panelframe
+            {
+                width:              35%;
+                background-color:   #C2C2FF;
+                padding:            5px;
+                float:              right;
+            }
+.panelframe-item
+            {   
+                background-color:   #E7EDED;
+                margin-bottom:      10px;
+                padding:            5px;
+                border-left:        solid 2px #282850;
+            }
+.panelframe-item-title
+            {
+                background-color:   #D5D8D8;
+                padding:            3px;
+                margin-bottom:      10px;
+            }
+.panelframe-input
+            {
+                background-color:   #FAFAFA;
+                color:              #282850;
+                font:               11px arial, sans-serif;
+                border:             solid 1px #82A6BE;
+                padding:            0px;
+                padding-left:       2px;
+                padding-right:      2px;
+                margin:             2px;
+            }
+.panelframe-button
+            {
+                background-color:   #FAFAFA;
+                color:              #282850;
+                font:               11px arial, sans-serif;
+                border:             solid 1px #82A6BE;
+                padding:            0px;
+                padding-left:       15px;
+                padding-right:      15px;
+                margin:             2px;
+            }
+
 /**** MENU BAR ****/
 .menuitem, .login
-            {   background-color:   #C2C2FF;
+            {
+                background-color:   #C2C2FF;
                 font:               11px arial, sans-serif;
                 color:              #282850;
             }
@@ -74,7 +136,7 @@ td
 
 /**** CHAT ROOMS ****/
 .chatroom
-            {   
+            {
                 background-color:   #E7EDED;
                 padding:            2px;
                 margin-top:         7px;
@@ -112,18 +174,11 @@ td
             
 .chatmsg
             {   
-                width:              100%;
-                
-                background-color:   #E7EDED;
-                padding:            2px;
-                margin-bottom:      3px;
-                
-                border-left:        4px solid #E7EDED;
-                border-right:       4px solid #E7EDED;
+
             }
 .chatmsg-inside
             {   
-                 background-color:   #D5D8D8;
+
             }
 .chatmsg-from
             { 
@@ -165,55 +220,28 @@ td
 
 
 .chatpanel
-            {   
-                width:              35%;
-                background-color:   #C2C2FF;
-                padding:            5px;
-                float:              right;
+            {
+
             }
 .chatpanel-rate, .chatpanel-ulist, .chatpanel-close, .chatpanel-edit
-            {   
-                background-color:   #E7EDED;
-                margin-bottom:      10px;
-                padding:            5px;
-                border-left:        solid 2px #282850;
+            {
+            
             }
 .chatpanel-rate-title, .chatpanel-ulist-title, .chatpanel-close-title, .chatpanel-ulist-addtitle, .chatpanel-edit-title
             {
-                background-color:   #D5D8D8;
-                padding:            3px;
-                margin-bottom:      10px;
+            
             }
 .chatpanel-ulist-addtitle
             {
                 margin-top:         20px;
             }
-.chatpanel-ulist-addinput, .chatpanel-ulist-addbutton, .chatpanel-close-button
+.chatpanel-ulist-addinput, .chatpanel-ulist-addbutton, .chatpanel-close-button, .chatpanel-edit-addinput, .chatpanel-edit-addbutton, .chatpanel-edit-addinput, .chatpanel-edit-addbutton
             {
-                background-color:   #FAFAFA;
-                color:              #282850;
-                font:               11px arial, sans-serif;
-                border:             solid 1px #82A6BE;
-                padding:            0px;
-                padding-left:       2px;
-                padding-right:      2px;
-                margin:             2px;
+
             }
 .chatpanel-ulist-addbutton, .chatpanel-close-button
             {
-                padding-left:       15px;
-                padding-right:      15px;
-            }
-.chatpanel-edit-addinput, .chatpanel-edit-addbutton, .chatpanel-edit-addinput, .chatpanel-edit-addbutton
-            {
-                background-color:   #FAFAFA;
-                color:              #282850;
-                font:               11px arial, sans-serif;
-                border:             solid 1px #82A6BE;
-                padding:            0px;
-                padding-left:       2px;
-                padding-right:      2px;
-                margin:             2px;
+
             }
 
 .searchbox
@@ -234,19 +262,10 @@ td
 
 .postbox
             {   
-                width:              100%;
-                background-color:   #E7EDED;
-                padding:            2px;
-                margin-top:         7px;
-                margin-bottom:      7px;
-                
-                border-left:        4px solid #E7EDED;
-                border-right:       4px solid #E7EDED;
             }          
 .postbox-inside
             {   
                 background-color:   #C4C4CF;
-                padding:            5px;
 
             }
 .postbox-submit
@@ -259,13 +278,6 @@ td
             }
 .postbox-text-area
             {
-                background-color:   #FAFAFA;
-                color:              #282850;
-                font:               11px arial, sans-serif;
-                border:             solid 1px #82A6BE;
-                padding:            0px;
-                padding-left:       2px;
-                padding-right:      2px;
                 width:              95%;
                 resize:             vertical;
             }
@@ -280,11 +292,7 @@ td
 
 .msgrec
             {   
-                width:              100%;
-                
                 background-color:   #CFF0CF;
-                padding:            2px;
-                margin-bottom:      7px;
                 
                 border-left:        4px solid #192719;
                 border-right:       4px solid #CFF0CF;
@@ -305,16 +313,11 @@ td
             }
 .msgrec-body
             {   
-                
             }
 
 .msgsnt
             {   
-                width:              100%;
-                
                 background-color:   #FFFFA0;
-                padding:            2px;
-                margin-bottom:      7px;
                 
                 border-left:        4px solid #FFFFA0;
                 border-right:       4px solid #806600;
@@ -335,39 +338,18 @@ td
             }
 .msgsnt-body
             {   
-                
             }
-
 .msgpanel
-            {   
-                width:              35%;
-                background-color:   #C2C2FF;
-                padding:            5px;
-                float:              right;
+            {
             }
 .msgpanel-filter
             {   
-                background-color:   #E7EDED;
-                margin-bottom:      10px;
-                padding:            5px;
-                border-left:        solid 2px #282850;
             }
 .msgpanel-filter-title
             {
-                background-color:   #D5D8D8;
-                padding:            3px;
-                margin-bottom:      10px;
             }
 .msgpanel-filter-div-search, .msgpanel-filter-div-button
             {
-                background-color:   #FAFAFA;
-                color:              #282850;
-                font:               11px arial, sans-serif;
-                border:             solid 1px #82A6BE;
-                padding:            0px;
-                padding-left:       2px;
-                padding-right:      2px;
-                margin:             2px;
             }
 
 
