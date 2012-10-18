@@ -22,7 +22,31 @@
                 <tr>
                     <td>
                         <div class="bodyframe">
-                            chat room
+                        
+                            <?php
+                                vf_printchatheader("An example of a title", "Do you like to kill patatos?");
+                            ?>
+                            
+                            <div class="chatroom-posts">
+                            <?php  
+                                vf_printchatmsg("Username", "19 Oct 2012", "Die patato!");
+                                vf_printchatmsg("ajsd", "324", "skjfs sf");
+                                vf_printchatmsg("ajsd", "324", "skjfs sf");
+                                vf_printchatmsg("ajsd", "324", "skjfs sf");
+                                vf_printchatmsg("ajsd", "324", "skjfs sf");
+                                vf_printchatmsg("ajsd", "324", "skjfs sf");
+                                vf_printchatmsg("ajsd", "324", "skjfs sf");
+                                vf_printchatmsg("ajsd", "324", "skjfs sf");
+                                vf_printchatmsg("ajsd", "324", "skjfs sf");
+                                
+                                vf_printchatroompostform(); 
+                            ?>
+                            </div>
+                            
+                            <?php
+                                vf_printchatroompanel()
+                            ?>                            
+                            
                         </div>
                     </td>
                 </tr>
