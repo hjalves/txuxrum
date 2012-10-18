@@ -76,11 +76,11 @@ END;
         <div class="chatmsg-date">
             $date
         </div>
+        <div id="nextSetOfContent"></div>
         <div class="chatmsg-body">
             $msg
         </div>
     </div>
-    <div id="nextSetOfContent"></div>
 </div>
 END;
     }

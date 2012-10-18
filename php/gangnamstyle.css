@@ -112,12 +112,11 @@ td
             
 .chatmsg
             {   
-                width:              60%;
+                width:              100%;
                 
                 background-color:   #E7EDED;
                 padding:            2px;
-                margin-top:         2px;
-                margin-bottom:      2px;
+                margin-bottom:      3px;
                 
                 border-left:        4px solid #E7EDED;
                 border-right:       4px solid #E7EDED;
@@ -127,12 +126,12 @@ td
                  background-color:   #D5D8D8;
             }
 .chatmsg-from
-            {   
+            { 
                 float:              left;
                 width:              55%;
             }
 .chatmsg-date
-            {   
+            {
                 float:              right;
                 width:              35%;
             }
@@ -157,6 +156,53 @@ td
             {
                 padding-top:        8px;
                 padding-bottom:     8px;
+            }
+.chatroom-posts
+            {
+                float:              left;
+                width:              60%;
+            }
+
+
+.chatpanel
+            {   
+                width:              35%;
+                background-color:   #C2C2FF;
+                padding:            5px;
+                float:              right;
+            }
+.chatpanel-rate, .chatpanel-ulist, .chatpanel-close
+            {   
+                background-color:   #E7EDED;
+                margin-bottom:      10px;
+                padding:            5px;
+                border-left:        solid 2px #282850;
+            }
+.chatpanel-rate-title, .chatpanel-ulist-title, .chatpanel-close-title, .chatpanel-ulist-addtitle
+            {
+                background-color:   #D5D8D8;
+                padding:            3px;
+                margin-bottom:      10px;
+            }
+.chatpanel-ulist-addtitle
+            {
+                margin-top:         20px;
+            }
+.chatpanel-ulist-addinput, .chatpanel-ulist-addbutton, .chatpanel-close-button
+            {
+                background-color:   #FAFAFA;
+                color:              #282850;
+                font:               11px arial, sans-serif;
+                border:             solid 1px #82A6BE;
+                padding:            0px;
+                padding-left:       2px;
+                padding-right:      2px;
+                margin:             2px;
+            }
+.chatpanel-ulist-addbutton, .chatpanel-close-button
+            {
+                padding-left:       15px;
+                padding-right:      15px;
             }
 
 /**** PRIVATE MESSAGES ****/
