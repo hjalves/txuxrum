@@ -205,6 +205,60 @@ td
                 padding-right:      15px;
             }
 
+.searchbox
+            {   
+                background-color:   #E7EDED;
+                padding:            2px;
+                margin-bottom:      3px;
+                
+                border-left:        4px solid #E7EDED;
+                border-right:       4px solid #E7EDED;
+            }
+.searchbox-inside
+            {   
+                 background-color:   #D5D8D8;
+                 padding:            3px;
+                 text-align:         center;
+            }
+
+.postbox
+            {   
+                width:              100%;
+                background-color:   #E7EDED;
+                padding:            2px;
+                margin-top:         7px;
+                margin-bottom:      7px;
+                
+                border-left:        4px solid #E7EDED;
+                border-right:       4px solid #E7EDED;
+            }          
+.postbox-inside
+            {   
+                background-color:   #C4C4CF;
+                padding:            5px;
+
+            }
+.postbox-submit
+            {
+                text-align:         right;
+            }
+.postbox-text
+            {
+                text-align:         center;
+            }
+.postbox-text-area
+            {
+                background-color:   #FAFAFA;
+                color:              #282850;
+                font:               11px arial, sans-serif;
+                border:             solid 1px #82A6BE;
+                padding:            0px;
+                padding-left:       2px;
+                padding-right:      2px;
+                width:              95%;
+                resize:             vertical;
+            }
+
 /**** PRIVATE MESSAGES ****/
 .msgrec
             {   

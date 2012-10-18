@@ -22,17 +22,13 @@
                 <tr>
                     <td>
                         <div class="bodyframe">
-                            
-                            <div>
-                                <div>
-                                
-                                    <div>
-                                    </div>
-                                    <div>
-                                    </div>
-                                    <div>
-                                    </div>
-                                
+                            <div class="searchbox">
+                                <div class="searchbox-inside"> 
+                                        Search by
+                                        username <input type="text" size="20" class="chatpanel-ulist-addinput" />
+                                        and/or topic <input type="text" size="20" class="chatpanel-ulist-addinput" />
+                                        <input type="submit" value="search" class="chatpanel-ulist-addbutton" />
+                                        or list your topics
                                 </div>
                             </div>
                             
@@ -63,6 +59,20 @@
                                 vf_printchatmsg("ajsd", "324", "skjfs sf");
                                 
                             ?>
+                            
+                            <div class="postbox">
+                                <div class="postbox-inside">
+                                    <div class="postbox-text">
+                                    <textarea rows="4" cols="50" class="postbox-text-area"></textarea>
+                                    </div>
+                                    <div class="postbox-attach">
+                                        Attach files
+                                    </div>
+                                    <div class="postbox-submit">
+                                        <input type="submit" value="post" class="chatpanel-ulist-addbutton" />
+                                    </div>    
+                                </div>
+                            </div>
                             
                             </div>
                             
