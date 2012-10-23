@@ -352,11 +352,13 @@ td
             }
 .profile-profile-user
             {
-                border-left:        3px solid #87879D;
+                border-left:        4px solid #282850;
                 text-align:         center;
             }
 .profile-profile-div
-            {
+            {   
+                border-left:        3px solid #87879D;
+                
                 margin-top:         5px;
                 margin-bottom:      5px;
                 padding-left:       5px;
