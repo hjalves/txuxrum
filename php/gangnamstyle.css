@@ -42,7 +42,7 @@ td
             {
                 background-color:   #E7EDED;
              
-                width:              100%;   
+                width:              100%;
                 
                 margin-bottom:      3px;
                 border-left:        4px solid #E7EDED;
@@ -246,18 +246,10 @@ td
 
 .searchbox
             {   
-                background-color:   #E7EDED;
-                padding:            2px;
-                margin-bottom:      3px;
-                
-                border-left:        4px solid #E7EDED;
-                border-right:       4px solid #E7EDED;
+                width:              inherit;
             }
 .searchbox-inside
-            {   
-                 background-color:   #D5D8D8;
-                 padding:            3px;
-                 text-align:         center;
+            {
             }
 
 .postbox
@@ -353,5 +345,39 @@ td
             }
 
 
+/**** PROFILE ****/
+.profile-profile-main
+            {
+                width:              inherit;
+            }
+.profile-profile-user
+            {
+                border-left:        3px solid #87879D;
+                text-align:         center;
+            }
+.profile-profile-div
+            {
+                margin-top:         5px;
+                margin-bottom:      5px;
+                padding-left:       5px;
+                padding-right:      5px;
+            }
+.profile-profile-var
+            {
+                float:              left;
+                width:              20%;
+            }
 
-
+.profile-profile-val
+            {
+                float:              left;
+                width:              40%;
+            }
+            
+.profile-profile-edit
+            {
+                text-align:         right;
+                
+                float:              right;
+                width:              30%;
+            }

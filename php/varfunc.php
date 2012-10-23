@@ -220,8 +220,8 @@ END;
     /* print searchbox */
     function vf_printsearchbox() {
         echo <<<END
-<div class="searchbox">
-    <div class="searchbox-inside"> 
+<div class="textframe searchbox">
+    <div class="textframe-inside searchbox-inside"> 
         Search by
         username <input type="text" size="20" class="panelframe-input" />
         and/or topic <input type="text" size="20" class="panelframe-input" />

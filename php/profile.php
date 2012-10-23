@@ -22,7 +22,92 @@
                 <tr>
                     <td>
                         <div class="bodyframe">
-                            view/edit profiles
+                            
+
+                            <div class="textframe profile-profile-main">
+                                <div class="textframe-inside profile-profile-user">
+                                    Username
+                                </div>
+                                <br />
+                                <div class="">
+                                    <div class="profile-profile-div textframe-inside">
+                                        <div class="profile-profile-var">
+                                            Name
+                                        </div>
+                                        <div class="profile-profile-val">
+                                            value
+                                        </div>
+                                        <div class="profile-profile-edit">
+                                            <input type="submit" value="edit" class="panelframe-button" />
+                                        </div>
+                                        <div id="nextSetOfContent"></div>
+                                    </div>
+                                    <div class="profile-profile-div textframe-inside">
+                                        <div class="profile-profile-var">
+                                            Birthday
+                                        </div>
+                                        <div class="profile-profile-val">
+                                            value
+                                        </div>
+                                        <div class="profile-profile-edit">
+                                            <input type="submit" value="edit" class="panelframe-button" />
+                                        </div>
+                                        <div id="nextSetOfContent"></div>
+                                    </div>
+                                    <div class="profile-profile-div textframe-inside">
+                                        <div class="profile-profile-var">
+                                            Age
+                                        </div>
+                                        <div class="profile-profile-val">
+                                            value
+                                        </div>
+                                        <div class="profile-profile-edit">
+                                            <input type="submit" value="edit" class="panelframe-button" />
+                                        </div>
+                                        <div id="nextSetOfContent"></div>
+                                    </div>
+                                    <div class="profile-profile-div textframe-inside">
+                                        <div class="profile-profile-var">
+                                            E-mail
+                                        </div>
+                                        <div class="profile-profile-val">
+                                            value
+                                        </div>
+                                        <div class="profile-profile-edit">
+                                            <input type="submit" value="edit" class="panelframe-button" />
+                                        </div>
+                                        <div id="nextSetOfContent"></div>
+                                    </div>
+                                    <div class="profile-profile-div textframe-inside">
+                                        <div class="profile-profile-var">
+                                            Country
+                                        </div>
+                                        <div class="profile-profile-val">
+                                            value
+                                        </div>
+                                        <div class="profile-profile-edit">
+                                            <input type="submit" value="edit" class="panelframe-button" />
+                                        </div>
+                                        <div id="nextSetOfContent"></div>
+                                    </div>
+                                    <div class="profile-profile-div textframe-inside">
+                                        <div class="profile-profile-var">
+                                            City
+                                        </div>
+                                        <div class="profile-profile-val">
+                                            value
+                                        </div>
+                                        <div class="profile-profile-edit">
+                                            <input type="submit" value="edit" class="panelframe-button" />
+                                        </div>
+                                        <div id="nextSetOfContent"></div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                            
+                            
                         </div>
                     </td>
                 </tr>
