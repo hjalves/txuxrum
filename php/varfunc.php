@@ -232,6 +232,204 @@ END;
 END;
     }
     
+    /* print profile */
+    function vf_printprofile() {
+        echo <<<END
+<div class="textframe profile-profile-main">
+    <div class="textframe-inside profile-profile-user">
+        Username
+    </div>
+    <br />
+    <div class="">
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                Name
+            </div>
+            <div class="profile-profile-val">
+                value
+            </div>
+            <div class="profile-profile-edit">
+                <input type="submit" value="edit" class="panelframe-button" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                Birthday
+            </div>
+            <div class="profile-profile-val">
+                value
+            </div>
+            <div class="profile-profile-edit">
+                <input type="submit" value="edit" class="panelframe-button" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                Age
+            </div>
+            <div class="profile-profile-val">
+                value
+            </div>
+            <div class="profile-profile-edit">
+                <input type="submit" value="edit" class="panelframe-button" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                E-mail
+            </div>
+            <div class="profile-profile-val">
+                value
+            </div>
+            <div class="profile-profile-edit">
+                <input type="submit" value="edit" class="panelframe-button" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                Country
+            </div>
+            <div class="profile-profile-val">
+                value
+            </div>
+            <div class="profile-profile-edit">
+                <input type="submit" value="edit" class="panelframe-button" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                City
+            </div>
+            <div class="profile-profile-val">
+                value
+            </div>
+            <div class="profile-profile-edit">
+                <input type="submit" value="edit" class="panelframe-button" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+    </div>
+</div>
+END;
+    }
+    
+    /* print profile */
+    function vf_printsearchprofile() {
+        echo <<<END
+<div class="textframe profile-profile-main">
+    <div class="textframe-inside profile-profile-user">
+        Search user
+        <br />
+        
+        <div class="profile-search-div textframe-inside">
+            <div class="profile-search-var">
+                Username
+            </div>
+            <div class="profile-profile-val">
+                <input type="text" size="20" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-search-div textframe-inside">
+            <div class="profile-search-var">
+                Name
+            </div>
+            <div class="profile-profile-val">
+                <input type="text" size="20" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-search-div textframe-inside">
+            <div class="profile-search-var">
+                Birthday
+            </div>
+            <div class="profile-profile-val">
+                <input type="text" size="20" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-search-div textframe-inside">
+            <div class="profile-search-var">
+                Age
+            </div>
+            <div class="profile-profile-val">
+                <input type="text" size="20" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-search-div textframe-inside">
+            <div class="profile-search-var">
+                E-mail
+            </div>
+            <div class="profile-profile-val">
+                <input type="text" size="20" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-search-div textframe-inside">
+            <div class="profile-search-var">
+                Country
+            </div>
+            <div class="profile-profile-val">
+                <input type="text" size="20" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-search-div textframe-inside">
+            <div class="profile-search-var">
+                City
+            </div>
+            <div class="profile-profile-val">
+                <input type="text" size="20" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        
+        <input type="submit" value="search" class="panelframe-button" />
+    </div>
+    <br />
+    <div>
+    
+        <div class="profile-search-res textframe-inside">
+            <div class="profile-profile-var">
+                <a href="">Own</a>
+            </div>
+            <div class="profile-profile-var">
+                Name
+            </div>
+            <div class="profile-profile-var">
+                Age
+            </div>
+            <div class="profile-profile-var">
+                City
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-search-res textframe-inside">
+            <div class="profile-profile-var">
+                Username
+            </div>
+            <div class="profile-profile-var">
+                Name
+            </div>
+            <div class="profile-profile-var">
+                Age
+            </div>
+            <div class="profile-profile-var">
+                City
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+       
+    </div>
+</div>
+END;
+    }
     
     
 ?>
