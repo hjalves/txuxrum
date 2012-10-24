@@ -26,12 +26,12 @@
                             
                             <?php
                                 vf_printsearchbox();
-                                vf_printchatitem("Exemplo de titulo", "chat.php?thread=ID", "Username", "19 Oct 2012");
+                                vf_printchatitem("Exemplo de titulo", "chat.php?thread=ID", "Username", "19 Oct 2012", "lastuser", "lastdate", "lastpost");
+                                /*vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
                                 vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
                                 vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
                                 vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
-                                vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
-                                vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
+                                vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");*/
                                 
                             ?>
                             

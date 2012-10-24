@@ -9,6 +9,17 @@
     
     
     /* ## Functions ## */
+    
+    /* make link to search the $user */
+    function vf_usertolink($user) {
+        return "<a href=\"profile.php?user=" . $user . "\" class=\"userlink\">" . $user . "</a>";
+    }
+    
+    /* make a standard link */
+    function vf_stdlink($text, $link) {
+        return "<a href=\"" . $link . "\" class=\"stdlink\">" . $text . "</a>";
+    }
+    
     /* print footer */
     function vf_printfooter() {
         echo <<<END
@@ -19,12 +30,14 @@ END;
     }
     
     /* print chatroom item */
-    function vf_printchatitem($title, $atitle, $user, $date) {
+    function vf_printchatitem($title, $link, $user, $date, $postuser, $postdate, $postprev) {
+        $user = vf_usertolink($user);
+        $postuser = vf_usertolink($postuser);
         echo <<<END
 <div class="chatroom">                            
     <div class="chatroom-left">
         <div class="chatroom-title">
-            <a href="$atitle">$title</a>
+            <a href="$link">$title</a>
         </div>
         <div>
             <div class="chatroom-user">
@@ -36,11 +49,11 @@ END;
         </div>
     </div>
     <div class="chatroom-right">
-        <div class="chatroom-info">
-            more info
+        <div class="chatroom-lastpost">
+            Last post by $postuser on $postdate
         </div>
-        <div class="chatroom-options">
-            more options
+        <div class="chatroom-lastpostby">
+            $postprev
         </div>
     </div>
     <div id="nextSetOfContent"></div>
@@ -91,13 +104,13 @@ END;
 <div class="msgrec textframe">                            
     <div class="msgrec-inside textframe-inside">
         <div class="msgrec-from">
-                $from
+            $from
         </div>
         <div class="msgrec-date">
             $date
         </div>
         <div class="msgrec-body">
-                $msg
+            $msg
         </div>
     </div>
     <div id="nextSetOfContent"></div>
@@ -111,13 +124,13 @@ END;
 <div class="msgsnt textframe">                            
     <div class="msgsnt-inside textframe-inside">
         <div class="msgsnt-from">
-                $to
+            $to
         </div>
         <div class="msgsnt-date">
             $date
         </div>
         <div class="msgsnt-body">
-                $msg
+            $msg
         </div>
     </div>
     <div id="nextSetOfContent"></div>
@@ -129,6 +142,9 @@ END;
     function vf_printmessagepanel($user) {
         if (!$user)
             $user = "everyone";
+        else
+            $user = vf_usertolink($user);
+            
         echo <<<END
 <div class="msgpanel panelframe">
     <div class="msgpanel-filter panelframe-item">
@@ -136,9 +152,9 @@ END;
             Message of you and $user
         </div>
         <div class="msgpanel-filter-div">
-            <input type="text" size="20" class="msgpanel-filter-div-search panelframe-input" />
-            <input type="submit" value="filter" class="msgpanel-filter-div-button panelframe-button" />
-            <input type="submit" value="clear filter" class="msgpanel-filter-div-button panelframe-button" />
+            <input name="msg_filter_user" type="text" size="20" class="msgpanel-filter-div-search panelframe-input" />
+            <input name="msg_filter_button" type="submit" value="filter" class="msgpanel-filter-div-button panelframe-button" />
+            <input name="msg_clear" type="submit" value="clear filter" class="msgpanel-filter-div-button panelframe-button" />
         </div>
     </div>
 </div>

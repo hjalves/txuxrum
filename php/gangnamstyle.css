@@ -157,7 +157,7 @@ td
                 float:              right;
                 width:              39%;
             }
-.chatroom-title, .chatroom-user, .chatroom-date, .chatroom-options, .chatroom-info
+.chatroom-title, .chatroom-user, .chatroom-date, .chatroom-lastpostby, .chatroom-lastpost
             {
                 margin: 3px;
             }
