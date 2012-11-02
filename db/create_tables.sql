@@ -17,7 +17,7 @@ DROP TABLE ratings CASCADE;
 -- Then, create tables
 
 CREATE TABLE users (
-    UserID          integer     PRIMARY KEY,
+    UserID          serial      PRIMARY KEY,
     Username        varchar(16),
     Password        varchar,
     NameIsPublic    boolean,
@@ -29,7 +29,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE chatrooms (
-    RoomID          integer     PRIMARY KEY,
+    RoomID          serial      PRIMARY KEY,
     Theme           varchar
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE ratings (
 );
 
 CREATE TABLE messages (
-    MsgID           integer     PRIMARY KEY,
+    MsgID           serial      PRIMARY KEY,
     RoomID          integer     REFERENCES chatrooms,
     UserID          integer     REFERENCES users,
     MsgText         varchar,
@@ -59,7 +59,7 @@ CREATE TABLE messages (
 );
 
 CREATE TABLE privatemessages (
-    PvtMsgID        integer     PRIMARY KEY,
+    PvtMsgID        serial      PRIMARY KEY,
     SenderID        integer     REFERENCES users (UserID),
     ReceiverID      integer     REFERENCES users (UserID),
     MsgText         varchar,
@@ -68,10 +68,16 @@ CREATE TABLE privatemessages (
 );
 
 CREATE TABLE documents (
-    DocID           integer     PRIMARY KEY,
+    DocID           serial      PRIMARY KEY,
     MsgID           integer     REFERENCES messages,
     PvtMsgID        integer     REFERENCES privatemessages,
     Filename        varchar
 );
 
+-- Create sequences
 
+--CREATE SEQUENCE users_UserID_seq owned by users.UserID;
+--CREATE SEQUENCE rooms_RoomID_seq owned by chatrooms.RoomID;
+--CREATE SEQUENCE messages_MsgID_seq owned by messages.MsgID;
+--CREATE SEQUENCE privatemessages_PvtMsgID_seq owned by privatemessages.PvtMsgID;
+--CREATE SEQUENCE documents_DocID_seq owned by documents.DocID;
