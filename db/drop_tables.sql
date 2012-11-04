@@ -1,0 +1,7 @@
+DROP TABLE users CASCADE;
+DROP TABLE chatrooms CASCADE;
+DROP TABLE permissions CASCADE;
+DROP TABLE messages CASCADE;
+DROP TABLE privatemessages CASCADE;
+DROP TABLE documents CASCADE;
+DROP TABLE ratings CASCADE;
