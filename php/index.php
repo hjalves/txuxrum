@@ -1,6 +1,7 @@
 <?php /* Index file - chat rooms list */
     require_once('dbauth.php');
-    require('varfunc.php');  
+    require('varfunc.php');
+    require('sqlqry.php');
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +27,10 @@
                             
                             <?php
                                 vf_printsearchbox();
-                                vf_printchatitem("Exemplo de titulo", "chat.php?thread=ID", "Username", "19 Oct 2012", "lastuser", "lastdate", "lastpost");
-                                /*vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
-                                vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
-                                vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
-                                vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");
-                                vf_printchatitem("Outro exemplo de titulo", "outrolink", "user", "agosto");*/
-                                
+                                $result = sql_query_chatrooms();
+                                while ($line = pg_fetch_array($result, null, PGSQL_NUM)) {
+                                    vf_printchatitem($line[0], $line[1], $line[2], $line[3]);
+                                }
                             ?>
                             
                         </div>

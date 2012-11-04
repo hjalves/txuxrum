@@ -98,7 +98,9 @@ Aqui fica um mapeamento entre funcionalidade e comandos SQL :)
     TODO
 
 23. Search for chatroom (username and/or topic)
-    TODO
+
+23.1. Simple list of chatrooms
+    SELECT 
 
 24. Rate chatrooms
     TODO

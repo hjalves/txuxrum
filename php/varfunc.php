@@ -30,14 +30,14 @@ END;
     }
     
     /* print chatroom item */
-    function vf_printchatitem($title, $link, $user, $date, $postuser, $postdate, $postprev) {
+    function vf_printchatitem($title, $id, $user, $date, $postuser, $postdate, $postprev) {
         $user = vf_usertolink($user);
         $postuser = vf_usertolink($postuser);
         echo <<<END
 <div class="chatroom">                            
     <div class="chatroom-left">
         <div class="chatroom-title">
-            <a href="$link">$title</a>
+            <a href="chat.php?thread=$id">$title</a>
         </div>
         <div>
             <div class="chatroom-user">
