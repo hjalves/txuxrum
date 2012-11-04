@@ -1,8 +1,12 @@
 -- Create database tables
 -- basimoes, hjalves, tlevita (LEI-BD 2012/2013)
 
--- (Para criar db usar comando: 'createdb txux')
--- (Depois, 'psql -f create_tables.sql txux')
+-- (Fazer primeiro: 'createuser -U postgres -P txux')
+-- (Introduzir a password desejada para txux)
+-- (Allow this role to create dbs? Yes!)
+-- (Depois criar db: 'createdb -U txux')
+-- (Finalmente, 'psql -U txux -f create_tables.sql')
+
 
 -- First, drop tables and dependencies
 
@@ -33,7 +37,7 @@ CREATE TABLE chatrooms (
     OwnerID         integer     REFERENCES users (UserID),
     Theme           varchar,
     IsClosed        boolean     DEFAULT FALSE,
-    CreationDate    date
+    CreationDate    date        DEFAULT current_date
 );
 
 CREATE TABLE permissions (
@@ -57,7 +61,7 @@ CREATE TABLE messages (
     RoomID          integer     REFERENCES chatrooms,
     UserID          integer     REFERENCES users,
     MsgText         varchar,
-    PostTime        timestamp
+    PostTime        timestamp   DEFAULT current_timestamp
 );
 
 CREATE TABLE privatemessages (
@@ -65,7 +69,7 @@ CREATE TABLE privatemessages (
     SenderID        integer     REFERENCES users (UserID),
     ReceiverID      integer     REFERENCES users (UserID),
     MsgText         varchar,
-    SendTime        timestamp,
+    SendTime        timestamp   DEFAULT current_timestamp,
     ReadTime        timestamp
 );
 
@@ -77,9 +81,9 @@ CREATE TABLE documents (
 );
 
 -- Create sequences
+-- CREATE SEQUENCE users_UserID_seq owned by users.UserID;
+-- CREATE SEQUENCE rooms_RoomID_seq owned by chatrooms.RoomID;
+-- CREATE SEQUENCE messages_MsgID_seq owned by messages.MsgID;
+-- CREATE SEQUENCE privatemessages_PvtMsgID_seq owned by privatemessages.PvtMsgID;
+-- CREATE SEQUENCE documents_DocID_seq owned by documents.DocID;
 
---CREATE SEQUENCE users_UserID_seq owned by users.UserID;
---CREATE SEQUENCE rooms_RoomID_seq owned by chatrooms.RoomID;
---CREATE SEQUENCE messages_MsgID_seq owned by messages.MsgID;
---CREATE SEQUENCE privatemessages_PvtMsgID_seq owned by privatemessages.PvtMsgID;
---CREATE SEQUENCE documents_DocID_seq owned by documents.DocID;
