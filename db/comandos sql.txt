@@ -1,0 +1,104 @@
+Aqui fica um mapeamento entre funcionalidade e comandos SQL :)
+
+=== Profile-related activities ===
+
+1. Register
+    TODO
+
+2. Login
+    SELECT UserID
+    FROM users
+    WHERE username = 'ze' and
+          password = md5('ze')
+    
+    - devolve uma linha contendo apenas o userid, se a autenticação correu bem
+    - caso contrario, devolve nada
+
+
+3. Remove account
+    TODO
+
+4. Declare username and profile public or private
+
+4.1. Declare username Public/Private
+    TODO
+
+4.2. Declare profile Public/Private
+    TODO
+
+5. Modify personal info
+    
+5.1. Modify Name
+    TODO
+
+5.2. Modify Mail
+    TODO
+
+5.3. Modify Location
+    TODO
+
+5.4. Modify Birthday
+    TODO
+
+6. Modify Password
+    TODO
+
+7. Delete all information (except what was shared with other users...)
+    TODO
+
+8. Search for (public profile) users by comb of name, mail, loc, age, ...
+    TODO
+
+
+=== Message-related activities ===
+
+9. Send personal message by username
+    TODO
+
+10. Read personal messages sent by other users
+    TODO
+
+11. Read and list the history of messages exchanged between current user and another user
+    TODO
+
+12. Delete sent messages, still not viewed
+    TODO
+
+13. Consult the sender, recipient, sending and reading date of any message sent or received
+    TODO
+
+14. Schedule the sending of a message
+    TODO
+
+15. Cancel the scheduled transmission of a message
+    TODO (== 12?)
+
+16. Send and receive files
+    TODO
+    
+
+=== Chatroom-related activities ===
+
+17. Create new chat rooms
+    TODO
+
+18. Manage posting permissions
+    TODO
+
+19. List and close chat rooms created by current user
+    TODO
+
+20. Ban or admin users in chat room
+    TODO
+
+21. List and read messages in chat room
+    TODO
+
+22. Post messages (and files)
+    TODO
+
+23. Search for chatroom (username and/or topic)
+    TODO
+
+24. Rate chatrooms
+    TODO

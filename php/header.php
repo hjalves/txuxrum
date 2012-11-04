@@ -17,7 +17,7 @@
     <tr>
         <td width="133px" align="center" class="menuitem">
             <a href="index.php">
-                Inicio
+                Forum
             </a>
         </td>
         <td width="133px" align="center" class="menuitem">
