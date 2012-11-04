@@ -20,9 +20,9 @@ CREATE TABLE users (
     UserID          serial      PRIMARY KEY,
     Username        varchar(16),
     Password        varchar,
-    NameIsPublic    boolean,
-    ProfileIsPublic boolean,
-    IsDeleted       boolean,
+    NameIsPublic    boolean     DEFAULT TRUE,
+    ProfileIsPublic boolean     DEFAULT TRUE,
+    IsDeleted       boolean     DEFAULT FALSE,
     Mail            varchar,
     Location        varchar,
     Birthday        date
@@ -30,15 +30,17 @@ CREATE TABLE users (
 
 CREATE TABLE chatrooms (
     RoomID          serial      PRIMARY KEY,
-    Theme           varchar
+    OwnerID         integer     REFERENCES users (UserID),
+    Theme           varchar,
+    IsClosed        boolean     DEFAULT FALSE,
+    CreationDate    date
 );
 
 CREATE TABLE permissions (
     UserID          integer     REFERENCES users,
     RoomID          integer     REFERENCES chatrooms,
-    Owns            boolean,
-    CanPost         boolean,
-    Banned          boolean,
+    CanPost         boolean     DEFAULT FALSE,
+    Banned          boolean     DEFAULT FALSE,
     PRIMARY KEY (UserID, RoomID)
 );
 
