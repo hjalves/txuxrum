@@ -2,7 +2,8 @@
 body
             {   background-color:   #0a0a0a;
                 font:               15px arial, sans-serif;
-                color:              #ffffff;}
+                color:              #ffffff;
+            }
                 
 td
             {   background-color:   #ffffff;
@@ -13,6 +14,7 @@ td
 .mainframe
             {
                 border:             solid 1px #666666;
+                text-align:         left;
             }
 
 .bodyframe
@@ -161,6 +163,10 @@ td
             {
                 margin: 3px;
             }
+.chatroom-title
+            {
+                font-weight:        bold;
+            }
 .chatroom-user
             {
                 float:              left;
@@ -184,6 +190,7 @@ td
             { 
                 float:              left;
                 width:              55%;
+                font-weight:        bold;
             }
 .chatmsg-date
             {
@@ -206,6 +213,7 @@ td
 .chathead-title
             {
                 padding-top:        8px;
+                font-weight:        bold;
             }
 .chathead-theme
             {

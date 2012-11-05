@@ -2,6 +2,7 @@
     require_once('dbauth.php');
     require('varfunc.php');
     require('sqlqry.php');
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +11,7 @@
     <head>
         <title> :: -- CHATRUM -- ::</title>
         <font size="1px" />
-        <LINK href="gangnamstyle.css" rel="stylesheet" type="text/css">
+        <link href="gangnamstyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div align="center">
@@ -28,7 +29,7 @@
                             <?php
                                 vf_printsearchbox();
                                 $result = sql_query_chatrooms();
-                                while ($line = pg_fetch_array($result, null, PGSQL_NUM)) {
+                                while ($line = pg_fetch_row($result, null)) {
                                     vf_printchatitem($line[0], $line[1], $line[2], $line[3]);
                                 }
                             ?>

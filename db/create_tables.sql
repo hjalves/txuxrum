@@ -22,7 +22,7 @@ DROP TABLE ratings CASCADE;
 
 CREATE TABLE users (
     UserID          serial      PRIMARY KEY,
-    Username        varchar(16) NOT NULL,
+    Username        varchar(16) UNIQUE NOT NULL,
     Password        varchar(32) NOT NULL,           -- password md5 output = 32 chars
     Deleted         boolean     DEFAULT FALSE,
     UsernamePublic  boolean     DEFAULT TRUE,

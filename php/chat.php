@@ -1,6 +1,7 @@
 <?php /* Chat room */
     require_once('dbauth.php');
     require('varfunc.php');
+    require('sqlqry.php');
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +10,7 @@
     <head>
         <title> :: -- CHATRUM -- ::</title>
         <font size="1px" />
-        <LINK href="gangnamstyle.css" rel="stylesheet" type="text/css">
+        <link href="gangnamstyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div align="center">
@@ -24,20 +25,19 @@
                         <div class="bodyframe">
                         
                             <?php
-                                vf_printchatheader("An example of a title", "Do you like to kill patatos?");
+                                $roomid = $_GET["thread"];
+                                $result = sql_query_chatroom($roomid);
+                                $row = pg_fetch_row($result, null);
+                                vf_printchatheader($row[0], "Op op op oppa gangnam style.");
                             ?>
                             
                             <div class="chatroom-posts">
                             <?php  
-                                vf_printchatmsg("Username", "19 Oct 2012", "Die patato!");
-                                vf_printchatmsg("ajsd", "324", "skjfs sf");
-                                vf_printchatmsg("ajsd", "324", "skjfs sf");
-                                vf_printchatmsg("ajsd", "324", "skjfs sf");
-                                vf_printchatmsg("ajsd", "324", "skjfs sf");
-                                vf_printchatmsg("ajsd", "324", "skjfs sf");
-                                vf_printchatmsg("ajsd", "324", "skjfs sf");
-                                vf_printchatmsg("ajsd", "324", "skjfs sf");
-                                vf_printchatmsg("ajsd", "324", "skjfs sf");
+                                $roomid = $_GET["thread"];
+                                $result = sql_query_messages($roomid);
+                                while ($line = pg_fetch_row($result, null)) {
+                                    vf_printchatmsg($line[0], $line[1], $line[2]);
+                                }
                                 
                                 vf_printchatroompostform(); 
                             ?>

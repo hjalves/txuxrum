@@ -2,15 +2,27 @@
     
     /* EXAMPLE - select all from $1 */
     function sql_selectall($table) {
-        $result = pg_query($GLOBALS["dblink"], "SELECT * FROM " . $table . ";");
-        
+        global $dblink;
+        $result = pg_query($dblink, "SELECT * FROM " . $table . ";");
         return $result;
     }
     
     function sql_query_chatrooms() {
-		$query = 'SELECT title, roomid, username, creationdate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID';
+		$query = 'SELECT Title, RoomID, Username, CreationDate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID';
 		$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 		return $result;
+    }
+
+    function sql_query_chatroom($id) {
+        $query = 'SELECT Title FROM Chatrooms WHERE RoomID = $1';
+        $result = pg_query_params($query, array($id)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
+    function sql_query_messages($chatroomid) {
+        $query = 'SELECT Username, to_char(PostTime, \'DD-Mon-YYYY, HH24:MI:SS\'), MsgText FROM messages, users WHERE RoomID = $1 AND messages.UserID = users.UserID ORDER BY MsgID ASC';
+        $result = pg_query_params($query, array($chatroomid)) or die('Query failed: ' . pg_last_error());
+        return $result;
     }
 
 ?>

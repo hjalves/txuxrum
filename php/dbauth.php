@@ -10,7 +10,7 @@
     $dbuser = "txux";
     $dbpass = "txux";
     /* verbose */
-    $dbverb = TRUE;
+    $dbverb = FALSE;
 
     /* -- connection to database server -- */
     $dbconnection_string = "host=$dbhost port=$dbport dbname=$dbname user=$dbuser password=$dbpass";

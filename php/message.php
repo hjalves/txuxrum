@@ -9,7 +9,7 @@
     <head>
         <title> :: -- CHATRUM -- ::</title>
         <font size="1px" />
-        <LINK href="gangnamstyle.css" rel="stylesheet" type="text/css">
+        <link href="gangnamstyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div align="center">
