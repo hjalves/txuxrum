@@ -39,7 +39,8 @@
                                     vf_printchatmsg($line[0], $line[1], $line[2]);
                                 }
                                 
-                                vf_printchatroompostform(); 
+                                $roomid = $_GET["thread"];
+                                vf_printchatroompostform($roomid); 
                             ?>
                             </div>
                             

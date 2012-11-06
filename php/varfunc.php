@@ -215,19 +215,21 @@ END;
     }
     
     /* print chatroom post form */
-    function vf_printchatroompostform() {
+    function vf_printchatroompostform($roomid) {
         echo <<<END
 <div class="postbox textframe">
     <div class="postbox-inside textframe-inside">
+    <form name='postmsg' action='chat.php?thread=$roomid' method='post'>
         <div class="postbox-text">
-        <textarea rows="4" cols="50" class="postbox-text-area panelframe-input"></textarea>
+        <textarea rows="4" cols="50" name="text" class="postbox-text-area panelframe-input"></textarea>
         </div>
         <div class="postbox-attach">
             (TODO) Attach files
         </div>
         <div class="postbox-submit">
-            <input type="submit" value="post" class="panelframe-button" />
-        </div>    
+            <input type="submit" name="post" value="post" class="panelframe-button" />
+        </div>
+    </form>
     </div>
 </div>
 END;
