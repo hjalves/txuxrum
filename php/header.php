@@ -15,18 +15,18 @@
         </td>
     </tr>
     <tr>
-        <td width="120px" align="center" class="menuitem">
+        <td width="105px" align="center" class="menuitem">
             <a href="index.php">
                 Forum
             </a>
         </td>
-        <td width="120px" align="center" class="menuitem">
+        <td width="105px" align="center" class="menuitem">
             <a href="message.php">
                 Mensagens
             </a>
         </td>
-        <td width="120px" align="center" class="menuitem">
-            <a href="profile.php">
+        <td width="105px" align="center" class="menuitem">
+            <a href="users.php">
                 Membros
             </a>
         </td>
@@ -34,6 +34,7 @@
             User: <input type="text" size="10" class="logininput" /> 
             Pass: <input type="password" size="10" class="logininput" />
             <input type="submit" value="login" class="loginbutton" />
+            <input type="submit" value="register" class="loginbutton" />
         </td>
     </tr>
 </table>

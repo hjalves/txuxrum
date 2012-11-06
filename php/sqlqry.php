@@ -25,4 +25,10 @@
         return $result;
     }
 
+    function sql_query_users() {
+        $query = 'SELECT Username, Name, date_part(\'year\',age(Birthday)), Location FROM users';
+        $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
 ?>

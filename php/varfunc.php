@@ -408,44 +408,28 @@ END;
         
         <input type="submit" value="search" class="panelframe-button" />
     </div>
-    <br />
-    <div>
-    
-        <div class="profile-search-res textframe-inside">
-            <div class="profile-profile-var">
-                <a href="">Own</a>
-            </div>
-            <div class="profile-profile-var">
-                Name
-            </div>
-            <div class="profile-profile-var">
-                Age
-            </div>
-            <div class="profile-profile-var">
-                City
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="profile-search-res textframe-inside">
-            <div class="profile-profile-var">
-                Username
-            </div>
-            <div class="profile-profile-var">
-                Name
-            </div>
-            <div class="profile-profile-var">
-                Age
-            </div>
-            <div class="profile-profile-var">
-                City
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-       
-    </div>
 </div>
 END;
     }
-    
-    
+
+    /* print profile */
+    function vf_printsearchresult($username, $name, $age, $location) {
+        echo <<<END
+<div class="profile-search-res textframe-inside">
+    <div class="profile-profile-var">
+        $username
+    </div>
+    <div class="profile-profile-var">
+        $name
+    </div>
+    <div class="profile-profile-var">
+        $age
+    </div>
+    <div class="profile-profile-var">
+        $location
+    </div>
+    <div id="nextSetOfContent"></div>
+</div>
+END;
+    }
 ?>
