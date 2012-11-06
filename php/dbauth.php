@@ -14,7 +14,7 @@
 
     /* -- connection to database server -- */
     $dbconnection_string = "host=$dbhost port=$dbport dbname=$dbname user=$dbuser password=$dbpass";
-    $dblink = pg_connect($dbconnection_string);
+    $dblink = pg_connect($dbconnection_string) or die("Database connection failed: '$dbconnection_string'");
     
     if ($dbverb) {
         if (!$dblink)
