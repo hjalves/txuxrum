@@ -10,6 +10,7 @@
 <html>
     <head>
         <title> :: -- CHATRUM -- ::</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <link href="gangnamstyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
@@ -29,6 +30,12 @@
                                 $result = sql_query_chatroom($roomid);
                                 $row = pg_fetch_row($result, null);
                                 vf_printchatheader($row[0], "Op op op oppa gangnam style.");
+                                
+                                if ($_POST["text"]) {
+                                    $text = $_POST["text"];
+                                    $userid = $_SESSION['userid'];
+                                    sql_post_message($userid, $roomid, $text);
+                                }
                             ?>
                             
                             <div class="chatroom-posts">

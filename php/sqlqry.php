@@ -54,5 +54,11 @@
         $result = pg_query_params($query, array($username, $password)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
+    
+    function sql_post_message($userid, $roomid, $msgtext) {
+        $query = 'INSERT INTO messages (UserID, RoomID, MsgText) VALUES ($1, $2, $3)';
+        $result = pg_query_params($query, array($userid, $roomid, $msgtext)) or die('Insert failed: ' . pg_last_error());
+        return $result;
+    }
 
 ?>
