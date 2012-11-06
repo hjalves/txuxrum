@@ -22,12 +22,12 @@
                 <tr>
                     <td>
                         <div class="bodyframe">
-
                             <?php
-                                vf_printprofile();
+                                $username = $_GET["user"];
+                                $result = sql_query_user($username);
+                                $row = pg_fetch_row($result, null);
+                                vf_printprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
                             ?>
-                            
-                            
                         </div>
                     </td>
                 </tr>

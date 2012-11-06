@@ -31,4 +31,10 @@
         return $result;
     }
 
+    function sql_query_user($username) {
+        $query = 'SELECT Username, Name, Male, Mail, Location, Birthday, date_part(\'year\',age(Birthday)) FROM users WHERE Username = $1';
+        $result = pg_query_params($query, array($username)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
 ?>

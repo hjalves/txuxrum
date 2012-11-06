@@ -253,16 +253,16 @@ END;
         echo <<<END
 <div class="textframe profile-profile-main">
     <div class="textframe-inside profile-profile-user">
-        Username: $username
+        User profile: $username
     </div>
     <br />
     <div class="">
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                Name: $name
+                Username:
             </div>
             <div class="profile-profile-val">
-                value
+                $username
             </div>
             <div class="profile-profile-edit">
                 <input type="submit" value="edit" class="panelframe-button" />
@@ -271,10 +271,10 @@ END;
         </div>
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                Birthday
+                Name:
             </div>
             <div class="profile-profile-val">
-                value
+                $name
             </div>
             <div class="profile-profile-edit">
                 <input type="submit" value="edit" class="panelframe-button" />
@@ -283,10 +283,10 @@ END;
         </div>
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                Birthday
+                Sex (Is male):
             </div>
             <div class="profile-profile-val">
-                value
+                $male
             </div>
             <div class="profile-profile-edit">
                 <input type="submit" value="edit" class="panelframe-button" />
@@ -295,10 +295,10 @@ END;
         </div>
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                Age
+                Mail:
             </div>
             <div class="profile-profile-val">
-                value
+                $mail
             </div>
             <div class="profile-profile-edit">
                 <input type="submit" value="edit" class="panelframe-button" />
@@ -307,10 +307,10 @@ END;
         </div>
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                E-mail
+                Location:
             </div>
             <div class="profile-profile-val">
-                value
+                $location
             </div>
             <div class="profile-profile-edit">
                 <input type="submit" value="edit" class="panelframe-button" />
@@ -319,10 +319,10 @@ END;
         </div>
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                Country
+                Birthday:
             </div>
             <div class="profile-profile-val">
-                value
+                $birthday
             </div>
             <div class="profile-profile-edit">
                 <input type="submit" value="edit" class="panelframe-button" />
@@ -331,10 +331,10 @@ END;
         </div>
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                City
+                Age:
             </div>
             <div class="profile-profile-val">
-                value
+                $age
             </div>
             <div class="profile-profile-edit">
                 <input type="submit" value="edit" class="panelframe-button" />
