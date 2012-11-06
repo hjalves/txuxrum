@@ -2,6 +2,7 @@
     require_once('dbauth.php');
     require('varfunc.php');
     require('sqlqry.php');
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +10,6 @@
 <html>
     <head>
         <title> :: -- CHATRUM -- ::</title>
-        <font size="1px" />
         <link href="gangnamstyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>

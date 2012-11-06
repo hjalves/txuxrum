@@ -30,11 +30,27 @@
                 Membros
             </a>
         </td>
-        <td align="right" class="login">
-            User: <input type="text" size="10" class="logininput" /> 
-            Pass: <input type="password" size="10" class="logininput" />
-            <input type="submit" value="login" class="loginbutton" />
-            <input type="submit" value="register" class="loginbutton" />
-        </td>
+        <?php
+        echo $_SESSION['userid'] . '...' . (int)$_SESSION['userid'];
+        if (!$_SESSION['userid']) {
+            echo<<<END
+<td align="right" class="login">
+    <form name='login' action='login.php' method='post'>
+        User: <input name="username" type="text" size="10" class="logininput" /> 
+        Pass: <input name="password" type="password" size="10" class="logininput" />
+        <input type="submit" name="login" value="login" class="loginbutton" />
+    </form>
+</td>
+END;
+        } else {
+            echo<<<END
+<td align="right" class="login">
+    <form name='logout' action='logout.php' method='post'>
+        <input type="submit" name="logout" value="logout" class="loginbutton" />
+    </form>
+</td>
+END;
+        }
+        ?>
     </tr>
 </table>
