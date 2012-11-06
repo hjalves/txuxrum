@@ -1,7 +1,7 @@
 
 -- conta especial do guest
 
-INSERT INTO users (UserID, Username, Password, UsernamePublic, ProfilePublic) VALUES (0, '<guest>', '', TRUE, FALSE);
+--INSERT INTO users (UserID, Username, Password, UsernamePublic, ProfilePublic) VALUES (0, '<guest>', '', TRUE, FALSE);
 
 -- utilizadores
 
