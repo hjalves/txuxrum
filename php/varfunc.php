@@ -244,7 +244,6 @@ END;
         username <input type="text" name="sb_usr" size="20" class="panelframe-input" />
         and/or topic <input type="text" name="sb_tit" size="20" class="panelframe-input" />
         <input type="submit" value="search" class="panelframe-button" />
-        or list your topics
     </div>
 </div>
 END;

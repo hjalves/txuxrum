@@ -189,13 +189,14 @@ td
 .chatmsg-from
             { 
                 float:              left;
-                width:              55%;
+                width:              50%;
                 font-weight:        bold;
             }
 .chatmsg-date
             {
                 float:              right;
-                width:              35%;
+                width:              40%;
+                text-align:         right;
             }
 .chatmsg-body
             {   
