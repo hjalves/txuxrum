@@ -2,6 +2,7 @@
     require_once('dbauth.php');
     require('varfunc.php');
     require('sqlqry.php');
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +10,6 @@
 <html>
     <head>
         <title> :: -- CHATRUM -- ::</title>
-        <font size="1px" />
         <link href="gangnamstyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
@@ -39,7 +39,8 @@
                                     vf_printchatmsg($line[0], $line[1], $line[2]);
                                 }
                                 
-                                vf_printchatroompostform(); 
+                                $roomid = $_GET["thread"];
+                                vf_printchatroompostform($roomid); 
                             ?>
                             </div>
                             
