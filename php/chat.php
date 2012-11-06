@@ -1,8 +1,9 @@
 <?php /* Chat room */
+    session_start();
     require_once('dbauth.php');
     require('varfunc.php');
     require('sqlqry.php');
-    session_start();
+    
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +15,10 @@
         <link href="gangnamstyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+    <?php if ($_SESSION['userid'])
+    echo "login feito";
+else echo "login NAO feito";
+ ?>
         <div align="center">
             <table width="700px" border="0px" cellspacing="0px" cellpadding="0px" class="mainframe">
                 <tr>

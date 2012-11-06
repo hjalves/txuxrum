@@ -26,7 +26,7 @@
                     <td>
                         <div class="bodyframe">
                             
-                            <form method="GET" action="index.php">
+                            <form method="GET" >
                                 <?php
                                     vf_printsearchbox();
                                 ?>

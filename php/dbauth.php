@@ -25,4 +25,17 @@
 
     unset($dbhost, $dbport, $dbname, $dbuser, $dbpass, $dbverb, $dbconnection_string);
     
+    /* TODO: para outro ficheiro init */
+
+    if ($_REQUEST['login']) {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        $result = sql_login($username, $password);
+        $row = pg_fetch_row($result, null);
+        $_SESSION['userid'] = $row[0];
+    }
+    if ($_REQUEST['logout']) {
+        unset($_SESSION['userid']);
+    }
+
 ?>
