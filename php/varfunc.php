@@ -249,17 +249,29 @@ END;
     }
     
     /* print profile */
-    function vf_printprofile() {
+    function vf_printprofile($username, $name, $male, $mail, $location, $birthday, $age) {
         echo <<<END
 <div class="textframe profile-profile-main">
     <div class="textframe-inside profile-profile-user">
-        Username
+        Username: $username
     </div>
     <br />
     <div class="">
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                Name
+                Name: $name
+            </div>
+            <div class="profile-profile-val">
+                value
+            </div>
+            <div class="profile-profile-edit">
+                <input type="submit" value="edit" class="panelframe-button" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                Birthday
             </div>
             <div class="profile-profile-val">
                 value
@@ -412,12 +424,12 @@ END;
 END;
     }
 
-    /* print profile */
+    /* print search result */
     function vf_printsearchresult($username, $name, $age, $location) {
         echo <<<END
 <div class="profile-search-res textframe-inside">
     <div class="profile-profile-var">
-        $username
+        <a href="profile.php?user=$username" class="userlink">$username </a>
     </div>
     <div class="profile-profile-var">
         $name
@@ -427,6 +439,27 @@ END;
     </div>
     <div class="profile-profile-var">
         $location
+    </div>
+    <div id="nextSetOfContent"></div>
+</div>
+END;
+    }
+
+    /* print search header */
+    function vf_printsearchheader() {
+        echo <<<END
+<div class="profile-search-tit textframe-inside">
+    <div class="profile-profile-var">
+        Username
+    </div>
+    <div class="profile-profile-var">
+        Name
+    </div>
+    <div class="profile-profile-var">
+        Age
+    </div>
+    <div class="profile-profile-var">
+        Location
     </div>
     <div id="nextSetOfContent"></div>
 </div>

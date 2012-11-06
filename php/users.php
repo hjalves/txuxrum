@@ -22,12 +22,14 @@
                 <tr>
                     <td>
                         <div class="bodyframe">
-
                             <?php
-                                vf_printprofile();
+                                vf_printsearchprofile();
+                                vf_printsearchheader();
+                                $result = sql_query_users();
+                                while ($line = pg_fetch_row($result, null)) {
+                                    vf_printsearchresult($line[0], $line[1], $line[2], $line[3]);
+                                }
                             ?>
-                            
-                            
                         </div>
                     </td>
                 </tr>
