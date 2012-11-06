@@ -3,6 +3,7 @@
     require('varfunc.php');
     require('sqlqry.php');
     session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +11,7 @@
 <html>
     <head>
         <title> :: -- CHATRUM -- ::</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <link href="gangnamstyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
@@ -24,12 +26,16 @@
                     <td>
                         <div class="bodyframe">
                             
-                            
+                            <form method="GET" action="index.php">
+                                <?php
+                                    vf_printsearchbox();
+                                ?>
+                            </form>
+
                             <?php
-                                vf_printsearchbox();
-                                $result = sql_query_chatrooms();
+                                $result = sql_query_chatrooms_search($_GET["sb_usr"], $_GET["sb_tit"]);
                                 while ($line = pg_fetch_row($result, null)) {
-                                    vf_printchatitem($line[0], $line[1], $line[2], $line[3]);
+                                 vf_printchatitem($line[0], $line[1], $line[2], $line[3]);
                                 }
                             ?>
                             

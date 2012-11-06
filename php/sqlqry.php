@@ -13,6 +13,12 @@
 		return $result;
     }
 
+    function sql_query_chatrooms_search($usr, $tit) {
+		$query = 'SELECT Title, RoomID, Username, CreationDate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID AND Title ILIKE $1 AND chatrooms.Ownerid IN (SELECT userid FROM users WHERE username ILIKE $2) ORDER BY title ASC';
+		$result = pg_query_params($query, array("%$tit%", "%$usr%")) or die('Query failed: ' . pg_last_error());
+		return $result;
+    }
+
     function sql_query_chatroom($id) {
         $query = 'SELECT Title FROM Chatrooms WHERE RoomID = $1';
         $result = pg_query_params($query, array($id)) or die('Query failed: ' . pg_last_error());
