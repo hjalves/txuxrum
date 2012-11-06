@@ -30,10 +30,11 @@
                 Membros
             </a>
         </td>
+
         <?php
-        echo $_SESSION['userid'] . '...' . (int)$_SESSION['userid'];
-        if (!$_SESSION['userid']) {
-            echo<<<END
+            /* se nao tiver autenticado */
+            if (!$_SESSION['userid']) {
+                echo<<<END
 <td align="right" class="login">
     <form name='login' action='login.php' method='post'>
         User: <input name="username" type="text" size="10" class="logininput" /> 
@@ -42,15 +43,20 @@
     </form>
 </td>
 END;
-        } else {
-            echo<<<END
+            /* se tiver autenticado */
+            } else {
+                $result = sql_query_user_id($_SESSION['userid']);
+                $row = pg_fetch_row($result, null);
+                $username = $row[0];
+                echo<<<END
 <td align="right" class="login">
     <form name='logout' action='logout.php' method='post'>
+        Logged as: $username
         <input type="submit" name="logout" value="logout" class="loginbutton" />
     </form>
 </td>
 END;
-        }
+            }
         ?>
     </tr>
 </table>

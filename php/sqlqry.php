@@ -37,6 +37,12 @@
         return $result;
     }
 
+    function sql_query_user_id($userid) {
+        $query = 'SELECT Username FROM users WHERE UserID = $1';
+        $result = pg_query_params($query, array($userid));
+        return $result;
+    }
+
     function sql_login($username, $password) {
         $query = 'SELECT UserID FROM users WHERE username=$1 AND password=md5($2)';
         $result = pg_query_params($query, array($username, $password)) or die('Query failed: ' . pg_last_error());
