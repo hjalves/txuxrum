@@ -1,9 +1,6 @@
 <?php /* Chat room */
-    session_start();
     require_once('dbauth.php');
     require('varfunc.php');
-    require('sqlqry.php');
-    
 ?>
 
 <!DOCTYPE html>

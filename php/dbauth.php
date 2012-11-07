@@ -1,5 +1,6 @@
 <?php /* DATABASE AUTH - do not sync */
-    
+    require('sqlqry.php');
+    session_start();
     /* -- settings -- */
     /* hostname and socket port */
     $dbhost = "localhost";
