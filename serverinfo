@@ -10,3 +10,16 @@ Port forwarding
 22          TCP
 80          TCP
 20000-20999 TCP/UDP
+
+Linux
+User    Pass
+root    root
+txux    txux
+
+Postgres
+User    Pass
+txux    txux
+
+html root:  /home/txux/chatroom/php
+
+hg
