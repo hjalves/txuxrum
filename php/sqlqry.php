@@ -8,7 +8,7 @@
     }
     
     function sql_query_chatrooms() {
-		$query = 'SELECT Title, RoomID, Username, CreationDate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID';
+		$query = 'SELECT Title, RoomID, Username, CreationDate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID ORDER BY RoomID DESC';
 		$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 		return $result;
     }
