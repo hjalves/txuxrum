@@ -238,14 +238,16 @@ END;
     /* print searchbox */
     function vf_printsearchbox() {
         echo <<<END
-<div class="textframe searchbox">
-    <div class="textframe-inside searchbox-inside"> 
-        Search by
-        username <input type="text" name="sb_usr" size="20" class="panelframe-input" />
-        and/or topic <input type="text" name="sb_tit" size="20" class="panelframe-input" />
-        <input type="submit" value="search" class="panelframe-button" />
+<form method="GET">
+    <div class="textframe searchbox">
+        <div class="textframe-inside searchbox-inside"> 
+            Search by
+            username <input type="text" name="sb_usr" size="20" class="panelframe-input" />
+            and/or topic <input type="text" name="sb_tit" size="20" class="panelframe-input" />
+            <input type="submit" value="search" class="panelframe-button" />
+        </div>
     </div>
-</div>
+</form>
 END;
     }
     
@@ -463,6 +465,42 @@ END;
         Location
     </div>
     <div id="nextSetOfContent"></div>
+</div>
+END;
+    }
+
+    /* print search header */
+    function vf_printcreatethread() {
+        echo <<<END
+<div class="textframe createthread">
+    <div class="textframe-inside createthread-inside">
+    <b>New topic</b>
+    <form name="createthread" action="" method="post">
+        <div class="createthread-text">
+            <div class="textframe-inside createthread-div">
+                <div class="createthread-var">
+                    Title
+                </div>
+                <div class="createthread-val">
+                    <input type="text" size="20" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="textframe-inside createthread-div">
+                <div class="createthread-var">
+                    Description
+                </div>
+                <div class="createthread-val">
+                    <input type="text" size="20" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+        </div>
+        <div class="createthread-submit">
+            <input type="submit" name="createthread_post" value="create new topic" class="panelframe-button" />
+        </div>
+    </form>
+    </div>
 </div>
 END;
     }

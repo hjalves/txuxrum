@@ -283,6 +283,40 @@ td
                 resize:             vertical;
             }
 
+.createthread
+            {   
+                width:              inherit;
+            }
+.createthread-inside
+            {
+            }
+.createthread-div
+            {
+                background-color:   #E7EDED;
+                text-align:         left;
+                vertical-align:     middle;
+                border-left:        3px solid #87879D;
+
+                margin:             5px;
+                padding:            0px;
+                padding-left:       5px;
+            }
+.createthread-var
+            {
+                vertical-align:     middle;
+                float:              left;
+                width:              20%;
+            }
+.createthread-val
+            {
+                float:              left;
+                width:              40%;
+            }
+.createthread-submit
+            {
+                text-align:         right;
+            }
+
 
 /**** PRIVATE MESSAGES ****/
 .messagebox
@@ -394,6 +428,7 @@ td
             }
 .profile-search-div
             {   
+                background-color:   #E7EDED;
                 text-align:         left;
                 vertical-align:     middle;
                 border-left:        3px solid #87879D;

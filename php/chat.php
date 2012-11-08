@@ -53,6 +53,8 @@
                                 vf_printchatroompanel()
                             ?>                            
                             
+                            
+                            
                         </div>
                     </td>
                 </tr>

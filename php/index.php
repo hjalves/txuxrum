@@ -22,12 +22,12 @@
                 <tr>
                     <td>
                         <div class="bodyframe">
-                            
-                            <form method="GET" >
-                                <?php
-                                    vf_printsearchbox();
-                                ?>
-                            </form>
+
+
+                            <?php
+                                vf_printsearchbox();
+                                vf_printcreatethread();
+                            ?>
 
                             <?php
                                 if (!$_GET["sb_usr"] && !$_GET["sb_tit"])
@@ -37,8 +37,15 @@
                                 while ($line = pg_fetch_row($result, null)) {
                                  vf_printchatitem($line[0], $line[1], $line[2], $line[3]);
                                 }
+
                             ?>
-                            
+
+
+
+
+
+
+
                         </div>
                     </td>
                 </tr>
