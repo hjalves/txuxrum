@@ -3,8 +3,9 @@
     session_start();
     /* -- settings -- */
     /* hostname and socket port */
-    $dbhost = "localhost";
-    $dbport = "5432";
+    $dbhost = "wsn.dynip.sapo.pt";
+    //$dbport = "5432";
+    $dbport = "20000";
     /* database name */
     $dbname = "txux";
     /* user auth */
