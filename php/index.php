@@ -26,18 +26,16 @@
 
                             <?php
                                 vf_printsearchbox();
-                                vf_printcreatethread();
-                            ?>
-
-                            <?php
-                                if (!$_GET["sb_usr"] && !$_GET["sb_tit"])
+                                if (!$_GET["sb_usr"] && !$_GET["sb_tit"]) {
+                                    vf_printcreatethread();
                                     $result = sql_query_chatrooms();
+                                }
                                 else
                                     $result = sql_query_chatrooms_search($_GET["sb_usr"], $_GET["sb_tit"]);
                                 while ($line = pg_fetch_row($result, null)) {
                                  vf_printchatitem($line[0], $line[1], $line[2], $line[3]);
                                 }
-
+                                
                             ?>
 
 

@@ -26,7 +26,7 @@
     }
 
     function sql_query_messages($chatroomid) {
-        $query = 'SELECT Username, to_char(PostTime, \'DD-Mon-YYYY, HH24:MI:SS\'), MsgText FROM messages, users WHERE RoomID = $1 AND messages.UserID = users.UserID ORDER BY MsgID ASC';
+        $query = 'SELECT COALESCE(Username,\'[SIGSEGV]\'), to_char(PostTime, \'DD-Mon-YYYY, HH24:MI:SS\'), MsgText FROM messages LEFT JOIN users USING (userid) WHERE RoomID = $1 ORDER BY MsgID ASC';
         $result = pg_query_params($query, array($chatroomid)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
