@@ -40,6 +40,7 @@
         User: <input name="username" type="text" size="10" class="logininput" /> 
         Pass: <input name="password" type="password" size="10" class="logininput" />
         <input type="submit" name="login" value="login" class="loginbutton" />
+        <button formnovalidate formaction="index.php?reg=1" class="loginbutton">register</button>
     </form>
 </td>
 END;

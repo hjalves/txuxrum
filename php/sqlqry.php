@@ -61,4 +61,17 @@
         return $result;
     }
 
+    function sql_reg_user($username, $password, $name, $ismale, $mail, $location, $birhtday){
+        $query = 'SELECT userid FROM users WHERE username ILIKE $1 OR mail LIKE $2';
+        $result = pg_query_params($query, array($username, $mail)) or die('couldn\'t validade user data');
+        if(pg_fetch_row($result, null)){
+            echo 'username or e-mail in use';
+            return 1;
+        }else{
+            $cmd = 'INSERT INTO users (Username, Password, Name, Male, Mail, Location, Birthday) VALUES ($1, md5($2), $3, $4, $5, $6, $7);';
+            pg_query_params($cmd, array($username, $password, $name, $ismale, $mail, $location, $birhtday));
+            return 0;
+        }
+    }
+    
 ?>

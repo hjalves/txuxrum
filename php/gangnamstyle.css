@@ -427,14 +427,12 @@ td
                 padding-right:      5px;
             }
 
+.container 
 
-
-
-
-
-
-
-
+.container label
+            {
+                width:30%;
+            }
 
 
 

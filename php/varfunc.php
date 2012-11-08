@@ -466,4 +466,111 @@ END;
 </div>
 END;
     }
+    
+    /* print registration form*/    
+    function vf_printregform() {
+        echo <<<END
+<div class="textframe profile-profile-main">
+    <div class="textframe-inside profile-profile-user">
+        Register
+    </div>
+    <br />
+    <div class="">
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                <label for="rg_usr">username:</label>
+            </div>
+            <div class="profile-profile-val">
+                <input type="text" id="rg_usr" name="reg_usr" required size="30" class="panelframe-input" /><br>
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                <label for="rg_pwd">password:</label>
+            </div>
+            <div class="profile-profile-val">
+                <input type="password" id="rg_pwd" name="reg_pwd" required size="30" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                <label for="rg_pwdcheck">re-enter password:</label>
+            </div>
+            <div class="profile-profile-val">
+                <input type="password" id="rg_pwdcheck" required name="reg_pwdcheck" size="30" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                <label for="rg_name">name:</label>
+            </div>
+            <div class="profile-profile-val">
+                <input type="text" name="reg_name" id="rg_name" required size="30" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                <label for="rg_male"> male </label>
+            </div>
+            <div class="profile-profile-val">
+                <input type="radio" id="rg_male" required name="reg_sex" value="1" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+            <div class="profile-profile-var">
+                <label for="rg_female"> female </label>
+            </div>
+            <div class="profile-profile-val">
+                <input type="radio" id="rg_female" required name="reg_sex" value="0" class="panelframe-input" />
+            </div>          
+            <div id="nextSetOfContent"></div>
+        </div>
+
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                <label for="rg_mail">e-mail:</label>
+            </div>
+            <div class="profile-profile-val">
+                <input type="email" name="reg_mail" required id="rg_mail" size="30" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        
+        <div class="profile-profile-div textframe-inside">
+            <div class="profile-profile-var">
+                <label for="rg_loc">location:</label>
+            </div>
+            <div class="profile-profile-val">
+                <input type="text" name="reg_loc" required id="rg_loc" size="30" class="panelframe-input" /><br>
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+
+        <div class="profile-profile-div textframe-inside">
+
+            <div class="profile-profile-var">
+                <label for="rg_date">birthday:</label>        
+            </div>
+            <div class="profile-profile-val">
+                <input type="date" name="reg_date" required id="rg_date" class="panelframe-input" /><br>
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+
+        <div align="middle" text-align="center" >
+            <input type="submit" value="submit" class="panelframe-button" />
+        </div>
+        
+    </div>
+</div>
+END;
+    }
+    
 ?>
