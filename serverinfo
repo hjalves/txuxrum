@@ -4,7 +4,7 @@ host:   wsn.dynip.sapo.pt
 
 ssh:    wsn.dynip.sapo.pt:22
 http:   wsn.dynip.sapo.pt:80
-pgdb:   wsn.dynip.sapo.pt:20001
+pgdb:   wsn.dynip.sapo.pt:20???
 
 Port forwarding
 22          TCP
