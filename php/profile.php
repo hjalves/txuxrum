@@ -1,6 +1,5 @@
 <?php /* Profile viewer/editer */
-    require_once('dbauth.php');
-    require('varfunc.php');
+    require_once('include.php');
 ?>
 
 <!DOCTYPE html>
@@ -23,10 +22,15 @@
                     <td>
                         <div class="bodyframe">
                             <?php
-                                $username = $_GET["user"];
+                                $username = $_GET["user"] ? $_GET["user"] : $_GET["edit"];
+                                
                                 $result = sql_query_user($username);
                                 $row = pg_fetch_row($result, null);
-                                vf_printprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
+                                
+                                if ($username == $_SESSION["username"] && $_GET["edit"])
+                                    vf_printeditprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
+                                else
+                                    vf_printprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
                             ?>
                         </div>
                     </td>

@@ -1,12 +1,8 @@
 <?php /* SQL Queries */
-    
-    /* EXAMPLE - select all from $1 */
-    function sql_selectall($table) {
-        global $dblink;
-        $result = pg_query($dblink, "SELECT * FROM " . $table . ";");
-        return $result;
-    }
-    
+    $included = strtolower(realpath(__FILE__)) != strtolower(realpath($_SERVER['SCRIPT_FILENAME']));
+    if (!$included)
+        header('Location: .');
+
     function sql_query_chatrooms() {
 		$query = 'SELECT Title, RoomID, Username, CreationDate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID ORDER BY RoomID DESC';
 		$result = pg_query($query) or die('Query failed: ' . pg_last_error());
@@ -73,5 +69,4 @@
             return 0;
         }
     }
-    
 ?>

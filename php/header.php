@@ -10,54 +10,65 @@
 
 <table width="100%" border="0px" cellspacing="0px" cellpadding="0px">
     <tr>
-        <td colspan="4" align="center" class="title">
+        <td colspan="5" align="center" class="title">
             Txuxrum
         </td>
     </tr>
     <tr>
-        <td width="105px" align="center" class="menuitem">
-            <a href="index.php">
+        <td width="100px" align="center" class="menuitem">
+            <a href="forum.php">
                 Forum
             </a>
         </td>
-        <td width="105px" align="center" class="menuitem">
+        <td width="100px" align="center" class="menuitem">
             <a href="message.php">
-                Mensagens
+                Messages
             </a>
         </td>
-        <td width="105px" align="center" class="menuitem">
+        <td width="100px" align="center" class="menuitem">
             <a href="users.php">
-                Membros
+                Users
             </a>
         </td>
-
+        <td width="100px" align="center" class="menuitem">
         <?php
-            /* se nao tiver autenticado */
-            if (!$_SESSION['userid']) {
+            if ($_SESSION['userid']) {
+                $username = $_SESSION['username'];
                 echo<<<END
-<td align="right" class="login">
-    <form name="login" method="post">
-        User: <input name="username" type="text" size="10" class="logininput" /> 
-        Pass: <input name="password" type="password" size="10" class="logininput" />
-        <input type="submit" name="login" value="login" class="loginbutton" />
-        <button formnovalidate formaction="index.php?reg=1" class="loginbutton">register</button>
-    </form>
-</td>
+<a href="profile.php?user=$username">
+    Profile
+</a>
 END;
-            /* se tiver autenticado */
             } else {
-                $result = sql_query_user_id($_SESSION['userid']);
-                $row = pg_fetch_row($result, null);
-                $username = $row[0];
-                echo<<<END
-<td align="right" class="login">
-    <form name="logout" method="post">
-        Logged as: $username
-        <input type="submit" name="logout" value="logout" class="loginbutton" />
-    </form>
-</td>
+echo<<<END
+<a href="register.php">
+    Register!
+</a>
 END;
             }
+            
         ?>
+        </td>
+        <td align="right" class="login">
+            <form name="login" method="post">
+                <?php
+                    /* se nao tiver autenticado */
+                    if (!$_SESSION['userid']) {
+                        echo<<<END
+    User: <input name="username" type="text" size="10" class="logininput" /> 
+    Pass: <input name="password" type="password" size="10" class="logininput" />
+    <input type="submit" name="login" value="login" class="loginbutton" />
+END;
+                    /* se tiver autenticado */
+                    } else {
+                        $username = $_SESSION['username'];
+                        echo<<<END
+    Welcome $username
+    <input type="submit" name="logout" value="logout" class="loginbutton" />
+END;
+                    }
+                ?>
+            </form>
+        </td>
     </tr>
 </table>

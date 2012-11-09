@@ -1,6 +1,5 @@
 <?php /* Profile viewer/editer */
-    require_once('dbauth.php');
-    require('varfunc.php');
+    require_once('include.php');
 ?>
 
 <!DOCTYPE html>
