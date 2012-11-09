@@ -436,78 +436,80 @@ END;
     /* print profile */
     function vf_printsearchprofile() {
         echo <<<END
-<div class="textframe profile-profile-main">
-    <div class="textframe-inside profile-profile-user">
-        Search user
-        <br />
-        
-        <div class="profile-search-div textframe-inside">
-            <div class="profile-search-var">
-                Username
+<form method="get" action="users.php">        
+    <div class="textframe profile-profile-main">
+        <div class="textframe-inside profile-profile-user">
+            Search user
+            <br />
+            
+            <div class="profile-search-div textframe-inside">
+                <div class="profile-search-var">
+                    Username
+                </div>
+                <div class="profile-profile-val">
+                    <input type="text" name="sp_u" size="20" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-val">
-                <input type="text" size="20" class="panelframe-input" />
+            <div class="profile-search-div textframe-inside">
+                <div class="profile-search-var">
+                    Name
+                </div>
+                <div class="profile-profile-val">
+                    <input type="text" name="sp_n" size="20" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
             </div>
-            <div id="nextSetOfContent"></div>
+            <div class="profile-search-div textframe-inside">
+                <div class="profile-search-var">
+                    Birthday
+                </div>
+                <div class="profile-profile-val">
+                    <input type="date" value="1-1-1970" name="sp_d" size="20" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-search-div textframe-inside">
+                <div class="profile-search-var">
+                    Age
+                </div>
+                <div class="profile-profile-val">
+                    <input type="number" min="0" max="120" name="sp_a" value="0" size="20" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-search-div textframe-inside">
+                <div class="profile-search-var">
+                    E-mail
+                </div>
+                <div class="profile-profile-val">
+                    <input type="email" name="sp_m" size="20" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-search-div textframe-inside">
+                <div class="profile-search-var">
+                    Country
+                </div>
+                <div class="profile-profile-val">
+                    <input type="text" name="sp_co" size="20" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-search-div textframe-inside">
+                <div class="profile-search-var">
+                    City
+                </div>
+                <div class="profile-profile-val">
+                    <input type="text" name="sp_ci" size="20" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            
+            <input type="submit" value="search" class="panelframe-button" />
         </div>
-        <div class="profile-search-div textframe-inside">
-            <div class="profile-search-var">
-                Name
-            </div>
-            <div class="profile-profile-val">
-                <input type="text" size="20" class="panelframe-input" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="profile-search-div textframe-inside">
-            <div class="profile-search-var">
-                Birthday
-            </div>
-            <div class="profile-profile-val">
-                <input type="text" size="20" class="panelframe-input" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="profile-search-div textframe-inside">
-            <div class="profile-search-var">
-                Age
-            </div>
-            <div class="profile-profile-val">
-                <input type="text" size="20" class="panelframe-input" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="profile-search-div textframe-inside">
-            <div class="profile-search-var">
-                E-mail
-            </div>
-            <div class="profile-profile-val">
-                <input type="text" size="20" class="panelframe-input" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="profile-search-div textframe-inside">
-            <div class="profile-search-var">
-                Country
-            </div>
-            <div class="profile-profile-val">
-                <input type="text" size="20" class="panelframe-input" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="profile-search-div textframe-inside">
-            <div class="profile-search-var">
-                City
-            </div>
-            <div class="profile-profile-val">
-                <input type="text" size="20" class="panelframe-input" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        
-        <input type="submit" value="search" class="panelframe-button" />
     </div>
-</div>
+</form>
 END;
     }
 

@@ -9,6 +9,44 @@
 		return $result;
     }
 
+    function sql_search_users($username, $name, $birthday, $age, $mail, $country, $city){
+        
+        if(!$birthday)
+        {
+            if($age)
+            {
+                $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE username ILIKE $1 AND name ILIKE $2 AND date_part(\'year\',age(Birthday)) = $3 AND mail ILIKE $4 AND location ILIKE $5 AND location ILIKE $6';
+                $result = pg_query_params($query, array("%$username%", "%$name%", $age, "%$mail%", "%$country%", "%$city%"));
+            }
+            else
+            {
+                $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE username ILIKE $1 AND name ILIKE $2 AND mail ILIKE $3 AND location ILIKE $4 AND location ILIKE $5';
+                $result = pg_query_params($query, array("%$username%", "%$name%", "%$mail%", "%$country%", "%$city%"));
+            }
+        }
+        else
+        {
+            if($age)
+            {
+                $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE username ILIKE $1 AND name ILIKE $2 AND birthday = $3 AND date_part(\'year\',age(Birthday)) = $4 AND mail ILIKE $5 AND location ILIKE $6 AND location ILIKE $7';
+                $result = pg_query_params($query, array("%$username%", "%$name%", $birthday, $age, "%$mail%", "%$country%", "%$city%"));
+            }
+            else
+            {
+                $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE username ILIKE $1 AND name ILIKE $2 AND birthday = $3 AND mail ILIKE $4 AND location ILIKE $5 AND location ILIKE $6';
+                $result = pg_query_params($query, array("%$username%", "%$name%", $birthday, "%$mail%", "%$country%", "%$city%"));
+            }
+        }
+        return $result;
+    }
+
+
+/*    function sql_search_users($username, $name, $birthday, $age, $mail, $country, $city){
+        $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE username ILIKE $1 AND name ILIKE $2 OR mail = $3 AND location ILIKE $4 AND location ILIKE $5';
+        $result = pg_query_params($query, array("%$username%", "%$name%", $mail, "%$country%", "%$city%"));
+        return $result;
+    }
+*/
     function sql_query_chatrooms_search($usr, $tit) {
 		$query = 'SELECT Title, RoomID, Username, CreationDate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID AND Title ILIKE $1 AND chatrooms.Ownerid IN (SELECT userid FROM users WHERE username ILIKE $2) ORDER BY title ASC';
 		$result = pg_query_params($query, array("%$tit%", "%$usr%")) or die('Query failed: ' . pg_last_error());
