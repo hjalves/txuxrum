@@ -40,7 +40,8 @@ CREATE TABLE chatrooms (
     OwnerID         integer     REFERENCES users (UserID),
     Title           varchar     NOT NULL,
     Closed          boolean     DEFAULT FALSE,
-    CreationDate    date        DEFAULT current_date
+    CreationDate    timestamp   DEFAULT current_timestamp;
+    Description     varchar;
 );
 
 CREATE TABLE permissions (
