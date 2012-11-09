@@ -26,7 +26,7 @@
                                 $roomid = $_GET["thread"];
                                 $result = sql_query_chatroom($roomid);
                                 $row = pg_fetch_row($result, null);
-                                vf_printchatheader($row[0], "Op op op oppa gangnam style.");
+                                vf_printchatheader($row[0], $row[1]);
                                 
                                 if ($_POST["text"]) {
                                     $text = $_POST["text"];

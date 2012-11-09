@@ -170,12 +170,13 @@ td
 .chatroom-user
             {
                 float:              left;
-                width:              55%;
+                width:              45%;
             }
 .chatroom-date
             {   
                 float:              right;
-                width:              35%;
+                width:              45%;
+                text-align:         right;
             }
             
 .chatmsg

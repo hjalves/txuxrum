@@ -4,7 +4,7 @@
         header('Location: .');
 
     function sql_query_chatrooms() {
-		$query = 'SELECT Title, RoomID, Username, CreationDate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID ORDER BY RoomID DESC';
+		$query = 'SELECT Title, RoomID, Username, to_char(CreationDate, \'DD-Mon-YYYY, HH24:MI\') FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID ORDER BY RoomID DESC';
 		$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 		return $result;
     }
@@ -16,7 +16,7 @@
     }
 
     function sql_query_chatroom($id) {
-        $query = 'SELECT Title FROM Chatrooms WHERE RoomID = $1';
+        $query = 'SELECT Title, Description FROM Chatrooms WHERE RoomID = $1';
         $result = pg_query_params($query, array($id)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
