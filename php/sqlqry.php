@@ -4,11 +4,32 @@
         header('Location: .');
 
     function sql_query_chatrooms() {
-		$query = 'SELECT Title, RoomID, Username, to_char(CreationDate, \'DD-Mon-YYYY, HH24:MI\') FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID ORDER BY RoomID DESC';
-		$result = pg_query($query) or die('Query failed: ' . pg_last_error());
-		return $result;
+    $query = 'SELECT title,'
+           . '       roomid,'
+           . '       username,'
+           . '       To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),'
+           . '       Coalesce(poster, \'[SIGSEGV]\'),'
+           . '       To_char(posttime, \'DD-Mon, HH24:MI:SS\'),'
+           . '       msgtext'
+           . 'FROM   chatrooms'
+           . '       JOIN users'
+           . '         ON chatrooms.ownerid = users.userid'
+           . '       JOIN (SELECT last.roomid,'
+           . '                    users.username AS poster,'
+           . '                    messages.posttime,'
+           . '                    messages.msgtext'
+           . '             FROM   messages'
+           . '                    JOIN (SELECT roomid,'
+           . '                                 Max(msgid) AS msgid'
+           . '                          FROM   messages'
+           . '                                 JOIN chatrooms USING (roomid)'
+           . '                          GROUP  BY roomid) AS last USING (msgid)'
+           . '                    LEFT JOIN users USING (userid)) AS b USING (roomid)'
+           . 'ORDER  BY roomid DESC';
+        $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+        return $result;
     }
-
+    
     function sql_search_users($username, $name, $birthday, $age, $mail, $country, $city){
         
         if(!$birthday)
@@ -40,17 +61,10 @@
         return $result;
     }
 
-
-/*    function sql_search_users($username, $name, $birthday, $age, $mail, $country, $city){
-        $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE username ILIKE $1 AND name ILIKE $2 OR mail = $3 AND location ILIKE $4 AND location ILIKE $5';
-        $result = pg_query_params($query, array("%$username%", "%$name%", $mail, "%$country%", "%$city%"));
-        return $result;
-    }
-*/
     function sql_query_chatrooms_search($usr, $tit) {
-		$query = 'SELECT Title, RoomID, Username, CreationDate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID AND Title ILIKE $1 AND chatrooms.Ownerid IN (SELECT userid FROM users WHERE username ILIKE $2) ORDER BY title ASC';
-		$result = pg_query_params($query, array("%$tit%", "%$usr%")) or die('Query failed: ' . pg_last_error());
-		return $result;
+        $query = 'SELECT Title, RoomID, Username, CreationDate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID AND Title ILIKE $1 AND chatrooms.Ownerid IN (SELECT userid FROM users WHERE username ILIKE $2) ORDER BY title ASC';
+        $result = pg_query_params($query, array("%$tit%", "%$usr%")) or die('Query failed: ' . pg_last_error());
+        return $result;
     }
 
     function sql_query_chatroom($id) {

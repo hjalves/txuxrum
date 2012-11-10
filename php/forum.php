@@ -33,7 +33,7 @@
                                     vf_printcreatethread();
                                 }
                                 while ($line = pg_fetch_row($result, null))
-                                    vf_printchatitem($line[0], $line[1], $line[2], $line[3]);
+                                    vf_printchatitem($line[0], $line[1], $line[2], $line[3], $line[4], $line[5], $line[6]);
                             ?>
 
                         </div>
