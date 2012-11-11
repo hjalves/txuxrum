@@ -43,19 +43,42 @@ td
 .textframe
             {
                 background-color:   #E7EDED;
-             
-                width:              100%;
-                
+
                 margin-bottom:      3px;
                 border-left:        4px solid #E7EDED;
                 border-right:       4px solid #E7EDED;
                 padding:            2px;
             }
+.textframe-title
+            {
+                font-size:          14px;
+                color:              #FFFFFF;
+                font-weight:        bold;
+                text-align:         center;
+                background-color:   #87879D;
+                border-left:        3px solid #87879D;
+
+                margin-bottom:      20px;
+                padding:            5px;
+            }
 .textframe-inside
             {
                 background-color:   #D5D8D8;
-                
+
                 padding:            5px;
+            }
+.textframe-binside
+            {
+                background-color:   #D5D8D8;
+                border-left:        3px solid #87879D;
+
+                margin-top:         5px;
+                padding:            5px;
+            }
+.textframe-footer
+            {
+                margin-top:         10px;
+                text-align:         center;
             }
 .panelframe
             {

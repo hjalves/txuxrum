@@ -34,7 +34,7 @@ END;
         $user = vf_usertolink($user);
         $postuser = vf_usertolink($postuser);
         echo <<<END
-<div class="chatroom">                            
+<div class="chatroom">
     <div class="chatroom-left">
         <div class="chatroom-title">
             <a href="chat.php?thread=$id">$title</a>
@@ -81,7 +81,7 @@ END;
     /* print chatroom message item */
     function vf_printchatmsg($user, $date, $msg) {
         echo <<<END
-<div class="chatmsg textframe">                            
+<div class="chatmsg textframe">
     <div class="chatmsg-inside textframe-inside">
         <div class="chatmsg-from">
             $user
@@ -254,10 +254,10 @@ END;
     /* print profile */
     function vf_printprofile($username, $name, $male, $mail, $location, $birthday, $age, $editable) {
         $male = $male == "t" ? "male" : "female";
-
+// profile-profile-user
         echo <<<END
 <div class="textframe profile-profile-main">
-    <div class="textframe-inside profile-profile-user">
+    <div class="textframe-title">
         $username
     </div>
     <div class="">
@@ -623,36 +623,34 @@ END;
     /* print search header */
     function vf_printcreatethread() {
         echo <<<END
-<div class="textframe createthread">
-    <div class="textframe-inside createthread-inside">
-    <b>New topic</b>
-    <form name="createthread" action="" method="post">
-        <div class="createthread-text">
-            <div class="textframe-inside createthread-div">
-                <div class="createthread-var">
-                    Title
-                </div>
-                <div class="createthread-val">
-                    <input type="text" size="20" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
-            </div>
-            <div class="textframe-inside createthread-div">
-                <div class="createthread-var">
-                    Description
-                </div>
-                <div class="createthread-val">
-                    <input type="text" size="20" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
-            </div>
+<form name="createthread" action="" method="post">
+    <div class="textframe createthread">
+        <div class="textframe-title createthread-inside">
+        New topic
         </div>
-        <div class="createthread-submit">
+        <div class="textframe-binside">
+            <div class="createthread-var">
+                Title
+            </div>
+            <div class="createthread-val">
+                <input type="text" size="20" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-binside">
+            <div class="createthread-var">
+                Description
+            </div>
+            <div class="createthread-val">
+                <input type="text" size="20" class="panelframe-input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-footer">
             <input type="submit" name="createthread_post" value="create new topic" class="panelframe-button" />
         </div>
-    </form>
     </div>
-</div>
+</form>
 END;
     }
     
