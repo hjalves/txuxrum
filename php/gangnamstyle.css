@@ -47,16 +47,17 @@ td
                 margin-bottom:      3px;
                 border-left:        4px solid #E7EDED;
                 border-right:       4px solid #E7EDED;
-                padding:            2px;
+                padding:            5px;
+                padding-left:       2px;
+                padding-right:      2px;
             }
 .textframe-title
             {
-                font-size:          14px;
+                font-size:          16px;
                 color:              #FFFFFF;
                 font-weight:        bold;
                 text-align:         center;
                 background-color:   #87879D;
-                border-left:        3px solid #87879D;
 
                 margin-bottom:      20px;
                 padding:            5px;
@@ -65,15 +66,30 @@ td
             {
                 background-color:   #D5D8D8;
 
-                padding:            5px;
+                padding:            3px;
             }
-.textframe-binside
+.textframe-item
             {
                 background-color:   #D5D8D8;
                 border-left:        3px solid #87879D;
 
                 margin-top:         5px;
-                padding:            5px;
+                padding:            3px;
+            }
+.textframe-ivar
+            {
+                font-size:          13px;
+                color:              #282850;
+                font-weight:        bold;
+                vertical-align:     middle;
+                float:              left;
+                width:              20%;
+            }
+.textframe-ival
+            {
+                color:              #282850;
+                float:              left;
+                width:              40%;
             }
 .textframe-footer
             {
@@ -88,7 +104,7 @@ td
                 float:              right;
             }
 .panelframe-item
-            {   
+            {
                 background-color:   #E7EDED;
                 margin-bottom:      10px;
                 padding:            5px;
@@ -122,7 +138,7 @@ td
                 padding-right:      15px;
                 margin:             2px;
             }
-.textbutton
+.button
             {
                 background-color:   #FAFAFA;
                 color:              #282850;
@@ -136,7 +152,39 @@ td
                 padding-right:      15px;
                 margin:             2px;
             }
+.button:hover {
+                background-color:   #9EA8B2;
+                color:              #FFFFFF;
+}
+.input
+            {
+                background-color:   #FAFAFA;
+                color:              #282850;
+                font:               11px arial, sans-serif;
+                text-decoration:    none;
 
+                border:             solid 1px #82A6BE;
+                width:              125px;
+                padding:            1px;
+                margin:             2px;
+            }
+.input:hover {
+                background-color:   #FAFAFA;
+                border:             solid 1px #0066FF;
+                color:              #003D99;
+}
+.userlink, .userlink:visited, .userlink:link, .userlink:active
+            {
+                font-size:          12px;
+                font-weight:        bold;
+                color:              #282850;
+                text-decoration:    none;
+            }
+.userlink:hover
+            {
+                color:              #7E7E96;
+                text-decoration:    underline;
+            }
 
 /**** MENU BAR ****/
 .menuitem, .login
@@ -148,11 +196,12 @@ td
 .menuitem a:visited, .menuitem a:link, .menuitem a:active
             {
                 font:               11px arial, sans-serif;
+                font-weight:        bold;
                 color:              #282850;
                 text-decoration:    none;
             }
 .menuitem:hover
-            {   
+            {
                 background-color:   #82A6BE;
             }
 

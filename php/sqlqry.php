@@ -42,7 +42,7 @@
             $sqlwhere .= "mail ILIKE '$mail' AND ";
         if ($location)
             $sqlwhere .= "location ILIKE '$location' AND ";
-        if ($birthage == "age")
+        if ($birthage == "age" && $agemin && $agemax)
             $sqlwhere .= "date_part('year',age(Birthday)) BETWEEN $agemin AND $agemax AND ";
         if ($birthday && $birthage == "birth")
             $sqlwhere .= "birthday = '$birthday' AND ";

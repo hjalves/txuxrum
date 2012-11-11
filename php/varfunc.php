@@ -239,12 +239,30 @@ END;
     function vf_printsearchbox($user, $topic) {
         echo <<<END
 <form method="GET">
-    <div class="textframe searchbox">
-        <div class="textframe-inside searchbox-inside"> 
-            Search by
-            username <input type="text" name="sb_usr" value="$user" size="20" class="panelframe-input" />
-            and/or topic <input type="text" name="sb_tit" value="$topic" size="20" class="panelframe-input" />
-            <input type="submit" value="search" class="panelframe-button" />
+    <div class="textframe">
+        <div class="textframe-title">
+            Search topics
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Username
+            </div>
+            <div class="textframe-ival">
+                <input type="text" name="sb_usr" value="$user" size="20" class="input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Title
+            </div>
+            <div class="textframe-ival">
+                <input type="text" name="sb_tit" value="$topic" size="20" class="input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-footer">
+            <input type="submit" value="search" class="button" />
         </div>
     </div>
 </form>
@@ -254,72 +272,71 @@ END;
     /* print profile */
     function vf_printprofile($username, $name, $male, $mail, $location, $birthday, $age, $editable) {
         $male = $male == "t" ? "male" : "female";
-// profile-profile-user
         echo <<<END
-<div class="textframe profile-profile-main">
+<div class="textframe">
     <div class="textframe-title">
         $username
     </div>
     <div class="">
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Username:
             </div>
-            <div class="profile-profile-val">
+            <div class="textframe-ival">
                 $username
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Name:
             </div>
-            <div class="profile-profile-val">
+            <div class="textframe-ival">
                 $name
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Sex:
             </div>
-            <div class="profile-profile-val">
+            <div class="textframe-ival">
                 $male
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 E-mail:
             </div>
-            <div class="profile-profile-val">
+            <div class="textframe-ival">
                 $mail
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Location:
             </div>
-            <div class="profile-profile-val">
+            <div class="textframe-ival">
                 $location
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Birthday:
             </div>
-            <div class="profile-profile-val">
+            <div class="textframe-ival">
                 $birthday
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Age:
             </div>
-            <div class="profile-profile-val">
+            <div class="textframe-ival">
                 $age
             </div>
             <div id="nextSetOfContent"></div>
@@ -327,8 +344,8 @@ END;
 END;
     if ($editable)
         echo <<<END
-        <div class="profile-profile-footer">
-            <a class="textbutton" href="?edit=$username">edit your profile</a>
+        <div class="textframe-footer">
+            <a class="button" href="?edit=$username">edit your profile</a>
         </div>
 END;
 
@@ -357,123 +374,123 @@ END;
 
         echo <<<END
 <form method="POST">
-    <div class="textframe profile-profile-main">
-        <div class="textframe-inside profile-profile-user">
+    <div class="textframe">
+        <div class="textframe-title">
             $username
         </div>
         <div class="">
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     Username:
                 </div>
-                <div class="profile-profile-val">
+                <div class="textframe-ival">
                     $username
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     Password:
                 </div>
-                <div class="profile-profile-val">
-                    <input type="password" name="password" size="30" class="panelframe-input" />
+                <div class="textframe-ival">
+                    <input type="password" name="password" size="30" class="input" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     Re-enter password:
                 </div>
-                <div class="profile-profile-val">
-                    <input type="password" name="repassword" size="30" class="panelframe-input" />
+                <div class="textframe-ival">
+                    <input type="password" name="repassword" size="30" class="input" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     Name:
                 </div>
-                <div class="profile-profile-val">
-                    <input type="text" name="name" required size="30" class="panelframe-input" value="$name" />
+                <div class="textframe-ival">
+                    <input type="text" name="name" required size="30" class="input" value="$name" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     Sex:
                 </div>
-                <div class="profile-profile-val">
+                <div class="textframe-ival">
                     male
-                    <input $mc type="radio" required name="sex" value="1" class="panelframe-input" />
-                    <input $fc type="radio" required name="sex" value="0" class="panelframe-input" />
+                    <input $mc type="radio" required name="sex" value="1" />
+                    <input $fc type="radio" required name="sex" value="0" />
                     female
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     E-mail:
                 </div>
-                <div class="profile-profile-val">
-                    <input type="email" name="email" required size="30" class="panelframe-input" value="$mail" />
+                <div class="textframe-ival">
+                    <input type="email" name="email" required size="30" class="input" value="$mail" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     Location:
                 </div>
-                <div class="profile-profile-val">
-                    <input type="text" name="local" required size="30" class="panelframe-input" value="$location" />
+                <div class="textframe-ival">
+                    <input type="text" name="local" required size="30" class="input" value="$location" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     Birthday:
                 </div>
-                <div class="profile-profile-val">
-                    <input type="date" name="birthday" required class="panelframe-input" value="$birthday" />
+                <div class="textframe-ival">
+                    <input type="date" name="birthday" required class="input" value="$birthday" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     Age:
                 </div>
-                <div class="profile-profile-val">
+                <div class="textframe-ival">
                     $age
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     Public username:
                 </div>
-                <div class="profile-profile-val">
+                <div class="textframe-ival">
                     yes
-                    <input $upc type="radio" required name="usernamepublic" value="true" class="panelframe-input" />
-                    <input $unc type="radio" required name="usernamepublic" value="false" class="panelframe-input" />
+                    <input $upc type="radio" required name="usernamepublic" value="true" />
+                    <input $unc type="radio" required name="usernamepublic" value="false" />
                     no
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
+            <div class="textframe-item">
+                <div class="textframe-ivar">
                     Public profile:
                 </div>
-                <div class="profile-profile-val">
+                <div class="textframe-ival">
                     yes
-                    <input $ppc type="radio" required name="profilepublic" value="true" class="panelframe-input" />
-                    <input $pnc type="radio" required name="profilepublic" value="false" class="panelframe-input" />
+                    <input $ppc type="radio" required name="profilepublic" value="true" />
+                    <input $pnc type="radio" required name="profilepublic" value="false" />
                     no
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            <div class="profile-profile-footer">
-                <input name="profileedit" type="submit" value="save" class="panelframe-button" />
-                <input name="cancel" type="submit" value="cancel" class="panelframe-button" />
-                <input name="closeprofile" type="submit" value="close account" class="panelframe-button" />
+            <div class="textframe-footer">
+                <input name="profileedit" type="submit" value="save" class="button" />
+                <input name="cancel" type="submit" value="cancel" class="button" />
+                <input name="closeprofile" type="submit" value="close account" class="button" />
             </div>
         </div>
     </div>
@@ -481,7 +498,6 @@ END;
 END;
     }
 
-    
     /* print search profile */
     function vf_printsearchprofile($username, $name, $male, $mail, $location, $birthday, $agemin, $agemax, $birthage) {
         if ($male == "true")
@@ -498,80 +514,80 @@ END;
 
         echo <<<END
 <form method="GET">
-    <div class="textframe profile-profile-main">
-        <div class="textframe-inside profile-profile-user">
+    <div class="textframe">
+        <div class="textframe-title">
             Search user
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Username:
             </div>
-            <div class="profile-profile-val">
-                <input type="text" name="sp_u" size="30" class="panelframe-input" value="$username" />
+            <div class="textframe-ival">
+                <input type="text" name="sp_u" size="30" class="input" value="$username" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Name:
             </div>
-            <div class="profile-profile-val">
-                <input type="text" name="sp_n" size="30" class="panelframe-input" value="$name" />
+            <div class="textframe-ival">
+                <input type="text" name="sp_n" size="30" class="input" value="$name" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Sex:
             </div>
-            <div class="profile-profile-val">
-                <input $bc type="radio" name="sp_s" value="" class="panelframe-input" /> both <br />
-                <input $mc type="radio" name="sp_s" value="true" class="panelframe-input" /> male <br />
-                <input $fc type="radio" name="sp_s" value="false" class="panelframe-input" /> female
+            <div class="textframe-ival">
+                <input $bc type="radio" name="sp_s" value="" /> both <br />
+                <input $mc type="radio" name="sp_s" value="true" /> male <br />
+                <input $fc type="radio" name="sp_s" value="false" /> female
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Mail:
             </div>
-            <div class="profile-profile-val">
-                <input type="email" name="sp_m" size="30" class="panelframe-input" value="$mail" />
+            <div class="textframe-ival">
+                <input type="email" name="sp_m" size="30" class="input" value="$mail" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Location:
             </div>
-            <div class="profile-profile-val">
-                <input type="text" name="sp_l" size="30" class="panelframe-input" value="$location" />
+            <div class="textframe-ival">
+                <input type="text" name="sp_l" size="30" class="input" value="$location" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Birthday or age:
             </div>
-            <div class="profile-profile-val">
+            <div class="textframe-ival">
                 Birthday
                 <input $bab type="radio" name="sp_birthage" value="birth" />
                 <input $baa type="radio" name="sp_birthage" value="age" />
                 Age
                 <div id="birthagediv">
                     <div id="birthage-date">
-                        <input id="ba_date" type="date" name="sp_d" class="panelframe-input" value="$birthday" />
+                        <input id="ba_date" type="date" name="sp_d" class="input" value="$birthday" />
                     </div>
                     <div id="birthage-age">
-                        <input id="ba_agemin" type="number" min="0" max="120" name="sp_amin" size="20" class="panelframe-input" value="$agemin" /> min<br />
-                        <input id="ba_agemax" type="number" min="0" max="120" name="sp_amax" size="20" class="panelframe-input" value="$agemax" /> max
+                        <input id="ba_agemin" type="number" min="0" max="120" name="sp_amin" size="20" class="input" value="$agemin" /> min<br />
+                        <input id="ba_agemax" type="number" min="0" max="120" name="sp_amax" size="20" class="input" value="$agemax" /> max
                     </div>
                 </div>
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-footer">
-            <input name="search" type="submit" value="search" class="panelframe-button" />
+        <div class="textframe-footer">
+            <input name="search" type="submit" value="search" class="button" />
         </div>
     </div>
 </form>
@@ -620,34 +636,34 @@ END;
 END;
     }
 
-    /* print search header */
+    /* print create new thread */
     function vf_printcreatethread() {
         echo <<<END
-<form name="createthread" action="" method="post">
-    <div class="textframe createthread">
-        <div class="textframe-title createthread-inside">
+<form method="POST">
+    <div class="textframe">
+        <div class="textframe-title">
         New topic
         </div>
-        <div class="textframe-binside">
-            <div class="createthread-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Title
             </div>
-            <div class="createthread-val">
-                <input type="text" size="20" class="panelframe-input" />
+            <div class="textframe-ival">
+                <input type="text" size="20" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="textframe-binside">
-            <div class="createthread-var">
+        <div class="textframe-item">
+            <div class="textframe-ivar">
                 Description
             </div>
-            <div class="createthread-val">
-                <input type="text" size="20" class="panelframe-input" />
+            <div class="textframe-ival">
+                <input type="text" size="20" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
         <div class="textframe-footer">
-            <input type="submit" name="createthread_post" value="create new topic" class="panelframe-button" />
+            <input type="submit" name="createthread_post" value="create new topic" class="button" />
         </div>
     </div>
 </form>
