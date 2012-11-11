@@ -30,34 +30,30 @@
         return $result;
     }
     
-    function sql_search_users($username, $name, $birthday, $age, $mail, $country, $city){
-        
-        if(!$birthday)
-        {
-            if($age)
-            {
-                $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE username ILIKE $1 AND name ILIKE $2 AND date_part(\'year\',age(Birthday)) = $3 AND mail ILIKE $4 AND location ILIKE $5 AND location ILIKE $6';
-                $result = pg_query_params($query, array("%$username%", "%$name%", $age, "%$mail%", "%$country%", "%$city%"));
-            }
-            else
-            {
-                $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE username ILIKE $1 AND name ILIKE $2 AND mail ILIKE $3 AND location ILIKE $4 AND location ILIKE $5';
-                $result = pg_query_params($query, array("%$username%", "%$name%", "%$mail%", "%$country%", "%$city%"));
-            }
-        }
-        else
-        {
-            if($age)
-            {
-                $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE username ILIKE $1 AND name ILIKE $2 AND birthday = $3 AND date_part(\'year\',age(Birthday)) = $4 AND mail ILIKE $5 AND location ILIKE $6 AND location ILIKE $7';
-                $result = pg_query_params($query, array("%$username%", "%$name%", $birthday, $age, "%$mail%", "%$country%", "%$city%"));
-            }
-            else
-            {
-                $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE username ILIKE $1 AND name ILIKE $2 AND birthday = $3 AND mail ILIKE $4 AND location ILIKE $5 AND location ILIKE $6';
-                $result = pg_query_params($query, array("%$username%", "%$name%", $birthday, "%$mail%", "%$country%", "%$city%"));
-            }
-        }
+    function sql_search_users($username, $name, $sex, $mail, $location, $birthday, $agemin, $agemax, $birthage){
+        $sqlwhere = "";
+        if ($username)
+            $sqlwhere .= "username ILIKE '$username' AND ";
+        if ($name)
+            $sqlwhere .= "name ILIKE '$name' AND ";
+        if ($sex)
+            $sqlwhere .= "male = $sex AND ";
+        if ($mail)
+            $sqlwhere .= "mail ILIKE '$mail' AND ";
+        if ($location)
+            $sqlwhere .= "location ILIKE '$location' AND ";
+        if ($birthage == "age")
+            $sqlwhere .= "date_part('year',age(Birthday)) BETWEEN $agemin AND $agemax AND ";
+        if ($birthday && $birthage == "birth")
+            $sqlwhere .= "birthday = '$birthday' AND ";
+
+        if (!$sqlwhere)
+            return sql_query_users();
+
+        $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE '
+                . substr($sqlwhere, 0, -5);
+
+        $result = pg_query($query) or die('Query failed: ' . pg_last_error());
         return $result;
     }
 
@@ -86,7 +82,7 @@
     }
 
     function sql_query_user($username) {
-        $query = 'SELECT Username, Name, Male, Mail, Location, Birthday, date_part(\'year\',age(Birthday)) FROM users WHERE Username = $1';
+        $query = 'SELECT Username, Name, Male, Mail, Location, Birthday, date_part(\'year\',age(Birthday)), Usernamepublic, Profilepublic FROM users WHERE Username = $1';
         $result = pg_query_params($query, array($username)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
@@ -120,5 +116,35 @@
             pg_query_params($cmd, array($username, $password, $name, $ismale, $mail, $location, $birhtday));
             return 0;
         }
+    }
+
+    function sql_profile_update($username, $password, $name, $sex, $mail, $location, $birthday, $usernamepublic, $profilepublic) {
+        $sqlset = "";
+        if ($password)
+            $sqlset .= "password = '$password', ";
+        if ($name)
+            $sqlset .= "name = '$name', ";
+        if ($sex)
+            $sqlset .= "male = '$sex', ";
+        if ($mail)
+            $sqlset .= "mail = '$mail', ";
+        if ($location)
+            $sqlset .= "location = '$location', ";
+        if ($birthday)
+            $sqlset .= "birthday = '$birthday', ";
+        if ($usernamepublic)
+            $sqlset .= "usernamepublic = '$usernamepublic', ";
+        if ($profilepublic)
+            $sqlset .= "profilepublic = '$profilepublic', ";
+
+        if (!$sqlset)
+            return;
+
+        $query = "UPDATE users SET "
+                . substr($sqlset, 0, -2)
+                . " WHERE username = '$username'";
+
+        $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+        return $result;
     }
 ?>

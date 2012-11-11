@@ -20,6 +20,6 @@
             $_SESSION['username'] = $username;
     }
     if ($_REQUEST['logout']) {
-        unset($_SESSION['userid']);
+        unset($_SESSION['userid'], $_SESSION['username']);
     }
 ?>

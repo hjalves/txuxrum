@@ -1,5 +1,19 @@
 <?php /* Profile viewer/editer */
     require_once('include.php');
+// $username, $name, $sex, $mail, $location, $birthday, $agemin, $agemax, $bithage
+    if ($_GET['search']) {
+        $result = sql_search_users($_GET["sp_u"],
+                                   $_GET["sp_n"],
+                                   $_GET["sp_s"],
+                                   $_GET["sp_m"],
+                                   $_GET["sp_l"],
+                                   $_GET["sp_d"],
+                                   $_GET["sp_amin"],
+                                   $_GET["sp_amax"],
+                                   $_GET["sp_birthage"]);
+    }
+    else
+        $result = sql_query_users();
 ?>
 
 <!DOCTYPE html>
@@ -23,17 +37,23 @@
                         <div class="bodyframe">
 
                             <?php
-                                vf_printsearchprofile();
+                                vf_printsearchprofile($_GET["sp_u"],
+                                                      $_GET["sp_n"],
+                                                      $_GET["sp_s"],
+                                                      $_GET["sp_m"],
+                                                      $_GET["sp_l"],
+                                                      $_GET["sp_d"],
+                                                      $_GET["sp_amin"],
+                                                      $_GET["sp_amax"],
+                                                      $_GET["sp_birthage"]);
+
+echo "<div class=\"textframe profile-profile-main\">";
                                 vf_printsearchheader();
-                                if($_GET["sp_u"] || $_GET["sp_n"] || $_GET["sp_d"] || $_GET["sp_a"] || $_GET["sp_m"] || $_GET["sp_co"] || $_GET["sp_ci"])
-                                    $result = sql_search_users($_GET["sp_u"], $_GET["sp_n"], $_GET["sp_d"], $_GET["sp_a"], $_GET["sp_m"], $_GET["sp_co"], $_GET["sp_ci"]);
-                                else
-                                    $result = sql_query_users();
-                                    
                                 while ($line = pg_fetch_row($result, null)) {
                                     vf_printsearchresult($line[0], $line[1], $line[2], $line[3]);
                                 }
                             ?>
+                            </div>
                         </div>
                     </td>
                 </tr>

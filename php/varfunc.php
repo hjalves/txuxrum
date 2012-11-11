@@ -252,15 +252,14 @@ END;
     }
     
     /* print profile */
-    function vf_printprofile($username, $name, $male, $mail, $location, $birthday, $age) {
+    function vf_printprofile($username, $name, $male, $mail, $location, $birthday, $age, $editable) {
         $male = $male == "t" ? "male" : "female";
 
         echo <<<END
 <div class="textframe profile-profile-main">
     <div class="textframe-inside profile-profile-user">
-        User profile: $username
+        $username
     </div>
-    <br />
     <div class="">
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
@@ -291,7 +290,7 @@ END;
         </div>
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                Mail:
+                E-mail:
             </div>
             <div class="profile-profile-val">
                 $mail
@@ -325,31 +324,190 @@ END;
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <a href="?edit=$username">edit your profile</a>
+END;
+    if ($editable)
+        echo <<<END
+        <div class="profile-profile-footer">
+            <a class="textbutton" href="?edit=$username">edit your profile</a>
         </div>
+END;
+
+    echo <<<END
     </div>
 </div>
 END;
     }
 
-    function vf_printeditprofile($username, $name, $male, $mail, $location, $birthday, $age) {
+    /* print profile editable */
+    function vf_printeditprofile($username, $name, $male, $mail, $location, $birthday, $age, $usernamepublic, $profilepublic) {
+        if ($male == "t")
+            $mc = "checked";
+        else
+            $fc = "checked";
+
+        if ($usernamepublic == "t")
+            $upc = "checked";
+        else
+            $unc = "checked";
+
+        if ($profilepublic == "t")
+            $ppc = "checked";
+        else
+            $pnc = "checked";
+
         echo <<<END
-<div class="textframe profile-profile-main">
-    <div class="textframe-inside profile-profile-user">
-        User profile: $username
+<form method="POST">
+    <div class="textframe profile-profile-main">
+        <div class="textframe-inside profile-profile-user">
+            $username
+        </div>
+        <div class="">
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    Username:
+                </div>
+                <div class="profile-profile-val">
+                    $username
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    Password:
+                </div>
+                <div class="profile-profile-val">
+                    <input type="password" name="password" size="30" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    Re-enter password:
+                </div>
+                <div class="profile-profile-val">
+                    <input type="password" name="repassword" size="30" class="panelframe-input" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    Name:
+                </div>
+                <div class="profile-profile-val">
+                    <input type="text" name="name" required size="30" class="panelframe-input" value="$name" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    Sex:
+                </div>
+                <div class="profile-profile-val">
+                    male
+                    <input $mc type="radio" required name="sex" value="1" class="panelframe-input" />
+                    <input $fc type="radio" required name="sex" value="0" class="panelframe-input" />
+                    female
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    E-mail:
+                </div>
+                <div class="profile-profile-val">
+                    <input type="email" name="email" required size="30" class="panelframe-input" value="$mail" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    Location:
+                </div>
+                <div class="profile-profile-val">
+                    <input type="text" name="local" required size="30" class="panelframe-input" value="$location" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    Birthday:
+                </div>
+                <div class="profile-profile-val">
+                    <input type="date" name="birthday" required class="panelframe-input" value="$birthday" />
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    Age:
+                </div>
+                <div class="profile-profile-val">
+                    $age
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    Public username:
+                </div>
+                <div class="profile-profile-val">
+                    yes
+                    <input $upc type="radio" required name="usernamepublic" value="true" class="panelframe-input" />
+                    <input $unc type="radio" required name="usernamepublic" value="false" class="panelframe-input" />
+                    no
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-div textframe-inside">
+                <div class="profile-profile-var">
+                    Public profile:
+                </div>
+                <div class="profile-profile-val">
+                    yes
+                    <input $ppc type="radio" required name="profilepublic" value="true" class="panelframe-input" />
+                    <input $pnc type="radio" required name="profilepublic" value="false" class="panelframe-input" />
+                    no
+                </div>
+                <div id="nextSetOfContent"></div>
+            </div>
+            <div class="profile-profile-footer">
+                <input name="profileedit" type="submit" value="save" class="panelframe-button" />
+                <input name="cancel" type="submit" value="cancel" class="panelframe-button" />
+                <input name="closeprofile" type="submit" value="close account" class="panelframe-button" />
+            </div>
+        </div>
     </div>
-    <br />
-    <div class="">
+</form>
+END;
+    }
+
+    
+    /* print search profile */
+    function vf_printsearchprofile($username, $name, $male, $mail, $location, $birthday, $agemin, $agemax, $birthage) {
+        if ($male == "true")
+            $mc = "checked";
+        else if ($male == "false")
+            $fc = "checked";
+        else
+            $bc = "checked";
+
+        if ($birthage == "age")
+            $baa = "checked";
+        else
+            $bab = "checked";
+
+        echo <<<END
+<form method="GET">
+    <div class="textframe profile-profile-main">
+        <div class="textframe-inside profile-profile-user">
+            Search user
+        </div>
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
                 Username:
             </div>
             <div class="profile-profile-val">
-                $username
-            </div>
-            <div class="profile-profile-edit">
-                <input type="submit" value="edit" class="panelframe-button" />
+                <input type="text" name="sp_u" size="30" class="panelframe-input" value="$username" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -358,22 +516,18 @@ END;
                 Name:
             </div>
             <div class="profile-profile-val">
-                $name
-            </div>
-            <div class="profile-profile-edit">
-                <input type="submit" value="edit" class="panelframe-button" />
+                <input type="text" name="sp_n" size="30" class="panelframe-input" value="$name" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                Sex (Is male):
+                Sex:
             </div>
             <div class="profile-profile-val">
-                $male
-            </div>
-            <div class="profile-profile-edit">
-                <input type="submit" value="edit" class="panelframe-button" />
+                <input $bc type="radio" name="sp_s" value="" class="panelframe-input" /> both <br />
+                <input $mc type="radio" name="sp_s" value="true" class="panelframe-input" /> male <br />
+                <input $fc type="radio" name="sp_s" value="false" class="panelframe-input" /> female
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -382,10 +536,7 @@ END;
                 Mail:
             </div>
             <div class="profile-profile-val">
-                $mail
-            </div>
-            <div class="profile-profile-edit">
-                <input type="submit" value="edit" class="panelframe-button" />
+                <input type="email" name="sp_m" size="30" class="panelframe-input" value="$mail" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -394,119 +545,33 @@ END;
                 Location:
             </div>
             <div class="profile-profile-val">
-                $location
-            </div>
-            <div class="profile-profile-edit">
-                <input type="submit" value="edit" class="panelframe-button" />
+                <input type="text" name="sp_l" size="30" class="panelframe-input" value="$location" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
         <div class="profile-profile-div textframe-inside">
             <div class="profile-profile-var">
-                Birthday:
+                Birthday or age:
             </div>
             <div class="profile-profile-val">
-                $birthday
-            </div>
-            <div class="profile-profile-edit">
-                <input type="submit" value="edit" class="panelframe-button" />
+                Birthday
+                <input $bab type="radio" name="sp_birthage" value="birth" />
+                <input $baa type="radio" name="sp_birthage" value="age" />
+                Age
+                <div id="birthagediv">
+                    <div id="birthage-date">
+                        <input id="ba_date" type="date" name="sp_d" class="panelframe-input" value="$birthday" />
+                    </div>
+                    <div id="birthage-age">
+                        <input id="ba_agemin" type="number" min="0" max="120" name="sp_amin" size="20" class="panelframe-input" value="$agemin" /> min<br />
+                        <input id="ba_agemax" type="number" min="0" max="120" name="sp_amax" size="20" class="panelframe-input" value="$agemax" /> max
+                    </div>
+                </div>
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="profile-profile-div textframe-inside">
-            <div class="profile-profile-var">
-                Age:
-            </div>
-            <div class="profile-profile-val">
-                $age
-            </div>
-            <div class="profile-profile-edit">
-                <input type="submit" value="edit" class="panelframe-button" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="profile-profile-div textframe-inside">
-           <input type="submit" value="save" class="panelframe-button" />
-        </div>
-    </div>
-</div>
-END;
-    }
-    
-    /* print profile */
-    function vf_printsearchprofile() {
-        echo <<<END
-<form method="get" action="users.php">        
-    <div class="textframe profile-profile-main">
-        <div class="textframe-inside profile-profile-user">
-            Search user
-            <br />
-            
-            <div class="profile-search-div textframe-inside">
-                <div class="profile-search-var">
-                    Username
-                </div>
-                <div class="profile-profile-val">
-                    <input type="text" name="sp_u" size="20" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
-            </div>
-            <div class="profile-search-div textframe-inside">
-                <div class="profile-search-var">
-                    Name
-                </div>
-                <div class="profile-profile-val">
-                    <input type="text" name="sp_n" size="20" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
-            </div>
-            <div class="profile-search-div textframe-inside">
-                <div class="profile-search-var">
-                    Birthday
-                </div>
-                <div class="profile-profile-val">
-                    <input type="date" value="1-1-1970" name="sp_d" size="20" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
-            </div>
-            <div class="profile-search-div textframe-inside">
-                <div class="profile-search-var">
-                    Age
-                </div>
-                <div class="profile-profile-val">
-                    <input type="number" min="0" max="120" name="sp_a" value="0" size="20" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
-            </div>
-            <div class="profile-search-div textframe-inside">
-                <div class="profile-search-var">
-                    E-mail
-                </div>
-                <div class="profile-profile-val">
-                    <input type="email" name="sp_m" size="20" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
-            </div>
-            <div class="profile-search-div textframe-inside">
-                <div class="profile-search-var">
-                    Country
-                </div>
-                <div class="profile-profile-val">
-                    <input type="text" name="sp_co" size="20" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
-            </div>
-            <div class="profile-search-div textframe-inside">
-                <div class="profile-search-var">
-                    City
-                </div>
-                <div class="profile-profile-val">
-                    <input type="text" name="sp_ci" size="20" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
-            </div>
-            
-            <input type="submit" value="search" class="panelframe-button" />
+        <div class="profile-profile-footer">
+            <input name="search" type="submit" value="search" class="panelframe-button" />
         </div>
     </div>
 </form>
@@ -516,7 +581,7 @@ END;
     /* print search result */
     function vf_printsearchresult($username, $name, $age, $location) {
         echo <<<END
-<div class="profile-search-res textframe-inside">
+<div class="profile-profile-div textframe-inside">
     <div class="profile-profile-var">
         <a href="profile.php?user=$username" class="userlink">$username </a>
     </div>
@@ -604,100 +669,86 @@ END;
 <form method="POST">
     <div class="textframe profile-profile-main">
         <div class="textframe-inside profile-profile-user">
-            Register
+            Register new user
         </div>
-        <br />
         <div class="">
             <div class="profile-profile-div textframe-inside">
                 <div class="profile-profile-var">
-                    <label for="rg_usr">username:</label>
+                    Username:
                 </div>
                 <div class="profile-profile-val">
-                    <input type="text" id="rg_usr" name="reg_usr" required size="30" class="panelframe-input" /><br>
+                    <input type="text" name="reg_usr" required size="30" class="panelframe-input" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            
             <div class="profile-profile-div textframe-inside">
                 <div class="profile-profile-var">
-                    <label for="rg_pwd">password:</label>
+                    Password:
                 </div>
                 <div class="profile-profile-val">
-                    <input type="password" id="rg_pwd" name="reg_pwd" required size="30" class="panelframe-input" />
+                    <input type="password" name="reg_pwd" size="30" class="panelframe-input" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            
             <div class="profile-profile-div textframe-inside">
                 <div class="profile-profile-var">
-                    <label for="rg_pwdcheck">re-enter password:</label>
+                    Re-enter password:
                 </div>
                 <div class="profile-profile-val">
-                    <input type="password" id="rg_pwdcheck" required name="reg_pwdcheck" size="30" class="panelframe-input" />
+                    <input type="password" name="reg_pwdcheck" size="30" class="panelframe-input" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            
             <div class="profile-profile-div textframe-inside">
                 <div class="profile-profile-var">
-                    <label for="rg_name">name:</label>
+                    Name:
                 </div>
                 <div class="profile-profile-val">
-                    <input type="text" name="reg_name" id="rg_name" required size="30" class="panelframe-input" />
+                    <input type="text" name="reg_name" required size="30" class="panelframe-input" value="$name" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            
             <div class="profile-profile-div textframe-inside">
                 <div class="profile-profile-var">
-                    <label for="rg_male"> male </label>
+                    Sex:
                 </div>
                 <div class="profile-profile-val">
-                    <input type="radio" id="rg_male" required name="reg_sex" value="1" class="panelframe-input" />
+                    male
+                    <input type="radio" required name="reg_sex" value="1" class="panelframe-input" />
+                    <input type="radio" required name="reg_sex" value="0" class="panelframe-input" />
+                    female
                 </div>
-                <div id="nextSetOfContent"></div>
-                <div class="profile-profile-var">
-                    <label for="rg_female"> female </label>
-                </div>
-                <div class="profile-profile-val">
-                    <input type="radio" id="rg_female" required name="reg_sex" value="0" class="panelframe-input" />
-                </div>          
                 <div id="nextSetOfContent"></div>
             </div>
-
             <div class="profile-profile-div textframe-inside">
                 <div class="profile-profile-var">
-                    <label for="rg_mail">e-mail:</label>
+                    E-mail:
                 </div>
                 <div class="profile-profile-val">
-                    <input type="email" name="reg_mail" required id="rg_mail" size="30" class="panelframe-input" />
+                    <input type="email" name="reg_mail" required size="30" class="panelframe-input" value="$mail" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-            
             <div class="profile-profile-div textframe-inside">
                 <div class="profile-profile-var">
-                    <label for="rg_loc">location:</label>
+                    Location:
                 </div>
                 <div class="profile-profile-val">
-                    <input type="text" name="reg_loc" required id="rg_loc" size="30" class="panelframe-input" /><br>
+                    <input type="text" name="reg_loc" required size="30" class="panelframe-input" value="$location" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-
             <div class="profile-profile-div textframe-inside">
-
                 <div class="profile-profile-var">
-                    <label for="rg_date">birthday:</label>        
+                    Birthday:
                 </div>
                 <div class="profile-profile-val">
-                    <input type="date" name="reg_date" required id="rg_date" class="panelframe-input" /><br>
+                    <input type="date" name="reg_date" required class="panelframe-input" value="$birthday" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
-
-            <div align="middle" text-align="center" >
-                <input name="register" type="submit" value="submit" class="panelframe-button" />
+            <div class="profile-profile-footer">
+                <input name="register" type="submit" value="save" class="panelframe-button" />
             </div>
         </div>
     </div>
