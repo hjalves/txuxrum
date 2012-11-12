@@ -29,9 +29,10 @@
                                     $result = sql_query_chatrooms($_GET["sb_usr"], $_GET["sb_tit"]);
                                 }
                                 else {
-                                    $result = sql_query_chatrooms();
+                                    $result = sql_query_chatrooms(0);
                                 }
                                 vf_printchatlistheader();
+                                echo "wololo", sql_get_chatrooms_pages();
                                 while ($line = pg_fetch_row($result, null))
                                     vf_printchatitem($line[0], $line[1], $line[2], $line[3], $line[4], $line[5], $line[6]);
                                 vf_printchatlistfooter(4, 2);

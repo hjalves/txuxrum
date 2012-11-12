@@ -2,8 +2,16 @@
     $included = strtolower(realpath(__FILE__)) != strtolower(realpath($_SERVER['SCRIPT_FILENAME']));
     if (!$included)
         header('Location: .');
+        
+    function sql_get_chatrooms_pages() {
+        $perpage = 3;
+        $result = pg_query('SELECT COUNT(*) FROM chatrooms') or die('Query failed: ' . pg_last_error());
+        $line = pg_fetch_row($result, null);
+        return ceil($line[0]/$perpage);
+    }
 
-    function sql_query_chatrooms($user, $title) {
+    function sql_query_chatrooms($page, $user, $title) {
+        $perpage = 3;
         $query = ' SELECT title,                                              '
                . '        roomid,                                             '
                . '        Coalesce(owner, \'null\'),                          '
@@ -15,10 +23,13 @@
                . ' FROM   chatrooms_lastposts                                 ';
 
         if ($user || $title) {
-            $query .= " WHERE title ILIKE $1 AND owner ILIKE $2 ";
-            $result = pg_query_params($query, array("%$title%", "%$user%")) or die('Query failed: ' . pg_last_error());
+            $query .= ' WHERE title ILIKE $1 AND owner ILIKE $2 ';
+            $query .= ' LIMIT $3 OFFSET $4 ';
+            $result = pg_query_params($query, array("%$title%", "%$user%", "$perpage", "$offset")) or die('Query failed: ' . pg_last_error());
         } else {
-            $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+            $query .= ' LIMIT $1 OFFSET $2 ';
+            $offset = $perpage * $page;
+            $result = pg_query_params($query, array("$perpage", "$offset")) or die('Query failed: ' . pg_last_error());
         }
         return $result;
     }
