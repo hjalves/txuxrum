@@ -114,26 +114,20 @@
         $sqlset = "";
         if ($password)
             $sqlset .= "password = '$password', ";
-        if ($name)
-            $sqlset .= "name = '$name', ";
-        if ($sex)
-            $sqlset .= "male = '$sex', ";
-        if ($mail)
-            $sqlset .= "mail = '$mail', ";
-        if ($location)
-            $sqlset .= "location = '$location', ";
-        if ($birthday)
-            $sqlset .= "birthday = '$birthday', ";
-        if ($usernamepublic)
-            $sqlset .= "usernamepublic = '$usernamepublic', ";
-        if ($profilepublic)
-            $sqlset .= "profilepublic = '$profilepublic', ";
+
+        $sqlset .= "name = '$name', ";
+        $sqlset .= "male = '$sex', ";
+        $sqlset .= "mail = '$mail', ";
+        $sqlset .= "location = '$location', ";
+        $sqlset .= "birthday = '$birthday', ";
+        $sqlset .= "usernamepublic = '$usernamepublic', ";
+        $sqlset .= "profilepublic = '$profilepublic'";
 
         if (!$sqlset)
             return;
 
         $query = "UPDATE users SET "
-                . substr($sqlset, 0, -2)
+                . $sqlset
                 . " WHERE username = '$username'";
 
         $result = pg_query($query) or die('Query failed: ' . pg_last_error());

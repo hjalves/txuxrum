@@ -544,7 +544,7 @@ END;
     }
 
     /* print profile editable */
-    function vf_printeditprofile($username, $name, $male, $mail, $location, $birthday, $age, $usernamepublic, $profilepublic) {
+    function vf_printeditprofile($username, $name, $male, $mail, $location, $birthday, $usernamepublic, $profilepublic) {
         if ($male == "t")
             $mc = "checked";
         else
@@ -609,8 +609,8 @@ END;
                 </div>
                 <div class="textframe-ival">
                     male
-                    <input $mc type="radio" required name="sex" value="1" />
-                    <input $fc type="radio" required name="sex" value="0" />
+                    <input $mc type="radio" required name="sex" value="true" />
+                    <input $fc type="radio" required name="sex" value="false" />
                     female
                 </div>
                 <div id="nextSetOfContent"></div>
@@ -639,15 +639,6 @@ END;
                 </div>
                 <div class="textframe-ival">
                     <input type="date" name="birthday" required class="input" value="$birthday" />
-                </div>
-                <div id="nextSetOfContent"></div>
-            </div>
-            <div class="textframe-item">
-                <div class="textframe-ivar">
-                    Age:
-                </div>
-                <div class="textframe-ival">
-                    $age
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
