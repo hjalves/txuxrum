@@ -71,8 +71,8 @@ END;
         /* se nao tiver autenticado */
         if (!$_SESSION['userid']) {
             echo<<<END
-User: <input name="username" type="text" size="10" class="logininput" /> 
-Pass: <input name="password" type="password" size="10" class="logininput" />
+<input name="username" placeholder="Username" type="text" size="10" class="logininput" /> 
+<input name="password" placeholder="Password" type="password" size="10" class="logininput" />
 <input type="submit" name="login" value="login" class="loginbutton" />
 END;
                     /* se tiver autenticado */
