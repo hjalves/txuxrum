@@ -595,20 +595,44 @@ END;
 END;
     }
 
+    /* print search header */
+    function vf_printsearchheader() {
+        echo <<<END
+<div class="textframe">
+    <div class="textframe-title">
+        <div class="users-search-subtitle">
+            Username
+        </div>
+        <div class="users-search-subtitle">
+            Name
+        </div>
+        <div class="users-search-subtitle">
+            Age
+        </div>
+        <div class="users-search-subtitle">
+            Location
+        </div>
+        <div id="nextSetOfContent"></div>
+    </div>
+
+END;
+    }
+
     /* print search result */
     function vf_printsearchresult($username, $name, $age, $location) {
+        $username = vf_usertolink($username);
         echo <<<END
-<div class="profile-profile-div textframe-inside">
-    <div class="profile-profile-var">
-        <a href="profile.php?user=$username" class="userlink">$username </a>
+<div class="textframe-item">
+    <div class="users-search-subitem">
+        $username
     </div>
-    <div class="profile-profile-var">
+    <div class="users-search-subitem">
         $name
     </div>
-    <div class="profile-profile-var">
+    <div class="users-search-subitem">
         $age
     </div>
-    <div class="profile-profile-var">
+    <div class="users-search-subitem">
         $location
     </div>
     <div id="nextSetOfContent"></div>
@@ -616,23 +640,9 @@ END;
 END;
     }
 
-    /* print search header */
-    function vf_printsearchheader() {
-        echo <<<END
-<div class="profile-search-tit textframe-inside">
-    <div class="profile-profile-var">
-        Username
-    </div>
-    <div class="profile-profile-var">
-        Name
-    </div>
-    <div class="profile-profile-var">
-        Age
-    </div>
-    <div class="profile-profile-var">
-        Location
-    </div>
-    <div id="nextSetOfContent"></div>
+    /* print search result */
+    function vf_printsearchfooter($username, $name, $age, $location) {
+    echo <<<END
 </div>
 END;
     }

@@ -47,13 +47,12 @@
                                                       $_GET["sp_amax"],
                                                       $_GET["sp_birthage"]);
 
-echo "<div class=\"textframe profile-profile-main\">";
                                 vf_printsearchheader();
                                 while ($line = pg_fetch_row($result, null)) {
                                     vf_printsearchresult($line[0], $line[1], $line[2], $line[3]);
                                 }
+                                vf_printsearchfooter();
                             ?>
-                            </div>
                         </div>
                     </td>
                 </tr>
@@ -64,7 +63,5 @@ echo "<div class=\"textframe profile-profile-main\">";
                 </tr>
             </table>
         </div>
-        
-        
     </body>
 </html>

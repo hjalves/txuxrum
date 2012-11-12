@@ -75,14 +75,14 @@ td
 .textframe-inside
             {
                 background-color:   #D5D8D8;
-
+                color:              #282850;
                 padding:            3px;
             }
 .textframe-item
             {
                 background-color:   #D5D8D8;
                 border-left:        3px solid #87879D;
-
+                color:              #282850;
                 margin-top:         5px;
                 padding:            3px;
             }
@@ -415,88 +415,18 @@ td
             {
             }
 
-
 /**** PROFILE ****/
-.profile-profile-main
+.users-search-subtitle
             {
-                width:              inherit;
-            }
-.profile-profile-user
-            {
-                font-size:          14px;
-                color:              #282850;
-                font-weight:        bold;
-                text-align:         center;
-
-                margin-bottom:     20px;
-            }
-.profile-profile-footer
-            {
-                text-align:         center;
-
-                margin-top:         10px;
-            }
-.profile-profile-div
-            {
-                border-left:        3px solid #87879D;
-
-                margin-top:         5px;
-                margin-bottom:      5px;
-                padding-left:       5px;
-                padding-right:      5px;
-            }
-.profile-profile-var
-            {
-                float:              left;
-                width:              20%;
-            }
-
-.profile-profile-val
-            {
-                float:              left;
-                width:              40%;
-            }
-            
-.profile-profile-edit
-            {
-                text-align:         right;
-                
-                float:              right;
-                width:              30%;
-            }
-.profile-search-div
-            {   
-                background-color:   #E7EDED;
+                font-size:          13px;
                 text-align:         left;
-                vertical-align:     middle;
-                border-left:        3px solid #87879D;
-                
-                margin:             5px;
-                padding:            0px;
-                padding-left:       5px;
-            }
-.profile-search-var
-            {
-                vertical-align:     middle;
                 float:              left;
                 width:              20%;
             }
-.profile-search-tit
+.users-search-subitem
             {
-                border-left:        3px solid #87879D;
-                background-color:   #87879D;
-                color:              #FFFFFF;
-                font-weight:        bold;
+                font-size:          12px;
+                text-align:         left;
+                float:              left;
+                width:              20%;
             }
-.profile-search-res
-            {
-                border-left:        3px solid #87879D;
-                margin-top:         5px;
-                margin-bottom:      5px;
-                padding-left:       5px;
-                padding-right:      5px;
-            }
-
-
-
-
