@@ -121,10 +121,11 @@
         }
     }
 
+    # warning - querys sql propicias a injection
     function sql_profile_update($username, $password, $name, $sex, $mail, $location, $birthday, $usernamepublic, $profilepublic) {
         $sqlset = "";
         if ($password)
-            $sqlset .= "password = '$password', ";
+            $sqlset .= "password = md5('$password'), ";
         if ($name)
             $sqlset .= "name = '$name', ";
         if ($sex)
