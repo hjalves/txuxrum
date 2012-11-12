@@ -52,7 +52,7 @@
         <div class="mainbody">
         <?php
             if ($_GET["edit"])
-                vf_printeditprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[8]);
+                vf_printeditprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[7], $row[8]);
             else
                 vf_printprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $editable);
             vf_printstatus($status, $style);
