@@ -16,10 +16,8 @@
 
         if ($user || $title) {
             $query .= " WHERE title ILIKE $1 AND owner ILIKE $2 ";
-            $query .= " ORDER BY title ASC";
             $result = pg_query_params($query, array("%$title%", "%$user%")) or die('Query failed: ' . pg_last_error());
         } else {
-            $query .= " ORDER BY roomid DESC";
             $result = pg_query($query) or die('Query failed: ' . pg_last_error());
         }
         return $result;

@@ -15,4 +15,5 @@ CREATE VIEW chatrooms_lastposts AS
   LEFT JOIN lastmsg ON chatrooms.roomid = lastmsg.roomid
   LEFT JOIN messages ON lastmsg.msgid = messages.msgid
   LEFT JOIN users "owners" ON chatrooms.ownerid = owners.userid
-  LEFT JOIN users "posters" ON messages.userid = posters.userid;
+  LEFT JOIN users "posters" ON messages.userid = posters.userid
+  ORDER BY coalesce(messages.posttime, creationdate) DESC;
