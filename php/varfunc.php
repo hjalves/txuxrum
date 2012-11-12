@@ -140,7 +140,7 @@ END;
                     Add new user
                 </div>
                 <div class="panelframe-item-body">
-                    <input type="text" size="20" class="input" />
+                    <input type="text" class="input" />
                     <input type="submit" value="add" class="button" />
                 </div>
             </div>
@@ -158,11 +158,11 @@ END;
                 </div>
                 <div class="panelframe-item-body">
                     Title <br />
-                    <input type="text" size="20" class="input" />
+                    <input type="text" class="input" />
                     <input type="submit" value="edit" class="button" />
                     <br /><br />
                     Theme <br />
-                    <input type="text" size="20" class="input" />
+                    <input type="text" class="input" />
                     <input type="submit" value="edit" class="button" />
                 </div>
             </div>
@@ -227,7 +227,7 @@ END;
             Message of you and $user
         </div>
         <div class="msgpanel-filter-div">
-            <input name="msg_filter_user" type="text" size="20" class="msgpanel-filter-div-search panelframe-input" />
+            <input name="msg_filter_user" type="text" class="msgpanel-filter-div-search panelframe-input" />
             <input name="msg_filter_button" type="submit" value="filter" class="msgpanel-filter-div-button panelframe-button" />
             <input name="msg_clear" type="submit" value="clear filter" class="msgpanel-filter-div-button panelframe-button" />
         </div>
@@ -249,7 +249,7 @@ END;
                 Username
             </div>
             <div class="textframe-ival">
-                <input type="text" name="sb_usr" value="$user" size="20" class="input" />
+                <input type="text" name="sb_usr" value="$user" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -258,7 +258,7 @@ END;
                 Title
             </div>
             <div class="textframe-ival">
-                <input type="text" name="sb_tit" value="$topic" size="20" class="input" />
+                <input type="text" name="sb_tit" value="$topic" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -394,7 +394,7 @@ END;
                     Password:
                 </div>
                 <div class="textframe-ival">
-                    <input type="password" name="password" size="30" class="input" />
+                    <input type="password" name="password" class="input" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
@@ -403,7 +403,7 @@ END;
                     Re-enter password:
                 </div>
                 <div class="textframe-ival">
-                    <input type="password" name="repassword" size="30" class="input" />
+                    <input type="password" name="repassword" class="input" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
@@ -412,7 +412,7 @@ END;
                     Name:
                 </div>
                 <div class="textframe-ival">
-                    <input type="text" name="name" required size="30" class="input" value="$name" />
+                    <input type="text" name="name" required class="input" value="$name" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
@@ -433,7 +433,7 @@ END;
                     E-mail:
                 </div>
                 <div class="textframe-ival">
-                    <input type="email" name="email" required size="30" class="input" value="$mail" />
+                    <input type="email" name="email" required class="input" value="$mail" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
@@ -442,7 +442,7 @@ END;
                     Location:
                 </div>
                 <div class="textframe-ival">
-                    <input type="text" name="local" required size="30" class="input" value="$location" />
+                    <input type="text" name="local" required class="input" value="$location" />
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
@@ -524,7 +524,7 @@ END;
                 Username:
             </div>
             <div class="textframe-ival">
-                <input type="text" name="sp_u" size="30" class="input" value="$username" />
+                <input type="text" name="sp_u" class="input" value="$username" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -533,7 +533,7 @@ END;
                 Name:
             </div>
             <div class="textframe-ival">
-                <input type="text" name="sp_n" size="30" class="input" value="$name" />
+                <input type="text" name="sp_n" class="input" value="$name" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -553,7 +553,7 @@ END;
                 Mail:
             </div>
             <div class="textframe-ival">
-                <input type="email" name="sp_m" size="30" class="input" value="$mail" />
+                <input type="email" name="sp_m" class="input" value="$mail" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -562,7 +562,7 @@ END;
                 Location:
             </div>
             <div class="textframe-ival">
-                <input type="text" name="sp_l" size="30" class="input" value="$location" />
+                <input type="text" name="sp_l" class="input" value="$location" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -580,8 +580,8 @@ END;
                         <input id="ba_date" type="date" name="sp_d" class="input" value="$birthday" />
                     </div>
                     <div id="birthage-age">
-                        <input id="ba_agemin" type="number" min="0" max="120" name="sp_amin" size="20" class="input" value="$agemin" /> min<br />
-                        <input id="ba_agemax" type="number" min="0" max="120" name="sp_amax" size="20" class="input" value="$agemax" /> max
+                        <input id="ba_agemin" type="number" min="0" max="120" name="sp_amin" class="input" value="$agemin" /> min<br />
+                        <input id="ba_agemax" type="number" min="0" max="120" name="sp_amax" class="input" value="$agemax" /> max
                     </div>
                 </div>
             </div>
@@ -660,7 +660,7 @@ END;
                 Title
             </div>
             <div class="textframe-ival">
-                <input type="text" size="20" class="input" />
+                <input type="text" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -669,7 +669,7 @@ END;
                 Description
             </div>
             <div class="textframe-ival">
-                <input type="text" size="20" class="input" />
+                <input type="text" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -692,89 +692,87 @@ END;
     function vf_printregform() {
         echo <<<END
 <form method="POST">
-    <div class="textframe profile-profile-main">
-        <div class="textframe-inside profile-profile-user">
+    <div class="textframe">
+        <div class="textframe-title">
             Register new user
         </div>
-        <div class="">
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
-                    Username:
-                </div>
-                <div class="profile-profile-val">
-                    <input type="text" name="reg_usr" required size="30" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Username:
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
-                    Password:
-                </div>
-                <div class="profile-profile-val">
-                    <input type="password" name="reg_pwd" size="30" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
+            <div class="textframe-ival">
+                <input type="text" name="reg_usr" required class="input" />
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
-                    Re-enter password:
-                </div>
-                <div class="profile-profile-val">
-                    <input type="password" name="reg_pwdcheck" size="30" class="panelframe-input" />
-                </div>
-                <div id="nextSetOfContent"></div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Password:
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
-                    Name:
-                </div>
-                <div class="profile-profile-val">
-                    <input type="text" name="reg_name" required size="30" class="panelframe-input" value="$name" />
-                </div>
-                <div id="nextSetOfContent"></div>
+            <div class="textframe-ival">
+                <input type="password" name="reg_pwd" class="input" />
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
-                    Sex:
-                </div>
-                <div class="profile-profile-val">
-                    male
-                    <input type="radio" required name="reg_sex" value="1" class="panelframe-input" />
-                    <input type="radio" required name="reg_sex" value="0" class="panelframe-input" />
-                    female
-                </div>
-                <div id="nextSetOfContent"></div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Re-enter password:
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
-                    E-mail:
-                </div>
-                <div class="profile-profile-val">
-                    <input type="email" name="reg_mail" required size="30" class="panelframe-input" value="$mail" />
-                </div>
-                <div id="nextSetOfContent"></div>
+            <div class="textframe-ival">
+                <input type="password" name="reg_pwdcheck" class="input" />
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
-                    Location:
-                </div>
-                <div class="profile-profile-val">
-                    <input type="text" name="reg_loc" required size="30" class="panelframe-input" value="$location" />
-                </div>
-                <div id="nextSetOfContent"></div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Name:
             </div>
-            <div class="profile-profile-div textframe-inside">
-                <div class="profile-profile-var">
-                    Birthday:
-                </div>
-                <div class="profile-profile-val">
-                    <input type="date" name="reg_date" required class="panelframe-input" value="$birthday" />
-                </div>
-                <div id="nextSetOfContent"></div>
+            <div class="textframe-ival">
+                <input type="text" name="reg_name" required class="input" value="$name" />
             </div>
-            <div class="profile-profile-footer">
-                <input name="register" type="submit" value="save" class="panelframe-button" />
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Sex:
             </div>
+            <div class="textframe-ival">
+                male
+                <input type="radio" required name="reg_sex" value="1" />
+                <input type="radio" required name="reg_sex" value="0" />
+                female
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                E-mail:
+            </div>
+            <div class="textframe-ival">
+                <input type="email" name="reg_mail" required class="input" value="$mail" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Location:
+            </div>
+            <div class="textframe-ival">
+                <input type="text" name="reg_loc" required class="input" value="$location" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Birthday:
+            </div>
+            <div class="textframe-ival">
+                <input type="date" name="reg_date" required class="input" value="$birthday" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-footer">
+            <input name="register" type="submit" value="save" class="button" />
         </div>
     </div>
 </form>
