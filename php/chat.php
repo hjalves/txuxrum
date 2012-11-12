@@ -21,39 +21,29 @@
                 <tr>
                     <td>
                         <div class="bodyframe">
-                        
                             <?php
                                 $roomid = $_GET["thread"];
                                 $result = sql_query_chatroom($roomid);
                                 $row = pg_fetch_row($result, null);
                                 vf_printchatheader($row[0], $row[1]);
-                                
+
                                 if ($_POST["text"]) {
                                     $text = $_POST["text"];
                                     $userid = $_SESSION['userid'];
                                     sql_post_message($userid, $roomid, $text);
                                 }
-                            ?>
-                            
 
-                            <?php
                                 $roomid = $_GET["thread"];
                                 $result = sql_query_messages($roomid);
                                 while ($line = pg_fetch_row($result, null)) {
                                     vf_printchatmsg($line[0], $line[1], $line[2]);
                                 }
-                                
-                                $roomid = $_GET["thread"];
-                                vf_printchatroompostform($roomid); 
-                            ?>
 
-                            
-                            <?php
-                                vf_printchatpanel()
-                            ?>                            
-                            
-                            
-                            
+                                $roomid = $_GET["thread"];
+                                vf_printchatpost(); 
+
+                                vf_printchatpanel();
+                            ?>
                         </div>
                     </td>
                 </tr>
@@ -64,7 +54,5 @@
                 </tr>
             </table>
         </div>
-        
-        
     </body>
 </html>

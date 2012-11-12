@@ -21,25 +21,16 @@
                 <tr>
                     <td>
                         <div class="bodyframe" width="100%">
-                            
-                            
-                            <div class="messagebox">
                             <?php
-                                vf_printmessagesent("to", "ja foi ontem", "Tao? Tudo bem?");
-                                vf_printmessagesent("to", "ja foi ontem", "Tao? Tudo bem?");
-                                vf_printmessagerec("to", "ja foi ontem", "Tao? Tudo bem?");
-                                vf_printmessagesent("to", "ja foi ontem", "Tao? Tudo bem?");
-                                vf_printmessagerec("to", "ja foi ontem", "Tao? Tudo bem?");
-                                vf_printmessagesent("to", "ja foi ontem", "Tao? Tudo bem?");
-                                
-                           ?>
-                            </div>
-                        
-                            <?php
+                                vf_printmsgheader();
+
+                                vf_printmessagerec("to", "ja foi ontem", "Tao? Tudo bem?", "rec");
+                                vf_printmessagerec("to", "ja foi ontem", "Tao? Tudo bem?", "sent");
+
+                                vf_printmsgpost();
+
                                 vf_printmessagepanel(""); 
                             ?>
-                        
-             
                         </div>
                     </td>
                 </tr>
@@ -50,7 +41,5 @@
                 </tr>
             </table>
         </div>
-        
-        
     </body>
 </html>

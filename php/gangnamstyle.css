@@ -4,7 +4,7 @@ body
                 font:               15px arial, sans-serif;
                 color:              #ffffff;
             }
-                
+
 td
             {   background-color:   #ffffff;
                 font:               12px arial, sans-serif;
@@ -196,11 +196,12 @@ td
                 padding:            1px;
                 margin:             2px;
             }
-.input:hover {
+.input:hover
+            {
                 background-color:   #FAFAFA;
                 border:             solid 1px #0066FF;
                 color:              #003D99;
-}
+            }
 .userlink, .userlink:visited, .userlink:link, .userlink:active
             {
                 font-size:          12px;
@@ -211,6 +212,16 @@ td
 .userlink:hover
             {
                 color:              #7E7E96;
+                text-decoration:    underline;
+            }
+.stdlink, .stdlink:visited, .stdlink:link, .stdlink:active
+            {
+                font-size:          12px;
+                color:              #7E7E96;
+                text-decoration:    none;
+            }
+.userlink:hover
+            {
                 text-decoration:    underline;
             }
 
@@ -293,7 +304,7 @@ td
                 width:              45%;
                 text-align:         right;
             }
-            
+
 .chatmsg
             {
                 margin-left:        5px;
@@ -322,15 +333,13 @@ td
 
 .postbox
             {
-                margin-left:        5px;
-                margin-right:       5px;
                 margin-top:         10px;
                 padding:            5px;
                 background-color:   #C4C4CF;
             }
-.postbox-inside
+.postbox-to
             {
-                background-color:   #C4C4CF;
+                margin-bottom:      10px;
             }
 .postbox-submit
             {
@@ -347,75 +356,43 @@ td
             }
 
 /**** PRIVATE MESSAGES ****/
-.messagebox
+.msg-rec
+            {
+                margin-left:        5px;
+                margin-right:       5px;
+                margin-bottom:      10px;
+
+                border-left:        3px solid #87879D;
+            }
+.msg-sent
+            {
+                margin-left:        5px;
+                margin-right:       5px;
+                margin-bottom:      10px;
+
+                border-right:       3px solid #87879D;
+            }
+.msg-header
+            {
+                margin-bottom:      10px;
+            }
+.msg-from
             {
                 float:              left;
-                width:              60%;
+                width:              50%;
+                font-weight:        bold;
             }
-
-.msgrec
-            {   
-                background-color:   #CFF0CF;
-                
-                border-left:        4px solid #192719;
-                border-right:       4px solid #CFF0CF;
-            }
-.msgrec-inside
-            {   
-                 background-color:   #C2DAC2;
-            }
-.msgrec-from
-            {   
-                float:              left;
-                width:              55%;
-            }
-.msgrec-date
-            {   
+.msg-date
+            {
                 float:              right;
-                width:              35%;
+                width:              40%;
+                text-align:         right;
             }
-.msgrec-body
-            {   
-            }
-
-.msgsnt
-            {   
-                background-color:   #FFFFA0;
-                
-                border-left:        4px solid #FFFFA0;
-                border-right:       4px solid #806600;
-            }
-.msgsnt-inside
-            {   
-                 background-color:   #FFFFB8;
-            }
-.msgsnt-from
-            {   
-                float:              left;
-                width:              55%;
-            }
-.msgsnt-date
-            {   
-                float:              right;
-                width:              35%;
-            }
-.msgsnt-body
-            {   
-            }
-.msgpanel
-            {
-            }
-.msgpanel-filter
-            {   
-            }
-.msgpanel-filter-title
-            {
-            }
-.msgpanel-filter-div-search, .msgpanel-filter-div-button
+.msg-body
             {
             }
 
-/**** PROFILE ****/
+/**** SEARCH USER ****/
 .users-search-subtitle
             {
                 font-size:          13px;

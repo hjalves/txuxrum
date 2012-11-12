@@ -33,11 +33,12 @@ END;
     function vf_printchatitem($title, $id, $user, $date, $postuser, $postdate, $postprev) {
         $user = vf_usertolink($user);
         $postuser = vf_usertolink($postuser);
+        $title = vf_stdlink($title, "chat.php?thread=$id");
         echo <<<END
 <div class="chatroom">
     <div class="chatroom-left">
         <div class="chatroom-title">
-            <a href="chat.php?thread=$id">$title</a>
+            $title
         </div>
         <div>
             <div class="chatroom-user">
@@ -60,6 +61,12 @@ END;
 </div>
 END;
     }
+
+    /***************
+     *
+     * CHATROM
+     *
+     ***************/
 
     /* print chatroom header */
     function vf_printchatheader($title, $theme) {
@@ -97,10 +104,10 @@ END;
     }
 
     /* print chatroom post form */
-    function vf_printchatroompostform($roomid) {
+    function vf_printchatpost() {
         echo <<<END
 <form method="POST">
-    <div class="textframe-inside postbox">
+    <div class="textframe postbox">
         <div class="postbox-text">
             <textarea rows="4" cols="50" name="text" class="input postbox-textarea"></textarea>
         </div>
@@ -173,65 +180,96 @@ END;
 END;
     }
 
-    /* print message item received */
-    function vf_printmessagerec($from, $date, $msg) {
+    /***************
+     *
+     * PRIVATE MESSAGE
+     *
+     ***************/
+
+    /* print message header */
+    function vf_printmsgheader() {
         echo <<<END
-<div class="msgrec textframe">                            
-    <div class="msgrec-inside textframe-inside">
-        <div class="msgrec-from">
-            $from
+<div class="textframe">
+    <div class="textframe-title">
+        Private messages
+    </div>
+    <div class="panelframe-left">
+END;
+    }
+
+    /* print message item */
+    function vf_printmessagerec($fromto, $date, $msg, $direction) {
+        $fromto = vf_usertolink($fromto);
+        echo <<<END
+<div class="textframe-inside msg-$direction">
+    <div class="msg-header">
+        <div class="msg-from">
+            $fromto
         </div>
-        <div class="msgrec-date">
+        <div class="msg-date">
             $date
         </div>
-        <div class="msgrec-body">
-            $msg
-        </div>
+        <div id="nextSetOfContent"></div>
     </div>
-    <div id="nextSetOfContent"></div>
+    <div class="msg-msg">
+        $msg
+    </div>
 </div>
 END;
     }
-    
-    /* print message item sent */
-    function vf_printmessagesent($to, $date, $msg) {
+
+    /* print message post form */
+    function vf_printmsgpost() {
         echo <<<END
-<div class="msgsnt textframe">                            
-    <div class="msgsnt-inside textframe-inside">
-        <div class="msgsnt-from">
-            $to
+<form method="POST">
+    <div class="textframe postbox">
+        <div class="textframe-inside postbox-to">
+            <div class="textframe-ivar">
+                To:
+            </div>
+            <div class="textframe-ival">
+                <input name="to" type="text" class="input" />
+            </div>
+            <div id="nextSetOfContent"></div>
         </div>
-        <div class="msgsnt-date">
-            $date
+        <div class="postbox-text">
+            <textarea rows="4" cols="50" name="text" class="input postbox-textarea"></textarea>
         </div>
-        <div class="msgsnt-body">
-            $msg
+        <div class="postbox-attach">
+            (TODO) Attach files
+        </div>
+        <div class="postbox-submit">
+            <input type="submit" name="msgsent" value="sent" class="button" />
         </div>
     </div>
-    <div id="nextSetOfContent"></div>
-</div>
+</form>
 END;
     }
-    
+
     /* print message panel */
     function vf_printmessagepanel($user) {
         if (!$user)
             $user = "everyone";
         else
             $user = vf_usertolink($user);
-            
+
         echo <<<END
-<div class="msgpanel panelframe">
-    <div class="msgpanel-filter panelframe-item">
-        <div class="msgpanel-filter-title panelframe-item-title">
-            Message of you and $user
-        </div>
-        <div class="msgpanel-filter-div">
-            <input name="msg_filter_user" type="text" class="msgpanel-filter-div-search panelframe-input" />
-            <input name="msg_filter_button" type="submit" value="filter" class="msgpanel-filter-div-button panelframe-button" />
-            <input name="msg_clear" type="submit" value="clear filter" class="msgpanel-filter-div-button panelframe-button" />
+    </div>
+    <div class="panelframe-right">
+        <div class="panelframe">
+            <div class="panelframe-item">
+                <div class="panelframe-item-title">
+                    Message of you and $user
+                </div>
+                <div class="panelframe-item-body">
+                    <input name="msg_filter_user" type="text" class="input" />
+                    <input name="msg_filter_button" type="submit" value="filter" class="button" />
+                    <input name="msg_clear" type="submit" value="clear filter" class="button" />
+                </div>
+            </div>
         </div>
     </div>
+    <div id="nextSetOfContent"></div>
 </div>
 END;
     }
@@ -269,7 +307,7 @@ END;
 </form>
 END;
     }
-    
+
     /* print profile */
     function vf_printprofile($username, $name, $male, $mail, $location, $birthday, $age, $editable) {
         $male = $male == "t" ? "male" : "female";
