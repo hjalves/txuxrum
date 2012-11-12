@@ -35,8 +35,8 @@
                                 }
                             ?>
                             
-                            <div class="chatroom-posts">
-                            <?php  
+
+                            <?php
                                 $roomid = $_GET["thread"];
                                 $result = sql_query_messages($roomid);
                                 while ($line = pg_fetch_row($result, null)) {
@@ -46,10 +46,10 @@
                                 $roomid = $_GET["thread"];
                                 vf_printchatroompostform($roomid); 
                             ?>
-                            </div>
+
                             
                             <?php
-                                vf_printchatroompanel()
+                                vf_printchatpanel()
                             ?>                            
                             
                             

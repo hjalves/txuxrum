@@ -62,6 +62,16 @@ td
                 margin-bottom:      20px;
                 padding:            5px;
             }
+.textframe-subtitle
+            {
+                font-size:          14px;
+                color:              #F2F5F5;
+                font-weight:        bold;
+                text-align:         center;
+                background-color:   #87879D;
+
+                margin:             0px;
+            }
 .textframe-inside
             {
                 background-color:   #D5D8D8;
@@ -98,23 +108,31 @@ td
             }
 .panelframe
             {
-                width:              35%;
                 background-color:   #C2C2FF;
                 padding:            5px;
-                float:              right;
+                margin-bottom:      10px;
             }
 .panelframe-item
             {
                 background-color:   #E7EDED;
-                margin-bottom:      10px;
+                margin-bottom:      5px;
                 padding:            5px;
                 border-left:        solid 2px #282850;
             }
 .panelframe-item-title
             {
+                font-size:          13px;
+                color:              #282850;
+                font-weight:        bold;
                 background-color:   #D5D8D8;
                 padding:            3px;
                 margin-bottom:      10px;
+            }
+.panelframe-item-body
+            {
+                color:              #282850;
+                font-size:          12px;
+                padding-bottom:     10px;
             }
 .panelframe-input
             {
@@ -137,6 +155,16 @@ td
                 padding-left:       15px;
                 padding-right:      15px;
                 margin:             2px;
+            }
+.panelframe-left
+            {
+                width:              65%;
+                float:              left;
+            }
+.panelframe-right
+            {
+                width:              35%;
+                float:              right;
             }
 .button
             {
@@ -267,15 +295,17 @@ td
             }
             
 .chatmsg
-            {   
-
+            {
+                margin-left:        5px;
+                margin-right:       5px;
+                margin-bottom:      10px;
             }
-.chatmsg-inside
-            {   
-
+.chatmsg-header
+            {
+                margin-bottom:      10px;
             }
 .chatmsg-from
-            { 
+            {
                 float:              left;
                 width:              50%;
                 font-weight:        bold;
@@ -287,75 +317,20 @@ td
                 text-align:         right;
             }
 .chatmsg-body
-            {   
-                
-            }
-
-.chathead
-            {
-                background-color:   #C2C2FF;
-                width:              100%;
-                text-align:         center;
-                
-                border-top:         4px solid #282850;
-            }
-.chathead-title
-            {
-                padding-top:        8px;
-                font-weight:        bold;
-            }
-.chathead-theme
-            {
-                padding-top:        8px;
-                padding-bottom:     8px;
-            }
-.chatroom-posts
-            {
-                float:              left;
-                width:              60%;
-            }
-
-
-.chatpanel
-            {
-
-            }
-.chatpanel-rate, .chatpanel-ulist, .chatpanel-close, .chatpanel-edit
-            {
-            
-            }
-.chatpanel-rate-title, .chatpanel-ulist-title, .chatpanel-close-title, .chatpanel-ulist-addtitle, .chatpanel-edit-title
-            {
-            
-            }
-.chatpanel-ulist-addtitle
-            {
-                margin-top:         20px;
-            }
-.chatpanel-ulist-addinput, .chatpanel-ulist-addbutton, .chatpanel-close-button, .chatpanel-edit-addinput, .chatpanel-edit-addbutton, .chatpanel-edit-addinput, .chatpanel-edit-addbutton
-            {
-
-            }
-.chatpanel-ulist-addbutton, .chatpanel-close-button
-            {
-
-            }
-
-.searchbox
-            {   
-                width:              inherit;
-            }
-.searchbox-inside
             {
             }
 
 .postbox
-            {   
-            }          
-.postbox-inside
-            {   
+            {
+                margin-left:        5px;
+                margin-right:       5px;
+                margin-top:         10px;
+                padding:            5px;
                 background-color:   #C4C4CF;
-
+            }
+.postbox-inside
+            {
+                background-color:   #C4C4CF;
             }
 .postbox-submit
             {
@@ -365,46 +340,11 @@ td
             {
                 text-align:         center;
             }
-.postbox-text-area
+.postbox-textarea
             {
-                width:              95%;
+                width:              98%;
                 resize:             vertical;
             }
-
-.createthread
-            {   
-                width:              inherit;
-            }
-.createthread-inside
-            {
-            }
-.createthread-div
-            {
-                background-color:   #E7EDED;
-                text-align:         left;
-                vertical-align:     middle;
-                border-left:        3px solid #87879D;
-
-                margin:             5px;
-                padding:            0px;
-                padding-left:       5px;
-            }
-.createthread-var
-            {
-                vertical-align:     middle;
-                float:              left;
-                width:              20%;
-            }
-.createthread-val
-            {
-                float:              left;
-                width:              40%;
-            }
-.createthread-submit
-            {
-                text-align:         right;
-            }
-
 
 /**** PRIVATE MESSAGES ****/
 .messagebox
