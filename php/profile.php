@@ -41,41 +41,24 @@
 
 <html>
     <head>
-        <title> :: -- CHATRUM -- ::</title>
+        <title> :: -- TXUXRUM -- ::</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <link href="gangnamstyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <div align="center">
-            <table width="700px" border="0px" cellspacing="0px" cellpadding="0px" class="mainframe">
-                <tr>
-                    <td>
-                        <?php include("header.php"); ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="bodyframe">
-                            <?php
-
-
-                                if ($_GET["edit"])
-                                    vf_printeditprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[8]);
-                                else
-                                    vf_printprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $editable);
-                                vf_printstatus($status, $style);
-                            ?>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="footer">
-                        <?php vf_printfooter(); ?>
-                    </td>
-                </tr>
-            </table>
+    <div class="mainframe">
+        <div class="maintitle"> Txuxrum </div>
+        <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
+        <div class="mainbody">
+        <?php
+            if ($_GET["edit"])
+                vf_printeditprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[8]);
+            else
+                vf_printprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $editable);
+            vf_printstatus($status, $style);
+        ?>
         </div>
-        
-        
+        <div class="mainfooter"> <?php vf_printfooter(); ?> </div>
+    </div>
     </body>
 </html>

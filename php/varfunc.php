@@ -36,6 +36,59 @@ END;
 END;
     }
 
+    /* print mainmenu */
+    function vf_printmainmenu() {
+        echo <<<END
+<a href="forum.php">
+    <div class="menuitem">Forum</div>
+</a>
+<a href="message.php">
+    <div class="menuitem">Messages</div>
+</a>
+<a href="users.php">
+    <div class="menuitem">Users</div>
+</a>
+END;
+        
+        if ($_SESSION['userid']) {
+            $username = $_SESSION['username'];
+            echo<<<END
+<a href="profile.php?user=$username">
+    <div class="menuitem">Profile</div>
+</a>
+END;
+        } else {
+            echo<<<END
+<a href="register.php">
+    <div class="menuitem">Register!</div>
+</a>
+END;
+        }
+        echo <<<END
+<div class="menulogin">
+    <form method="POST">
+END;
+        /* se nao tiver autenticado */
+        if (!$_SESSION['userid']) {
+            echo<<<END
+User: <input name="username" type="text" size="10" class="logininput" /> 
+Pass: <input name="password" type="password" size="10" class="logininput" />
+<input type="submit" name="login" value="login" class="loginbutton" />
+END;
+                    /* se tiver autenticado */
+        } else {
+            $username = $_SESSION['username'];
+            echo<<<END
+Welcome $username <input type="submit" name="logout" value="logout" class="loginbutton" />
+END;
+        }
+        echo <<<END
+    </form>
+</div>
+<div id="nextSetOfContent"></div>
+END;
+    }
+
     /***************
      *
      * CHATROM LIST
