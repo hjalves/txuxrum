@@ -3,30 +3,37 @@
     if (!$included)
         header('Location: .');
 
-    function sql_query_chatrooms() {
-    $query = ' SELECT title,'
-           . '        roomid,'
-           . '        username,'
-           . '        To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),'
-           . '        Coalesce(poster, \'[SIGSEGV]\'),'
-           . '        To_char(posttime, \'DD-Mon, HH24:MI:SS\'),'
-           . '        msgtext'
-           . ' FROM   chatrooms'
-           . '        JOIN users'
-           . '          ON chatrooms.ownerid = users.userid'
-           . '        JOIN (SELECT last.roomid,'
-           . '                     users.username AS poster,'
-           . '                     messages.posttime,'
-           . '                     messages.msgtext'
-           . '              FROM   messages'
-           . '                     JOIN (SELECT roomid,'
-           . '                                  Max(msgid) AS msgid'
-           . '                           FROM   messages'
-           . '                                  JOIN chatrooms USING (roomid)'
-           . '                           GROUP  BY roomid) AS last USING (msgid)'
-           . '                     LEFT JOIN users USING (userid)) AS b USING (roomid)'
-           . ' ORDER  BY roomid DESC';
-        $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+    function sql_query_chatrooms($user, $title) {
+        $query = ' SELECT chatrooms.title,                                          '
+               . '        chatrooms.roomid,                                         '
+               . '        Coalesce(owners.username, \'null\') "owner",              '
+               . '        To_char(chatrooms.creationdate, \'DD-Mon-YYYY, HH24:MI\'),'
+               . '        Coalesce(posters.username, \'null\') "poster",            '
+               . '        To_char(messages.posttime, \'DD-Mon, HH24:MI:SS\'),       '
+               . '        left(messages.msgtext, 40),                               '
+               . '        left(chatrooms.description, 50)                           '
+               . ' FROM   chatrooms                                                 '
+               . '        LEFT JOIN (SELECT messages.roomid,                        '
+               . '                          Max(msgid) "msgid"                      '
+               . '                   FROM   messages                                '
+               . '                          JOIN chatrooms                          '
+               . '                            ON messages.roomid = chatrooms.roomid '
+               . '                   GROUP  BY messages.roomid) AS "lastmsg"        '
+               . '               ON chatrooms.roomid = lastmsg.roomid               '
+               . '        LEFT JOIN messages                                        '
+               . '               ON lastmsg.msgid = messages.msgid                  '
+               . '        LEFT JOIN users "owners"                                  '
+               . '               ON chatrooms.ownerid = owners.userid               '
+               . '        LEFT JOIN users "posters"                                 '
+               . '               ON messages.userid = posters.userid                ';
+        if ($user || $title) {
+            $query .= " WHERE chatrooms.title ILIKE $1 AND owners.username ILIKE $2 ";
+            $query .= " ORDER BY chatrooms.title ASC";
+            $result = pg_query_params($query, array("%$title%", "%$user%")) or die('Query failed: ' . pg_last_error());
+        } else {
+            $query .= " ORDER BY chatrooms.roomid DESC";
+            $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+        }
         return $result;
     }
     
@@ -107,11 +114,10 @@
 
     function sql_reg_user($username, $password, $name, $ismale, $mail, $location, $birhtday){
         $query = 'SELECT userid FROM users WHERE username ILIKE $1 OR mail LIKE $2';
-        $result = pg_query_params($query, array($username, $mail)) or die('couldn\'t validade user data');
-        if(pg_fetch_row($result, null)){
-            echo 'username or e-mail in use';
+        $result = pg_query_params($query, array($username, $mail)) or die('Query failed: ' . pg_last_error());
+        if(pg_fetch_row($result, null)) {
             return 1;
-        }else{
+        } else {
             $cmd = 'INSERT INTO users (Username, Password, Name, Male, Mail, Location, Birthday) VALUES ($1, md5($2), $3, $4, $5, $6, $7);';
             pg_query_params($cmd, array($username, $password, $name, $ismale, $mail, $location, $birhtday));
             return 0;

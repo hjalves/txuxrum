@@ -26,7 +26,7 @@
                                 vf_printsearchbox($_GET["sb_usr"], $_GET["sb_tit"]);
 
                                 if ($_GET["sb_usr"] || $_GET["sb_tit"]) {
-                                    $result = sql_query_chatrooms_search($_GET["sb_usr"], $_GET["sb_tit"]);
+                                    $result = sql_query_chatrooms($_GET["sb_usr"], $_GET["sb_tit"]);
                                 }
                                 else {
                                     $result = sql_query_chatrooms();
