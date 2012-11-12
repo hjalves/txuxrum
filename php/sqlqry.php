@@ -15,7 +15,7 @@
                . ' FROM   chatrooms_lastposts                                 ';
 
         if ($user || $title) {
-            $query .= " WHERE chatrooms.title ILIKE $1 AND owners.username ILIKE $2 ";
+            $query .= " WHERE title ILIKE $1 AND owner ILIKE $2 ";
             $query .= " ORDER BY title ASC";
             $result = pg_query_params($query, array("%$title%", "%$user%")) or die('Query failed: ' . pg_last_error());
         } else {
