@@ -1,5 +1,5 @@
 <?php /* Profile viewer/editer */
-    require_once('include.php');
+    require_once('include/include.php');
 
     if ($_GET['search']) {
         $result = sql_search_users($_GET["sp_u"],
@@ -22,7 +22,7 @@
     <head>
         <title> :: -- TXUXRUM -- ::</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <link href="gangnamstyle.css" rel="stylesheet" type="text/css" />
+        <link href="css/gangnamstyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
     <div class="mainframe">
