@@ -4,29 +4,22 @@
         header('Location: .');
 
     function sql_query_chatrooms($user, $title) {
-        $query = ' SELECT chatrooms.title,                                          '
-               . '        chatrooms.roomid,                                         '
-               . '        Coalesce(owners.username, \'null\') "owner",              '
-               . '        To_char(chatrooms.creationdate, \'DD-Mon-YYYY, HH24:MI\'),'
-               . '        Coalesce(posters.username, \'null\') "poster",            '
-               . '        To_char(messages.posttime, \'DD-Mon, HH24:MI:SS\'),       '
-               . '        left(messages.msgtext, 40),                               '
-               . '        left(chatrooms.description, 50)                           '
-               . ' FROM   chatrooms                                                 '
-               . '        LEFT JOIN lastmsg                                         '
-               . '               ON chatrooms.roomid = lastmsg.roomid               '
-               . '        LEFT JOIN messages                                        '
-               . '               ON lastmsg.msgid = messages.msgid                  '
-               . '        LEFT JOIN users "owners"                                  '
-               . '               ON chatrooms.ownerid = owners.userid               '
-               . '        LEFT JOIN users "posters"                                 '
-               . '               ON messages.userid = posters.userid                ';
+        $query = ' SELECT title,                                              '
+               . '        roomid,                                             '
+               . '        Coalesce(owner, \'null\'),                          '
+               . '        To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),    '
+               . '        Coalesce(lastposter, \'null\') "poster",            '
+               . '        To_char(lastposttime, \'DD-Mon, HH24:MI:SS\'),      '
+               . '        left(lastmsgtext, 40),                              '
+               . '        left(description, 50)                               '
+               . ' FROM   chatrooms_lastposts                                 ';
+
         if ($user || $title) {
             $query .= " WHERE chatrooms.title ILIKE $1 AND owners.username ILIKE $2 ";
-            $query .= " ORDER BY chatrooms.title ASC";
+            $query .= " ORDER BY title ASC";
             $result = pg_query_params($query, array("%$title%", "%$user%")) or die('Query failed: ' . pg_last_error());
         } else {
-            $query .= " ORDER BY chatrooms.roomid DESC";
+            $query .= " ORDER BY roomid DESC";
             $result = pg_query($query) or die('Query failed: ' . pg_last_error());
         }
         return $result;
