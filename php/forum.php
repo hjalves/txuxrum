@@ -30,10 +30,13 @@
                                 }
                                 else {
                                     $result = sql_query_chatrooms();
-                                    vf_printcreatethread();
                                 }
+                                vf_printchatlistheader();
                                 while ($line = pg_fetch_row($result, null))
                                     vf_printchatitem($line[0], $line[1], $line[2], $line[3], $line[4], $line[5], $line[6]);
+                                vf_printchatlistfooter(4, 2);
+
+                                vf_printcreatethread();
                             ?>
 
                         </div>

@@ -1,25 +1,32 @@
 <?php /* Global vars and functions */
-    
     /* stop execution ifnot included */
     $included = strtolower(realpath(__FILE__)) != strtolower(realpath($_SERVER['SCRIPT_FILENAME']));
     if (!$included)
         header('Location: .');
-    
+
     /* ## Vars ## */
-    
-    
+
+
     /* ## Functions ## */
-    
     /* make link to search the $user */
     function vf_usertolink($user) {
         return "<a href=\"profile.php?user=" . $user . "\" class=\"userlink\">" . $user . "</a>";
     }
-    
+
     /* make a standard link */
     function vf_stdlink($text, $link) {
         return "<a href=\"" . $link . "\" class=\"stdlink\">" . $text . "</a>";
     }
-    
+
+    /* print a status message */
+    function vf_printstatus($status, $style) { /* TODO info/error div message */
+        echo <<<END
+<div class="status-error">
+    $status
+</div>
+END;
+    }
+
     /* print footer */
     function vf_printfooter() {
         echo <<<END
@@ -28,37 +35,154 @@
 </div>
 END;
     }
-    
-    /* print chatroom item */
-    function vf_printchatitem($title, $id, $user, $date, $postuser, $postdate, $postprev) {
+
+    /***************
+     *
+     * CHATROM LIST
+     *
+     ***************/
+
+    /* print chatroom list header */
+    function vf_printchatlistheader() {
+        echo <<<END
+<div class="textframe">
+    <div class="textframe-title">
+        Chat rooms
+    </div>
+END;
+    }
+
+    /* print chat room list item */
+    function vf_printchatitem($title, $id, $user, $date, $postuser, $postdate, $postprev, $topic) {
         $user = vf_usertolink($user);
         $postuser = vf_usertolink($postuser);
         $title = vf_stdlink($title, "chat.php?thread=$id");
         echo <<<END
-<div class="chatroom">
-    <div class="chatroom-left">
-        <div class="chatroom-title">
-            $title
-        </div>
-        <div>
-            <div class="chatroom-user">
-                $user
+    <div class="textframe-inside">
+        <div class="chatroom-left">
+            <div class="chatroom-left-inside">
+                <div class="chatroom-leftsmal">
+                    $title
+                </div>
+                <div class="chatroom-rightsmal">
+                    $user
+                </div>
+                <div id="nextSetOfContent"></div>
+                <div class="chatroom-leftsmal">
+                    $topic
+                </div>
+                <div class="chatroom-rightsmal">
+                    $date
+                </div>
+                <div id="nextSetOfContent"></div>
             </div>
-            <div class="chatroom-date">
-                $date
+        </div>
+        <div class="chatroom-right">
+            <div class="chatroom-right-inside">
+                <div class="chatroom-lastpost-up">
+                    Last post by $postuser on $postdate
+                </div>
+                <div class="chatroom-lastpost-down">
+                    $postprev
+                </div>
             </div>
         </div>
+        <div id="nextSetOfContent"></div>
     </div>
-    <div class="chatroom-right">
-        <div class="chatroom-lastpost">
-            Last post by $postuser on $postdate
-        </div>
-        <div class="chatroom-lastpostby">
-            $postprev
-        </div>
+END;
+    }
+
+    /* print chatroom list footer */
+    function vf_printchatlistfooter($numpage, $selected) {
+        echo <<<END
+    <div class="textframe-footer">
+END;
+        if ($numpage > 1)
+            echo <<<END
+        <a class="button"><</a> 
+END;
+        if ($numpage > 1)
+            for ($i = 1; $i <= $numpage; $i++)
+                if ($i == $selected)
+                    echo "<b>$i </b>";
+                else
+                    echo "$i ";
+
+        if ($numpage > 1)
+            echo <<<END
+        <a class="button">></a>
+END;
+        echo <<<END
     </div>
-    <div id="nextSetOfContent"></div>
 </div>
+END;
+    }
+
+    /* print searchbox */
+    function vf_printsearchbox($user, $topic) {
+        echo <<<END
+<form method="GET">
+    <div class="textframe">
+        <div class="textframe-title">
+            Search topics
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Username
+            </div>
+            <div class="textframe-ival">
+                <input type="text" name="sb_usr" value="$user" class="input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Title
+            </div>
+            <div class="textframe-ival">
+                <input type="text" name="sb_tit" value="$topic" class="input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-footer">
+            <input type="submit" value="search" class="button" />
+        </div>
+    </div>
+</form>
+END;
+    }
+
+    /* print create new thread */
+    function vf_printcreatethread() {
+        echo <<<END
+<form method="POST">
+    <div class="textframe">
+        <div class="textframe-title">
+        New topic
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Title
+            </div>
+            <div class="textframe-ival">
+                <input type="text" class="input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-item">
+            <div class="textframe-ivar">
+                Description
+            </div>
+            <div class="textframe-ival">
+                <input type="text" class="input" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-footer">
+            <input type="submit" name="createthread_post" value="create new topic" class="button" />
+        </div>
+    </div>
+</form>
 END;
     }
 
@@ -274,39 +398,11 @@ END;
 END;
     }
 
-    /* print searchbox */
-    function vf_printsearchbox($user, $topic) {
-        echo <<<END
-<form method="GET">
-    <div class="textframe">
-        <div class="textframe-title">
-            Search topics
-        </div>
-        <div class="textframe-item">
-            <div class="textframe-ivar">
-                Username
-            </div>
-            <div class="textframe-ival">
-                <input type="text" name="sb_usr" value="$user" class="input" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="textframe-item">
-            <div class="textframe-ivar">
-                Title
-            </div>
-            <div class="textframe-ival">
-                <input type="text" name="sb_tit" value="$topic" class="input" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="textframe-footer">
-            <input type="submit" value="search" class="button" />
-        </div>
-    </div>
-</form>
-END;
-    }
+    /***************
+     *
+     * PROFILE
+     *
+     ***************/
 
     /* print profile */
     function vf_printprofile($username, $name, $male, $mail, $location, $birthday, $age, $editable) {
@@ -633,99 +729,6 @@ END;
 END;
     }
 
-    /* print search header */
-    function vf_printsearchheader() {
-        echo <<<END
-<div class="textframe">
-    <div class="textframe-title">
-        <div class="users-search-subtitle">
-            Username
-        </div>
-        <div class="users-search-subtitle">
-            Name
-        </div>
-        <div class="users-search-subtitle">
-            Age
-        </div>
-        <div class="users-search-subtitle">
-            Location
-        </div>
-        <div id="nextSetOfContent"></div>
-    </div>
-
-END;
-    }
-
-    /* print search result */
-    function vf_printsearchresult($username, $name, $age, $location) {
-        $username = vf_usertolink($username);
-        echo <<<END
-<div class="textframe-item">
-    <div class="users-search-subitem">
-        $username
-    </div>
-    <div class="users-search-subitem">
-        $name
-    </div>
-    <div class="users-search-subitem">
-        $age
-    </div>
-    <div class="users-search-subitem">
-        $location
-    </div>
-    <div id="nextSetOfContent"></div>
-</div>
-END;
-    }
-
-    /* print search result */
-    function vf_printsearchfooter($username, $name, $age, $location) {
-    echo <<<END
-</div>
-END;
-    }
-
-    /* print create new thread */
-    function vf_printcreatethread() {
-        echo <<<END
-<form method="POST">
-    <div class="textframe">
-        <div class="textframe-title">
-        New topic
-        </div>
-        <div class="textframe-item">
-            <div class="textframe-ivar">
-                Title
-            </div>
-            <div class="textframe-ival">
-                <input type="text" class="input" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="textframe-item">
-            <div class="textframe-ivar">
-                Description
-            </div>
-            <div class="textframe-ival">
-                <input type="text" class="input" />
-            </div>
-            <div id="nextSetOfContent"></div>
-        </div>
-        <div class="textframe-footer">
-            <input type="submit" name="createthread_post" value="create new topic" class="button" />
-        </div>
-    </div>
-</form>
-END;
-    }
-    
-    /* print a status message */
-    function vf_printstatus($status, $style) { /* TODO info/error div message */
-        echo <<<END
-$status
-END;
-    }
-    
     /* print registration form */
     function vf_printregform() {
         echo <<<END
@@ -816,5 +819,63 @@ END;
 </form>
 END;
     }
-    
+
+    /***************
+     *
+     * USERS LIST
+     *
+     ***************/
+
+    /* print search user header */
+    function vf_printsearchheader() {
+        echo <<<END
+<div class="textframe">
+    <div class="textframe-title">
+        <div class="users-search-subtitle">
+            Username
+        </div>
+        <div class="users-search-subtitle">
+            Name
+        </div>
+        <div class="users-search-subtitle">
+            Age
+        </div>
+        <div class="users-search-subtitle">
+            Location
+        </div>
+        <div id="nextSetOfContent"></div>
+    </div>
+
+END;
+    }
+
+    /* print search user result */
+    function vf_printsearchresult($username, $name, $age, $location) {
+        $username = vf_usertolink($username);
+        echo <<<END
+<div class="textframe-item">
+    <div class="users-search-subitem">
+        $username
+    </div>
+    <div class="users-search-subitem">
+        $name
+    </div>
+    <div class="users-search-subitem">
+        $age
+    </div>
+    <div class="users-search-subitem">
+        $location
+    </div>
+    <div id="nextSetOfContent"></div>
+</div>
+END;
+    }
+
+    /* print search user footer */
+    function vf_printsearchfooter($username, $name, $age, $location) {
+    echo <<<END
+</div>
+END;
+    }
+
 ?>
