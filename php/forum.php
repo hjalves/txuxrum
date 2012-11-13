@@ -10,13 +10,11 @@
     $title = $_GET["title"];
 
     /* get forum threads */
-    if ($user || $title)
-        $reschatrooms = sql_query_chatrooms($user, $title, $selected - 1);
-    else
-        $reschatrooms = sql_query_chatrooms($selected - 1);
+    $reschatrooms = sql_query_chatrooms($selected - 1, $user, $title);
 
     /* get max pages */
-    $maxpages = sql_get_chatrooms_pages();
+    $maxpages = sql_get_chatrooms_pages($user, $title);
+    echo "merda", $maxpages;
 ?>
 
 <!DOCTYPE html>
