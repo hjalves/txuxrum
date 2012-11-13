@@ -7,7 +7,7 @@
     $rowchatheader = pg_fetch_row($result, null);
 
     /* post new post into chatroom */
-    if ($_POST["post"]) {
+    if ($_POST["post"] && $_SESSION['userid']) {
         $text = $_POST["text"];
         $userid = $_SESSION['userid'];
         sql_post_message($userid, $roomid, $text);
@@ -37,7 +37,7 @@
             while ($line = pg_fetch_row($resmsgs, null))
                 vf_printchatmsg($line[0], $line[1], $line[2]);
 
-            vf_printchatpost(); 
+            vf_printchatpost();
 
             vf_printchatpanel();
         ?>
