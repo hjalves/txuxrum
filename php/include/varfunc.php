@@ -109,10 +109,9 @@ END;
     function vf_printchatitem($title, $id, $user, $date, $postuser, $postdate, $postprev, $topic) {
         $user = vf_usertolink($user);
         $postuser = vf_usertolink($postuser);
+        $lastpostup = $postdate ? "Last post by $postuser on $postdate" : "No posts in this topic";
         $title = vf_stdlink($title, "chat.php?thread=$id");
-        if ($postprev)
-            $postprev .= "...";
-        else
+        if (!$postprev)
             $postprev = "&nbsp;";
         echo <<<END
     <div class="textframe-inside">
@@ -137,7 +136,7 @@ END;
         <div class="chatroom-right">
             <div class="chatroom-right-inside">
                 <div class="chatroom-lastpost-up">
-                    Last post by $postuser on $postdate
+                    $lastpostup
                 </div>
                 <div class="chatroom-lastpost-down">
                     $postprev
@@ -177,9 +176,9 @@ END;
             $get = http_build_query($query_arr);
 
             if ($i == $selected)
-                echo "<span class=\"page-selected\">$i</span> ";
+                echo "<span class=\"button page-selected\">$i</span>";
             else
-                echo "<a href=\"?$get\" class=\"page-link\">$i</a> ";
+                echo "<a href=\"?$get\" class=\"button page-link\">$i</a>";
         }
             echo $next;
         echo <<<END
@@ -189,7 +188,7 @@ END;
     }
 
     /* print searchbox */
-    function vf_printsearchbox($user, $topic) {
+    function vf_printsearchbox($user, $title) {
         echo <<<END
 <form method="GET">
     <div class="textframe">
@@ -210,7 +209,7 @@ END;
                 Title
             </div>
             <div class="textframe-ival">
-                <input type="text" name="title" value="$topic" class="input" />
+                <input type="text" name="title" value="$title" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -235,7 +234,7 @@ END;
                 Title
             </div>
             <div class="textframe-ival">
-                <input type="text" class="input" />
+                <input type="text" name="title" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -244,12 +243,12 @@ END;
                 Description
             </div>
             <div class="textframe-ival">
-                <input type="text" class="input" />
+                <input type="text" name="description" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
         <div class="textframe-footer">
-            <input type="submit" name="createthread_post" value="create new topic" class="button" />
+            <input type="submit" name="newtopic" value="newtopic" class="button" />
         </div>
     </div>
 </form>
@@ -324,7 +323,7 @@ END;
         <div class="panelframe">
             <div class="panelframe-item">
                 <div class="panelframe-item-title">
-                    Rate this room
+                    Is this room interesting?
                 </div>
                 <div class="panelframe-item-body">
                     No | Maybe | Yes

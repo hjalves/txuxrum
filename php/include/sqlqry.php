@@ -3,24 +3,30 @@
     if (!$included)
         header('Location: .');
         
-    function sql_get_chatrooms_pages() {
+    function sql_get_chatrooms_pages($user, $title) {
         $perpage = 5;
-        $result = pg_query('SELECT COUNT(*) FROM chatrooms') or die('Query failed: ' . pg_last_error());
+        if ($user || $title) {
+            $query = 'SELECT COUNT(*) FROM (SELECT roomid FROM chatrooms LEFT JOIN users ON chatrooms.ownerid = users.userid WHERE title ILIKE $1 AND username ILIKE $2) "b"';
+            $result = pg_query_params($query, array("%$title%", "%$user%")) or die('Query failed: ' . pg_last_error());
+        } else {
+            $result = pg_query('SELECT COUNT(*) FROM chatrooms') or die('Query failed: ' . pg_last_error());
+        }
         $line = pg_fetch_row($result, null);
         return ceil($line[0]/$perpage);
     }
 
     function sql_query_chatrooms($page, $user, $title) {
         $perpage = 5;
-        $query = ' SELECT title,                                              '
-               . '        roomid,                                             '
-               . '        Coalesce(owner, \'null\'),                          '
-               . '        To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),    '
-               . '        Coalesce(lastposter, \'null\') "poster",            '
-               . '        To_char(lastposttime, \'DD-Mon, HH24:MI:SS\'),      '
-               . '        left(lastmsgtext, 40),                              '
-               . '        left(description, 50)                               '
-               . ' FROM   chatrooms_lastposts                                 ';
+        $query = ' SELECT title,                                                   '
+               . '        roomid,                                                  '
+               . '        Coalesce(owner, \'null\'),                               '
+               . '        To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),         '
+               . '        lastposter "poster",                 '
+               . '        To_char(lastposttime, \'DD-Mon, HH24:MI:SS\'),           '
+               . '        CASE WHEN char_length(lastmsgtext) <= 40 THEN lastmsgtext '
+               . '             ELSE left(lastmsgtext, 40) || \'...\' END,          '
+               . '        left(description, 50)                                    '
+               . ' FROM   chatrooms_lastposts                                      ';
 
         if ($user || $title) {
             $query .= ' WHERE title ILIKE $1 AND owner ILIKE $2 ';
@@ -59,12 +65,6 @@
                 . substr($sqlwhere, 0, -5);
 
         $result = pg_query($query) or die('Query failed: ' . pg_last_error());
-        return $result;
-    }
-
-    function sql_query_chatrooms_search($usr, $tit) {
-        $query = 'SELECT Title, RoomID, Username, CreationDate FROM chatrooms, users WHERE chatrooms.OwnerID = users.UserID AND Title ILIKE $1 AND chatrooms.Ownerid IN (SELECT userid FROM users WHERE username ILIKE $2) ORDER BY title ASC';
-        $result = pg_query_params($query, array("%$tit%", "%$usr%")) or die('Query failed: ' . pg_last_error());
         return $result;
     }
 
@@ -109,7 +109,12 @@
         $result = pg_query_params($query, array($userid, $roomid, $msgtext)) or die('Insert failed: ' . pg_last_error());
         return $result;
     }
-
+    
+    function sql_new_topic($userid, $title, $description) {
+        $query = 'INSERT INTO chatrooms (OwnerID, Title, Description) VALUES ($1, $2, $3)';
+        $result = pg_query_params($query, array($userid, $title, $description)) or die ('Insert failed: ' . pg_last_error());
+    }
+    
     function sql_reg_user($username, $password, $name, $ismale, $mail, $location, $birhtday){
         $query = 'SELECT userid FROM users WHERE username ILIKE $1 OR mail LIKE $2';
         $result = pg_query_params($query, array($username, $mail)) or die('Query failed: ' . pg_last_error());
