@@ -1,10 +1,10 @@
 <?php /* Forum - chat rooms list */
     require_once('include/include.php');
-    
+
     /* new topic */
     if ($_POST["newtopic"] && $_SESSION["userid"] && $_POST["title"])
         sql_new_topic($_SESSION["userid"], $_POST["title"], $_POST["description"]);
-    
+
     /* set $selected >= 1 */
     $selected = $_GET['page'];
     if ($selected < 1)
@@ -18,7 +18,15 @@
 
     /* get max pages */
     $maxpages = sql_get_chatrooms_pages($user, $title);
-    
+
+    /* check page selected out of bounds */
+    if ($selected > $maxpages) {
+        $query_arr = $_GET;
+
+        $query_arr["page"] = $maxpages;
+        $url = http_build_query($query_arr);
+        header("Location: ?$url");
+    }
 ?>
 
 <!DOCTYPE html>
