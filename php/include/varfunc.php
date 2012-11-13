@@ -11,7 +11,7 @@
     /* make link to search the $user */
     function vf_usertolink($user) {
         if (!$user)
-            return "<a <class =\"userlink\"> [deleted] </a>";
+            return "<a class =\"userlink\"> [deleted] </a>";
         return "<a href=\"profile.php?user=" . $user . "\" class=\"userlink\">" . $user . "</a>";
     }
 
