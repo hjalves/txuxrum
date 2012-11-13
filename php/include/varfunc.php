@@ -147,24 +147,37 @@ END;
 
     /* print chatroom list footer */
     function vf_printchatlistfooter($numpage, $selected) {
+        $query_arr = $_GET;
+
+        $query_arr["page"] = $selected - 1;
+        $prev = http_build_query($query_arr);
+        $query_arr["page"] = $selected + 1;
+        $next = http_build_query($query_arr);
+
+        if ($selected > 1)
+            $prev = "<a href=\"?$prev\" class=\"button\"><</a> ";
+        else
+            $prev = "<span class=\"button\"><</span>";
+
+        if ($selected < $numpage)
+            $next = "<a href=\"?$next\" class=\"button\">></a>";
+        else
+            $next = "<span class=\"button\">></span>";
+
         echo <<<END
     <div class="textframe-footer">
 END;
-        if ($numpage > 1)
-            echo <<<END
-        <a class="button"><</a> 
-END;
-        if ($numpage > 1)
-            for ($i = 1; $i <= $numpage; $i++)
-                if ($i == $selected)
-                    echo "<b>$i </b>";
-                else
-                    echo "$i ";
+        echo $prev;
+        for ($i = 1; $i <= $numpage; $i++) {
+            $query_arr["page"] = $i;
+            $get = http_build_query($query_arr);
 
-        if ($numpage > 1)
-            echo <<<END
-        <a class="button">></a>
-END;
+            if ($i == $selected)
+                echo "<span class=\"page-selected\">$i</span> ";
+            else
+                echo "<a href=\"?$get\" class=\"page-link\">$i</a> ";
+        }
+            echo $next;
         echo <<<END
     </div>
 </div>
