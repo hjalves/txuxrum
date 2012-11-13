@@ -1,9 +1,13 @@
 <?php /* Profile viewer/editer */
     require_once('include/include.php');
 
+    /* get username and check if it has rights to edit */
     $username = $_GET["user"] ? $_GET["user"] : $_GET["edit"];
     $editable = $username == $_SESSION["username"];
+    if (!$editable && $_GET["edit"])
+        header("Location: ?user=$username");
 
+    /* edit profile */
     if ($_POST['profileedit']) {
         if ($_POST['password'] != $_POST['repassword']) {
             $status = "Passwords mismatch";
@@ -23,17 +27,19 @@
             header("Location: ?user=$username");
         }
     }
+
+    /* cancel edit profile */
     if ($_POST['cancel'])
         header("Location: ?user=$username");
+
+    /* close user account */
     if ($_POST['closeprofile']) {
         //TODO close account
     }
 
-    if (!$editable && $_GET["edit"])
-        header("Location: ?user=$username");
-
+    /* gets profile's info */
     $result = sql_query_user($username);
-    $row = pg_fetch_row($result, null);
+    $rowprofile = pg_fetch_row($result, null);
 
 ?>
 
@@ -52,9 +58,10 @@
         <div class="mainbody">
         <?php
             if ($_GET["edit"])
-                vf_printeditprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[7], $row[8]);
+                vf_printeditprofile($rowprofile[0], $rowprofile[1], $rowprofile[2], $rowprofile[3], $rowprofile[4], $rowprofile[5], $rowprofile[7], $rowprofile[8]);
             else
-                vf_printprofile($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $editable);
+                vf_printprofile($rowprofile[0], $rowprofile[1], $rowprofile[2], $rowprofile[3], $rowprofile[4], $rowprofile[5], $rowprofile[6], $editable);
+
             vf_printstatus($status, $style);
         ?>
         </div>

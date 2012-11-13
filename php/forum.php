@@ -1,9 +1,22 @@
 <?php /* Forum - chat rooms list */
     require_once('include/include.php');
 
+    /* set $selected >= 1 */
     $selected = $_GET['page'];
     if ($selected < 1)
         $selected = 1;
+
+    $user = $_GET["user"];
+    $title = $_GET["title"];
+
+    /* get forum threads */
+    if ($user || $title)
+        $reschatrooms = sql_query_chatrooms($user, $title, $selected - 1);
+    else
+        $reschatrooms = sql_query_chatrooms($selected - 1);
+
+    /* get max pages */
+    $maxpages = sql_get_chatrooms_pages();
 ?>
 
 <!DOCTYPE html>
@@ -20,18 +33,15 @@
         <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
         <div class="mainbody">
         <?php
-            vf_printsearchbox($_GET["sb_usr"], $_GET["sb_tit"]);
+            vf_printsearchbox($user, $title);
 
-            if ($_GET["sb_usr"] || $_GET["sb_tit"]) {
-                $result = sql_query_chatrooms($_GET["sb_usr"], $_GET["sb_tit"], $selected - 1);
-            }
-            else {
-                $result = sql_query_chatrooms($selected - 1);
-            }
             vf_printchatlistheader();
-            while ($line = pg_fetch_row($result, null))
-                vf_printchatitem($line[0], $line[1], $line[2], $line[3], $line[4], $line[5], $line[6], $line[7]);
-            vf_printchatlistfooter(sql_get_chatrooms_pages(), $selected);
+
+            while ($row = pg_fetch_row($reschatrooms, null))
+                vf_printchatitem($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
+
+            vf_printchatlistfooter($maxpages, $selected);
+
             vf_printcreatethread();
         ?>
         </div>

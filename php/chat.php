@@ -1,5 +1,21 @@
 <?php /* Chat room */
     require_once('include/include.php');
+
+    /* get title and description */
+    $roomid = $_GET["thread"];
+    $result = sql_query_chatroom($roomid);
+    $rowchatheader = pg_fetch_row($result, null);
+
+    /* post new post into chatroom */
+    if ($_POST["post"]) {
+        $text = $_POST["text"];
+        $userid = $_SESSION['userid'];
+        sql_post_message($userid, $roomid, $text);
+    }
+
+    /* get chatroom's messages */
+    $resmsgs = sql_query_messages($roomid);
+
 ?>
 
 <!DOCTYPE html>
@@ -16,24 +32,11 @@
         <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
         <div class="mainbody">
         <?php
-            $roomid = $_GET["thread"];
-            $result = sql_query_chatroom($roomid);
-            $row = pg_fetch_row($result, null);
-            vf_printchatheader($row[0], $row[1]);
+            vf_printchatheader($rowchatheader[0], $rowchatheader[1]);
 
-            if ($_POST["text"]) {
-                $text = $_POST["text"];
-                $userid = $_SESSION['userid'];
-                sql_post_message($userid, $roomid, $text);
-            }
-
-            $roomid = $_GET["thread"];
-            $result = sql_query_messages($roomid);
-            while ($line = pg_fetch_row($result, null)) {
+            while ($line = pg_fetch_row($resmsgs, null))
                 vf_printchatmsg($line[0], $line[1], $line[2]);
-            }
 
-            $roomid = $_GET["thread"];
             vf_printchatpost(); 
 
             vf_printchatpanel();

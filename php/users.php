@@ -1,19 +1,21 @@
 <?php /* Profile viewer/editer */
     require_once('include/include.php');
 
-    if ($_GET['search']) {
-        $result = sql_search_users($_GET["sp_u"],
-                                   $_GET["sp_n"],
-                                   $_GET["sp_s"],
-                                   $_GET["sp_m"],
-                                   $_GET["sp_l"],
-                                   $_GET["sp_d"],
-                                   $_GET["sp_amin"],
-                                   $_GET["sp_amax"],
-                                   $_GET["sp_birthage"]);
-    }
+   $user = $_GET["sp_u"];
+   $name = $_GET["sp_n"];
+   $sex = $_GET["sp_s"];
+   $mail = $_GET["sp_m"];
+   $location = $_GET["sp_l"];
+   $birthday = $_GET["sp_d"];
+   $agemin = $_GET["sp_amin"];
+   $agemax = $_GET["sp_amax"];
+   $birthage = $_GET["sp_birthage"];
+
+    /* search user */
+    if ($_GET['search'])
+        $ressearch = sql_search_users($user, $name, $sex, $mail, $location, $birthday, $agemin, $agemax, $birthage);
     else
-        $result = sql_query_users();
+        $ressearch = sql_query_users();
 ?>
 
 <!DOCTYPE html>
@@ -30,20 +32,13 @@
         <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
         <div class="mainbody">
         <?php
-            vf_printsearchprofile($_GET["sp_u"],
-                                  $_GET["sp_n"],
-                                  $_GET["sp_s"],
-                                  $_GET["sp_m"],
-                                  $_GET["sp_l"],
-                                  $_GET["sp_d"],
-                                  $_GET["sp_amin"],
-                                  $_GET["sp_amax"],
-                                  $_GET["sp_birthage"]);
+            vf_printsearchprofile($user, $name, $sex, $mail, $location, $birthday, $agemin, $agemax, $birthage);
 
             vf_printsearchheader();
-            while ($line = pg_fetch_row($result, null)) {
-                vf_printsearchresult($line[0], $line[1], $line[2], $line[3]);
-            }
+
+            while ($row = pg_fetch_row($ressearch, null))
+                vf_printsearchresult($row[0], $row[1], $row[2], $row[3]);
+
             vf_printsearchfooter();
         ?>
         </div>

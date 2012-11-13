@@ -4,6 +4,7 @@ body
                 font:               15px arial, sans-serif;
                 color:              #ffffff;
                 text-align:         center;
+                overflow-y:         scroll;
             }
 
 td

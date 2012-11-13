@@ -110,6 +110,10 @@ END;
         $user = vf_usertolink($user);
         $postuser = vf_usertolink($postuser);
         $title = vf_stdlink($title, "chat.php?thread=$id");
+        if ($postprev)
+            $postprev .= "...";
+        else
+            $postprev = "&nbsp;";
         echo <<<END
     <div class="textframe-inside">
         <div class="chatroom-left">
@@ -197,7 +201,7 @@ END;
                 Username
             </div>
             <div class="textframe-ival">
-                <input type="text" name="sb_usr" value="$user" class="input" />
+                <input type="text" name="user" value="$user" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -206,7 +210,7 @@ END;
                 Title
             </div>
             <div class="textframe-ival">
-                <input type="text" name="sb_tit" value="$topic" class="input" />
+                <input type="text" name="title" value="$topic" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>

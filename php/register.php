@@ -1,12 +1,14 @@
 <?php /* Register new user form */
     require_once('include/include.php');
 
+    /* redirects if it's already logged in */
     if ($_SESSION['userid'])
         header('Location: .');
 
     $status = "";
     $style  = "info";
 
+    /* register new user */
     if ($_POST['register']) {
         if ($_POST["reg_usr"] && ($_POST["reg_pwd"] == $_POST["reg_pwdcheck"])){
             if (sql_reg_user($_POST["reg_usr"],$_POST["reg_pwd"],$_POST["reg_name"],$_POST["reg_sex"],$_POST["reg_mail"],$_POST["reg_loc"],$_POST["reg_date"]) === 0) {
@@ -35,6 +37,7 @@
         <div class="mainbody">
         <?php
             vf_printregform();
+
             vf_printstatus($status, $style);
         ?>
         </div>
