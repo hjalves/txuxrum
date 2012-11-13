@@ -323,7 +323,7 @@ END;
         <div class="panelframe">
             <div class="panelframe-item">
                 <div class="panelframe-item-title">
-                    Rate this room
+                    Is this room interesting?
                 </div>
                 <div class="panelframe-item-body">
                     No | Maybe | Yes
