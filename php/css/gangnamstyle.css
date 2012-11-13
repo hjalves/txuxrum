@@ -289,7 +289,7 @@ td
 .page-selected
             {
                 font-weight:        bold;
-                text-decoration:    underline;
+                text-decoration:    none;
             }
 
 /**** CHAT ROOM LIST ****/
