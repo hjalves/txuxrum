@@ -1,0 +1,158 @@
+/***************
+ *
+ * CHAT ROOM LIST
+ *
+ ***************/
+
+.chatroom-left
+            {
+                float:              left;
+                width:              60%;
+            }
+.chatroom-right
+            {
+                float:              right;
+                width:              40%;
+            }
+.chatroom-left-inside
+            {
+                background-color:   #C4C4CF;;
+                border-left:        4px solid #282850;
+                padding:            5px;
+                margin-right:       5px;
+            }
+.chatroom-right-inside
+            {
+                background-color:   #C1C2C2;
+                border-left:        3px solid #87879D;
+                padding:            5px;
+            }
+.chatroom-leftsmal
+            {
+                float:              left;
+                width:              70%;
+            }
+.chatroom-rightsmal
+            {
+                float:              right;
+                width:              30%;
+            }
+
+/***************
+ *
+ * CHATROOM
+ *
+ ***************/
+
+.chatmsg
+            {
+                margin-left:        5px;
+                margin-right:       5px;
+                margin-bottom:      10px;
+            }
+.chatmsg-header
+            {
+                margin-bottom:      10px;
+            }
+.chatmsg-from
+            {
+                float:              left;
+                width:              50%;
+                font-weight:        bold;
+            }
+.chatmsg-date
+            {
+                float:              right;
+                width:              40%;
+                text-align:         right;
+            }
+.chatmsg-body
+            {
+            }
+
+.postbox
+            {
+                margin-top:         10px;
+                padding:            5px;
+                background-color:   #C4C4CF;
+            }
+.postbox-to
+            {
+                margin-bottom:      10px;
+            }
+.postbox-submit
+            {
+                text-align:         right;
+            }
+.postbox-text
+            {
+                text-align:         center;
+            }
+.postbox-textarea
+            {
+                width:              98%;
+                resize:             vertical;
+            }
+
+/***************
+ *
+ * PRIVATE MESSAGE
+ *
+ ***************/
+
+.msg-rec
+            {
+                margin-left:        5px;
+                margin-right:       5px;
+                margin-bottom:      10px;
+
+                border-left:        3px solid #87879D;
+            }
+.msg-sent
+            {
+                margin-left:        5px;
+                margin-right:       5px;
+                margin-bottom:      10px;
+
+                border-right:       3px solid #87879D;
+            }
+.msg-header
+            {
+                margin-bottom:      10px;
+            }
+.msg-from
+            {
+                float:              left;
+                width:              50%;
+                font-weight:        bold;
+            }
+.msg-date
+            {
+                float:              right;
+                width:              40%;
+                text-align:         right;
+            }
+.msg-body
+            {
+            }
+
+/***************
+ *
+ * SEARCH USERS
+ *
+ ***************/
+
+.users-search-subtitle
+            {
+                font-size:          13px;
+                text-align:         left;
+                float:              left;
+                width:              20%;
+            }
+.users-search-subitem
+            {
+                font-size:          12px;
+                text-align:         left;
+                float:              left;
+                width:              20%;
+            }
