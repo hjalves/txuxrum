@@ -199,7 +199,7 @@ END;
         </div>
         <div class="textframe-item">
             <div class="textframe-ivar">
-                Username
+                By owner
             </div>
             <div class="textframe-ival">
                 <input type="text" name="user" value="$user" class="input" />
@@ -208,7 +208,7 @@ END;
         </div>
         <div class="textframe-item">
             <div class="textframe-ivar">
-                Title
+                By title
             </div>
             <div class="textframe-ival">
                 <input type="text" name="title" value="$title" class="input" />
@@ -250,7 +250,7 @@ END;
             <div id="nextSetOfContent"></div>
         </div>
         <div class="textframe-footer">
-            <input type="submit" name="newtopic" value="newtopic" class="button" />
+            <input type="submit" name="newtopic" value="create" class="button" />
         </div>
     </div>
 </form>
@@ -325,7 +325,7 @@ END;
         <div class="panelframe">
             <div class="panelframe-item">
                 <div class="panelframe-item-title">
-                    Is this room interesting?
+                    Is this topic relevant?
                 </div>
                 <div class="panelframe-item-body">
                     No | Maybe | Yes

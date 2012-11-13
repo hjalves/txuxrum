@@ -2,7 +2,7 @@
     require_once('include/include.php');
     
     /* new topic */
-    if ($_POST["newtopic"])
+    if ($_POST["newtopic"] && $_SESSION["userid"])
         sql_new_topic($_SESSION["userid"], $_POST["title"], $_POST["description"]);
     
     /* set $selected >= 1 */
