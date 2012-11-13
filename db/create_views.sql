@@ -1,4 +1,7 @@
 -- Faz associação entre o id da ultima mensagem postada e o id do chatroom
+DROP VIEW lastmsg CASCADE;
+DROP VIEW chatrooms_lastposts CASCADE;
+
 CREATE VIEW lastmsg AS
   SELECT messages.roomid, max(messages.msgid) AS msgid
   FROM messages

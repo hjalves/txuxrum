@@ -40,8 +40,8 @@ CREATE TABLE chatrooms (
     OwnerID         integer     REFERENCES users (UserID),
     Title           varchar     NOT NULL,
     Closed          boolean     DEFAULT FALSE,
-    CreationDate    timestamp   DEFAULT current_timestamp;
-    Description     varchar;
+    CreationDate    timestamp   DEFAULT current_timestamp,
+    Description     varchar
 );
 
 CREATE TABLE permissions (
@@ -62,7 +62,7 @@ CREATE TABLE ratings (
 
 CREATE TABLE messages (
     MsgID           serial      PRIMARY KEY,
-    RoomID          integer     REFERENCES chatrooms,
+    RoomID          integer     NOT NULL REFERENCES chatrooms,
     UserID          integer     REFERENCES users,
     MsgText         varchar     NOT NULL,
     PostTime        timestamp   DEFAULT current_timestamp
