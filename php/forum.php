@@ -14,7 +14,6 @@
 
     /* get max pages */
     $maxpages = sql_get_chatrooms_pages($user, $title);
-    echo "merda", $maxpages;
 ?>
 
 <!DOCTYPE html>
