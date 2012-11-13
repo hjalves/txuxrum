@@ -108,7 +108,12 @@
         $result = pg_query_params($query, array($userid, $roomid, $msgtext)) or die('Insert failed: ' . pg_last_error());
         return $result;
     }
-
+    
+    function sql_new_topic($userid, $title, $description) {
+        $query = 'INSERT INTO chatrooms (OwnerID, Title, Description) VALUES ($1, $2, $3)';
+        $result = pg_query_params($query, array($userid, $title, $description)) or die ('Insert failed: ' . pg_last_error());
+    }
+    
     function sql_reg_user($username, $password, $name, $ismale, $mail, $location, $birhtday){
         $query = 'SELECT userid FROM users WHERE username ILIKE $1 OR mail LIKE $2';
         $result = pg_query_params($query, array($username, $mail)) or die('Query failed: ' . pg_last_error());

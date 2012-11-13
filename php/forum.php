@@ -1,6 +1,10 @@
 <?php /* Forum - chat rooms list */
     require_once('include/include.php');
-
+    
+    /* new topic */
+    if ($_POST["newtopic"])
+        sql_new_topic($_SESSION["userid"], $_POST["title"], $_POST["description"]);
+    
     /* set $selected >= 1 */
     $selected = $_GET['page'];
     if ($selected < 1)
@@ -14,6 +18,7 @@
 
     /* get max pages */
     $maxpages = sql_get_chatrooms_pages($user, $title);
+    
 ?>
 
 <!DOCTYPE html>

@@ -189,7 +189,7 @@ END;
     }
 
     /* print searchbox */
-    function vf_printsearchbox($user, $topic) {
+    function vf_printsearchbox($user, $title) {
         echo <<<END
 <form method="GET">
     <div class="textframe">
@@ -210,7 +210,7 @@ END;
                 Title
             </div>
             <div class="textframe-ival">
-                <input type="text" name="title" value="$topic" class="input" />
+                <input type="text" name="title" value="$title" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -235,7 +235,7 @@ END;
                 Title
             </div>
             <div class="textframe-ival">
-                <input type="text" class="input" />
+                <input type="text" name="title" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -244,12 +244,12 @@ END;
                 Description
             </div>
             <div class="textframe-ival">
-                <input type="text" class="input" />
+                <input type="text" name="description" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
         <div class="textframe-footer">
-            <input type="submit" name="createthread_post" value="create new topic" class="button" />
+            <input type="submit" name="newtopic" value="newtopic" class="button" />
         </div>
     </div>
 </form>
