@@ -2,11 +2,16 @@
     $included = strtolower(realpath(__FILE__)) != strtolower(realpath($_SERVER['SCRIPT_FILENAME']));
     if (!$included)
         header('Location: .');
-        
+
     function sql_get_chatrooms_pages($user, $title) {
-        $perpage = 5;
+        $perpage = 10;
         if ($user || $title) {
-            $query = 'SELECT COUNT(*) FROM (SELECT roomid FROM chatrooms LEFT JOIN users ON chatrooms.ownerid = users.userid WHERE title ILIKE $1 AND username ILIKE $2) "b"';
+            $query = 'SELECT COUNT(*)
+                      FROM (SELECT roomid
+                            FROM   chatrooms
+                            LEFT JOIN users
+                                ON chatrooms.ownerid = users.userid
+                            WHERE title ILIKE $1 AND username ILIKE $2) "b"';
             $result = pg_query_params($query, array("%$title%", "%$user%")) or die('Query failed: ' . pg_last_error());
         } else {
             $result = pg_query('SELECT COUNT(*) FROM chatrooms') or die('Query failed: ' . pg_last_error());
@@ -16,17 +21,17 @@
     }
 
     function sql_query_chatrooms($page, $user, $title) {
-        $perpage = 5;
-        $query = ' SELECT title,                                                   '
-               . '        roomid,                                                  '
-               . '        Coalesce(owner, \'null\'),                               '
-               . '        To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),         '
-               . '        lastposter "poster",                 '
-               . '        To_char(lastposttime, \'DD-Mon, HH24:MI:SS\'),           '
-               . '        CASE WHEN char_length(lastmsgtext) <= 40 THEN lastmsgtext '
-               . '             ELSE left(lastmsgtext, 40) || \'...\' END,          '
-               . '        left(description, 50)                                    '
-               . ' FROM   chatrooms_lastposts                                      ';
+        $perpage = 10;
+        $query = ' SELECT title,
+                          roomid,
+                          owner,
+                          To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),
+                          lastposter "poster",
+                          To_char(lastposttime, \'DD-Mon, HH24:MI:SS\'),
+                          CASE WHEN char_length(lastmsgtext) <= 40 THEN lastmsgtext
+                               ELSE left(lastmsgtext, 40) || \'...\' END,
+                          left(description, 50)
+                   FROM   chatrooms_lastposts';
 
         if ($user || $title) {
             $query .= ' WHERE title ILIKE $1 AND owner ILIKE $2 ';
@@ -40,7 +45,8 @@
         }
         return $result;
     }
-    
+
+    # TODO: proteger de SQL injection
     function sql_search_users($username, $name, $sex, $mail, $location, $birthday, $agemin, $agemax, $birthage){
         $sqlwhere = "";
         if ($username)
@@ -75,7 +81,10 @@
     }
 
     function sql_query_messages($chatroomid) {
-        $query = 'SELECT COALESCE(Username,\'[SIGSEGV]\'), to_char(PostTime, \'DD-Mon-YYYY, HH24:MI:SS\'), MsgText FROM messages LEFT JOIN users USING (userid) WHERE RoomID = $1 ORDER BY MsgID ASC';
+        $query = 'SELECT Username,
+                         To_char(PostTime, \'DD-Mon-YYYY, HH24:MI:SS\'),
+                         MsgText
+                  FROM   messages LEFT JOIN users USING (userid) WHERE RoomID = $1 ORDER BY MsgID ASC';
         $result = pg_query_params($query, array($chatroomid)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
@@ -103,18 +112,18 @@
         $result = pg_query_params($query, array($username, $password)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
-    
+
     function sql_post_message($userid, $roomid, $msgtext) {
         $query = 'INSERT INTO messages (UserID, RoomID, MsgText) VALUES ($1, $2, $3)';
         $result = pg_query_params($query, array($userid, $roomid, $msgtext)) or die('Insert failed: ' . pg_last_error());
         return $result;
     }
-    
+
     function sql_new_topic($userid, $title, $description) {
         $query = 'INSERT INTO chatrooms (OwnerID, Title, Description) VALUES ($1, $2, $3)';
         $result = pg_query_params($query, array($userid, $title, $description)) or die ('Insert failed: ' . pg_last_error());
     }
-    
+
     function sql_reg_user($username, $password, $name, $ismale, $mail, $location, $birhtday){
         $query = 'SELECT userid FROM users WHERE username ILIKE $1 OR mail LIKE $2';
         $result = pg_query_params($query, array($username, $mail)) or die('Query failed: ' . pg_last_error());
@@ -127,7 +136,7 @@
         }
     }
 
-    # warning - querys sql propicias a injection
+    # TODO: proteger de SQL injection
     function sql_profile_update($username, $password, $name, $sex, $mail, $location, $birthday, $usernamepublic, $profilepublic) {
         $sqlset = "";
         if ($password)
