@@ -4,14 +4,14 @@
         header('Location: .');
         
     function sql_get_chatrooms_pages() {
-        $perpage = 3;
+        $perpage = 5;
         $result = pg_query('SELECT COUNT(*) FROM chatrooms') or die('Query failed: ' . pg_last_error());
         $line = pg_fetch_row($result, null);
         return ceil($line[0]/$perpage);
     }
 
     function sql_query_chatrooms($page, $user, $title) {
-        $perpage = 3;
+        $perpage = 5;
         $query = ' SELECT title,                                              '
                . '        roomid,                                             '
                . '        Coalesce(owner, \'null\'),                          '
@@ -25,6 +25,7 @@
         if ($user || $title) {
             $query .= ' WHERE title ILIKE $1 AND owner ILIKE $2 ';
             $query .= ' LIMIT $3 OFFSET $4 ';
+            $offset = $perpage * $page;
             $result = pg_query_params($query, array("%$title%", "%$user%", "$perpage", "$offset")) or die('Query failed: ' . pg_last_error());
         } else {
             $query .= ' LIMIT $1 OFFSET $2 ';

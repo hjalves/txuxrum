@@ -1,5 +1,9 @@
 <?php /* Forum - chat rooms list */
     require_once('include/include.php');
+
+    $selected = $_GET['page'];
+    if ($selected < 1)
+        $selected = 1;
 ?>
 
 <!DOCTYPE html>
@@ -19,15 +23,15 @@
             vf_printsearchbox($_GET["sb_usr"], $_GET["sb_tit"]);
 
             if ($_GET["sb_usr"] || $_GET["sb_tit"]) {
-                                    $result = sql_query_chatrooms($_GET["sb_usr"], $_GET["sb_tit"]);
+                $result = sql_query_chatrooms($_GET["sb_usr"], $_GET["sb_tit"], $selected - 1);
             }
             else {
-                $result = sql_query_chatrooms();
+                $result = sql_query_chatrooms($selected - 1);
             }
             vf_printchatlistheader();
             while ($line = pg_fetch_row($result, null))
                 vf_printchatitem($line[0], $line[1], $line[2], $line[3], $line[4], $line[5], $line[6], $line[7]);
-            vf_printchatlistfooter(4, 2);
+            vf_printchatlistfooter(sql_get_chatrooms_pages(), $selected);
             vf_printcreatethread();
         ?>
         </div>
