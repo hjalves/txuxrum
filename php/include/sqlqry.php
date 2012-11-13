@@ -17,15 +17,16 @@
 
     function sql_query_chatrooms($page, $user, $title) {
         $perpage = 5;
-        $query = ' SELECT title,                                              '
-               . '        roomid,                                             '
-               . '        Coalesce(owner, \'null\'),                          '
-               . '        To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),    '
-               . '        Coalesce(lastposter, \'null\') "poster",            '
-               . '        To_char(lastposttime, \'DD-Mon, HH24:MI:SS\'),      '
-               . '        left(lastmsgtext, 40),                              '
-               . '        left(description, 50)                               '
-               . ' FROM   chatrooms_lastposts                                 ';
+        $query = ' SELECT title,                                                   '
+               . '        roomid,                                                  '
+               . '        Coalesce(owner, \'null\'),                               '
+               . '        To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),         '
+               . '        lastposter "poster",                 '
+               . '        To_char(lastposttime, \'DD-Mon, HH24:MI:SS\'),           '
+               . '        CASE WHEN char_length(lastmsgtext) < 40 THEN lastmsgtext '
+               . '             ELSE left(lastmsgtext, 40) || \'...\' END,          '
+               . '        left(description, 50)                                    '
+               . ' FROM   chatrooms_lastposts                                      ';
 
         if ($user || $title) {
             $query .= ' WHERE title ILIKE $1 AND owner ILIKE $2 ';

@@ -109,10 +109,9 @@ END;
     function vf_printchatitem($title, $id, $user, $date, $postuser, $postdate, $postprev, $topic) {
         $user = vf_usertolink($user);
         $postuser = vf_usertolink($postuser);
+        $lastpostup = $postdate ? "Last post by $postuser on $postdate" : "No posts in this topic";
         $title = vf_stdlink($title, "chat.php?thread=$id");
-        if ($postprev)
-            $postprev .= "...";
-        else
+        if (!$postprev)
             $postprev = "&nbsp;";
         echo <<<END
     <div class="textframe-inside">
@@ -137,7 +136,7 @@ END;
         <div class="chatroom-right">
             <div class="chatroom-right-inside">
                 <div class="chatroom-lastpost-up">
-                    Last post by $postuser on $postdate
+                    $lastpostup
                 </div>
                 <div class="chatroom-lastpost-down">
                     $postprev
