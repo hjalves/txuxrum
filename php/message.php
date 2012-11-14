@@ -1,5 +1,13 @@
 <?php /* Private message */
     require_once('include/include.php');
+
+    /* send a message */
+    if ($_POST["msgsent"]) {
+        
+    }
+    
+    /* get message list */
+    $resmsgs = sql_message_get($_SESSION['userid']);
 ?>
 
 <!DOCTYPE html>
@@ -18,8 +26,8 @@
         <?php
             vf_printmsgheader();
 
-            vf_printmessagerec("to", "ja foi ontem", "Tao? Tudo bem?", "rec");
-            vf_printmessagerec("to", "ja foi ontem", "Tao? Tudo bem?", "sent");
+            while ($row = pg_fetch_row($resmsgs, null))
+                vf_printmessage($row[0], $row[1], $row[2], $row[3], $row[4]);
 
             vf_printmsgpost();
 

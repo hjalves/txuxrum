@@ -16,21 +16,21 @@ END;
     }
 
     /* print message item */
-    function vf_printmessagerec($fromto, $date, $msg, $direction) {
-        $fromto = vf_usertolink($fromto);
+    function vf_printmessage($direction, $user, $text, $sendtime, $rectime) {
+        $user = vf_usertolink($user);
         echo <<<END
 <div class="textframe-inside msg-$direction">
     <div class="msg-header">
         <div class="msg-from">
-            $fromto
+            $user
         </div>
         <div class="msg-date">
-            $date
+            $sendtime
         </div>
         <div id="nextSetOfContent"></div>
     </div>
     <div class="msg-msg">
-        $msg
+        $text
     </div>
 </div>
 END;

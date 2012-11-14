@@ -161,4 +161,24 @@
         $result = pg_query($query) or die('Query failed: ' . pg_last_error());
         return $result;
     }
+
+    function sql_message_get($userid) {
+        $query = '  SELECT CASE WHEN privatemessages.senderid = 2 THEN \'rec\'
+                                ELSE \'sent\' END "direction",
+                           CASE WHEN privatemessages.senderid = $1 THEN receivers.username
+                                ELSE senders.username END,
+                           privatemessages.msgtext,
+                           privatemessages.sendtime,
+                           privatemessages.readtime
+                    FROM   privatemessages
+                    LEFT JOIN users "receivers"
+                           ON privatemessages.receiverid = receivers.userid
+                    LEFT JOIN users "senders"
+                           ON privatemessages.senderid = senders.userid
+                    WHERE senderid = $1 OR receiverid = $1
+                    ORDER BY sendtime DESC';
+
+        $result = pg_query_params($query, array($userid)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
 ?>
