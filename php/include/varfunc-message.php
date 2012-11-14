@@ -18,6 +18,8 @@ END;
     /* print message item */
     function vf_printmessage($direction, $user, $text, $sendtime, $rectime) {
         $user = vf_usertolink($user);
+        if (!$rectime)
+            $rectime = "unread";
         echo <<<END
 <div class="textframe-inside msg-$direction">
     <div class="msg-header">
@@ -26,6 +28,15 @@ END;
         </div>
         <div class="msg-date">
             $sendtime
+        </div>
+        <div id="nextSetOfContent"></div>
+    </div>
+    <div class="msg-header">
+        <div class="msg-from">
+            
+        </div>
+        <div class="msg-date">
+            $rectime
         </div>
         <div id="nextSetOfContent"></div>
     </div>

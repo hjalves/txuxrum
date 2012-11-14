@@ -168,8 +168,8 @@
                            CASE WHEN privatemessages.senderid = $1 THEN receivers.username
                                 ELSE senders.username END,
                            privatemessages.msgtext,
-                           privatemessages.sendtime,
-                           privatemessages.readtime
+                           To_char(privatemessages.sendtime, \'DD-Mon, HH24:MI:SS\'),
+                           To_char(privatemessages.readtime, \'DD-Mon, HH24:MI:SS\')
                     FROM   privatemessages
                     LEFT JOIN users "receivers"
                            ON privatemessages.receiverid = receivers.userid
