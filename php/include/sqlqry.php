@@ -20,6 +20,13 @@
         return ceil($line[0]/$perpage);
     }
 
+    function sql_get_userid($username) {
+        $query = 'SELECT UserID FROM users WHERE Username = $1';
+        $result = pg_query_params($query, array($username));
+        $line = pg_fetch_row($result, null);
+        return $line[0];
+    }
+
     function sql_query_chatrooms($page, $user, $title) {
         $perpage = 10;
         $query = ' SELECT title,
@@ -163,10 +170,10 @@
     }
 
     function sql_message_get($userid) {
-        $query = '  SELECT CASE WHEN privatemessages.senderid = 2 THEN \'rec\'
+        $query = '  SELECT CASE WHEN privatemessages.receiverid = $1 THEN \'rec\'
                                 ELSE \'sent\' END "direction",
-                           CASE WHEN privatemessages.senderid = $1 THEN receivers.username
-                                ELSE senders.username END,
+                           CASE WHEN privatemessages.receiverid = $1 THEN senders.username
+                                ELSE receivers.username END,
                            privatemessages.msgtext,
                            To_char(privatemessages.sendtime, \'DD-Mon, HH24:MI:SS\'),
                            To_char(privatemessages.readtime, \'DD-Mon, HH24:MI:SS\')
@@ -180,5 +187,33 @@
 
         $result = pg_query_params($query, array($userid)) or die('Query failed: ' . pg_last_error());
         return $result;
+    }
+
+    function sql_message_getchat($userida, $useridb) {
+        $useridb = sql_get_userid($useridb);
+        $query = '  SELECT CASE WHEN privatemessages.receiverid = $1 THEN \'rec\'
+                                ELSE \'sent\' END "direction",
+                           CASE WHEN privatemessages.receiverid = $1 THEN senders.username
+                                ELSE receivers.username END,
+                           privatemessages.msgtext,
+                           To_char(privatemessages.sendtime, \'DD-Mon, HH24:MI:SS\'),
+                           To_char(privatemessages.readtime, \'DD-Mon, HH24:MI:SS\')
+                    FROM   privatemessages
+                    LEFT JOIN users "receivers"
+                           ON privatemessages.receiverid = receivers.userid
+                    LEFT JOIN users "senders"
+                           ON privatemessages.senderid = senders.userid
+                    WHERE senderid = $1 AND receiverid = $2 OR
+                          senderid = $2 AND receiverid = $1
+                    ORDER BY sendtime DESC';
+
+        $result = pg_query_params($query, array($userida, $useridb)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
+    function sql_message_send($fromid, $to, $date, $time, $text) {
+        $to = sql_get_userid($to);
+        $query = 'INSERT INTO privatemessages (senderid, receiverid, msgtext) VALUES ($1, $2, $3)';
+        $result = pg_query_params($query, array($fromid, $to, $text)) or die('Query failed: ' . pg_last_error());
     }
 ?>

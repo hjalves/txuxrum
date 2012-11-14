@@ -18,13 +18,14 @@ END;
     /* print message item */
     function vf_printmessage($direction, $user, $text, $sendtime, $rectime) {
         $user = vf_usertolink($user);
+        $dirstr = $direction == "rec" ? "From: " : "To: ";
         if (!$rectime)
             $rectime = "unread";
         echo <<<END
 <div class="textframe-inside msg-$direction">
     <div class="msg-header">
         <div class="msg-from">
-            $user
+            $dirstr $user
         </div>
         <div class="msg-date">
             $sendtime
@@ -48,7 +49,7 @@ END;
     }
 
     /* print message post form */
-    function vf_printmsgpost() {
+    function vf_printmsgpost($user) {
         echo <<<END
 <form method="POST">
     <div class="textframe postbox">
@@ -57,7 +58,17 @@ END;
                 To:
             </div>
             <div class="textframe-ival">
-                <input name="to" type="text" class="input" />
+                <input name="to" type="text" class="input" value="$user" />
+            </div>
+            <div id="nextSetOfContent"></div>
+        </div>
+        <div class="textframe-inside postbox-to">
+            <div class="textframe-ivar">
+                Postpone:
+            </div>
+            <div class="textframe-ival">
+                <input type="date" name="date" class="input" />
+                <input type="time" name="time" class="input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -77,25 +88,23 @@ END;
 
     /* print message panel */
     function vf_printmessagepanel($user) {
-        if (!$user)
-            $user = "everyone";
-        else
-            $user = vf_usertolink($user);
+        $buser = !$user ? "everyone" : vf_usertolink($user);
 
         echo <<<END
     </div>
     <div class="panelframe-right">
         <div class="panelframe">
-            <div class="panelframe-item">
-                <div class="panelframe-item-title">
-                    Message of you and $user
+            <form method="GET">
+                <div class="panelframe-item">
+                    <div class="panelframe-item-title">
+                        Message of you and $buser
+                    </div>
+                    <div class="panelframe-item-body">
+                        <input name="user" type="text" class="input" value="$user" />
+                        <input type="submit" value="filter" class="button" />
+                    </div>
                 </div>
-                <div class="panelframe-item-body">
-                    <input name="msg_filter_user" type="text" class="input" />
-                    <input name="msg_filter_button" type="submit" value="filter" class="button" />
-                    <input name="msg_clear" type="submit" value="clear filter" class="button" />
-                </div>
-            </div>
+            </form>
         </div>
     </div>
     <div id="nextSetOfContent"></div>
