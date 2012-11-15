@@ -78,7 +78,7 @@ END;
             </div>
             <div class="textframe-ival">
                 <input type="date" name="date" class="input" />
-                <input type="time" name="time" class=" msg-input" />
+                <input type="time" name="time" class="msg-input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>

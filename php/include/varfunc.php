@@ -49,7 +49,7 @@ END;
     <div class="menuitem">Forum</div>
 </a>
 <a href="message.php">
-    <div class="menuitem">Messages<span class="msg-newicon" id="msgnewicon">1</span></div>
+    <div class="menuitem">Messages<span class="msg-newicon" id="msgnewicon"></span></div>
 </a>
 <a href="users.php">
     <div class="menuitem">Users</div>
