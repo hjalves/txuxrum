@@ -54,25 +54,30 @@
         return $result;
     }
 
-    # TODO: proteger de SQL injection
     function sql_search_users($username, $name, $sex, $mail, $location, $birthday, $agemin, $agemax, $birthage){
+        
         $sqlwhere = "";
-        if ($username)
-            $sqlwhere .= "username ILIKE '$username' AND ";
-        if ($name)
-            $sqlwhere .= "name ILIKE '$name' AND ";
-        if ($sex)
+        if ($username){
+            $username = pg_escape_literal($username);
+            $sqlwhere .= "username ILIKE $username AND ";
+        }if ($name){
+            $name = pg_escape_literal($name);
+            $sqlwhere .= "name ILIKE $name AND ";
+        }if ($sex){
             $sqlwhere .= "male = $sex AND ";
-        if ($mail)
-            $sqlwhere .= "mail ILIKE '$mail' AND ";
-        if ($location)
-            $sqlwhere .= "location ILIKE '$location' AND ";
-        if ($birthage == "age" && $agemin && $agemax)
+        }if ($mail){
+            $mail = pg_escape_literal($mail);
+            $sqlwhere .= "mail ILIKE $mail AND ";
+        }if ($location){
+            $location = pg_escape_literal($location);
+            $sqlwhere .= "location ILIKE $location AND ";
+        }if ($birthage == "age" && $agemin && $agemax){
             $sqlwhere .= "date_part('year',age(Birthday)) BETWEEN $agemin AND $agemax AND ";
-        if ($birthday && $birthage == "birth")
-            $sqlwhere .= "birthday = '$birthday' AND ";
-
-        if (!$sqlwhere)
+        }if ($birthday && $birthage == "birth"){
+            $birthday = pg_escape_literal($birthday);
+            $sqlwhere .= "birthday = $birthday AND ";
+            
+        }if (!$sqlwhere)
             return sql_query_users();
 
         $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE '
@@ -144,26 +149,34 @@
         }
     }
 
-    # TODO: proteger de SQL injection
     function sql_profile_update($username, $password, $name, $sex, $mail, $location, $birthday, $usernamepublic, $profilepublic) {
+        
+        $username = pg_escape_literal($username);
+        $password = pg_escape_literal($password);
+        $name = pg_escape_literal($name);
+        $mail = pg_escape_literal($mail);
+        $location = pg_escape_literal($location);
+        $birthday = pg_escape_literal($birthday);
+        
         $sqlset = "";
+        
         if ($password)
-            $sqlset .= "password = md5('$password'), ";
+            $sqlset .= "password = md5($password), ";
 
-        $sqlset .= "name = '$name', ";
-        $sqlset .= "male = '$sex', ";
-        $sqlset .= "mail = '$mail', ";
-        $sqlset .= "location = '$location', ";
-        $sqlset .= "birthday = '$birthday', ";
-        $sqlset .= "usernamepublic = '$usernamepublic', ";
-        $sqlset .= "profilepublic = '$profilepublic'";
+        $sqlset .= "name = $name, ";
+        $sqlset .= "male = $sex, ";
+        $sqlset .= "mail = $mail, ";
+        $sqlset .= "location = $location, ";
+        $sqlset .= "birthday = $birthday, ";
+        $sqlset .= "usernamepublic = $usernamepublic, ";
+        $sqlset .= "profilepublic = $profilepublic";
 
         if (!$sqlset)
             return;
 
         $query = "UPDATE users SET "
                 . $sqlset
-                . " WHERE username = '$username'";
+                . " WHERE username = $username";
 
         $result = pg_query($query) or die('Query failed: ' . pg_last_error());
         return $result;
