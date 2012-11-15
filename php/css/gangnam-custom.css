@@ -3,7 +3,11 @@
  * CHAT ROOM LIST
  *
  ***************/
-
+/*.chatroom-half
+            {
+                float:              left;
+                width:              50%;
+            }*/
 .chatroom-left
             {
                 float:              left;

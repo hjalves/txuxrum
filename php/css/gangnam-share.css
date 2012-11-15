@@ -69,12 +69,17 @@
             {
                 color:              #282850;
                 float:              left;
-                width:              40%;
+                width:              80%;
             }
 .textframe-footer
             {
                 margin-top:         10px;
                 text-align:         center;
+            }
+.textfrome-vscroll
+            {
+                overflow-y:scroll;
+                /*height:200px;*/
             }
 
 /***************
