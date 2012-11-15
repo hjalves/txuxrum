@@ -4,6 +4,7 @@
     $userid = $_SESSION['userid'];
 
     if (!$userid) {
+        echo "0";
         exit();
     }
 

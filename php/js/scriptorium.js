@@ -16,13 +16,13 @@ function checknewmsg() {
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             count = xmlhttp.responseText;
-            if (count >= 0) {
-                msgicon = document.getElementById("msgnewicon");
-                msgicon.innerHTML = count;
-                msgicon.style.display="inherit";
+            if (count == "0") {
+                msgicon.style.display = "none";
             }
             else {
-                msgicon.style.display = "none";
+                msgicon = document.getElementById("msgnewicon");
+                msgicon.innerHTML = count;
+                msgicon.style.display="inline";
             }
         }
     }

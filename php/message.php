@@ -8,6 +8,12 @@ require_once('include/include.php');
         sql_message_send($_SESSION['userid'], $_POST['to'], $_POST['date'], $_POST['time'], $_POST['text']);
     }
 
+    /* update readtime */
+    if (!$user)
+        sql_update_setreadtime_all($_SESSION['userid']);
+    else
+        sql_update_setreadtime_user($_SESSION['userid'], $user);
+
     /* get message list */
     if ($user)
         $resmsgs = sql_message_getchat($_SESSION['userid'], $user);

@@ -229,4 +229,15 @@
         $query = 'INSERT INTO privatemessages (senderid, receiverid, msgtext) VALUES ($1, $2, $3)';
         $result = pg_query_params($query, array($fromid, $to, $text)) or die('Query failed: ' . pg_last_error());
     }
+
+    function sql_update_setreadtime_all($userid) {
+        $query = 'UPDATE privatemessages SET readtime = now() WHERE readtime IS NULL AND receiverid = $1';
+        $result = pg_query_params($query, array($userid)) or die ('Update failed: ' . pg_last_error());
+    }
+
+    function sql_update_setreadtime_user($userid, $user) {
+        $user = sql_get_userid($user);
+        $query = 'UPDATE privatemessages SET readtime = now() WHERE readtime IS NULL AND receiverid = $1 AND senderid = $2';
+        $result = pg_query_params($query, array($userid, $user)) or die ('Update failed: ' . pg_last_error());
+    }
 ?>
