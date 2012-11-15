@@ -30,3 +30,19 @@ function checknewmsg() {
     xmlhttp.send();
 }
 
+/* instant search */
+function getusersearch(str, datalist) {
+    if (str.length==0) {
+        document.getElementById(datalist).innerHTML="";
+        return;
+    }
+    xmlhttp=new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            document.getElementById(datalist).innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","ajax/getusersearch.php?user="+str,true);
+    xmlhttp.send();
+}
