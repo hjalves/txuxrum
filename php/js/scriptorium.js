@@ -1,5 +1,12 @@
+/* global vars */
+var ichecknewmsg;
+
 /* onload */
-checknewmsg();
+window.onload = (function() {
+    /* check for new messages */
+    checknewmsg();
+    ichecknewmsg = setInterval(checknewmsg, 2500);
+});
 
 /* check for new messages */
 function checknewmsg() {
@@ -18,7 +25,6 @@ function checknewmsg() {
                 msgicon.style.display = "none";
             }
         }
-        setTimeout("checknewmsg()", 2500);
     }
     xmlhttp.open("GET","ajax/getcountnewmsg.php",true);
     xmlhttp.send();
