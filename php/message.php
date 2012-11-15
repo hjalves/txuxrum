@@ -1,5 +1,5 @@
 <?php /* Private message */
-    require_once('include/include.php');
+require_once('include/include.php');
 
     $user = $_GET['user'];
 
@@ -19,15 +19,14 @@
 
 <html>
     <head>
-        <title> :: -- TXUXRUM -- ::</title>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <link href="css/gangnamstyle.css" rel="stylesheet" type="text/css" />
+    <?php vf_printhtmlheader(); ?>
     </head>
     <body>
     <div class="mainframe">
         <div class="maintitle"> Txuxrum </div>
         <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
         <div class="mainbody">
+        <span onclick="showmsgicon();">olha merda!</span><span onclick="hidemsgicon();">olha cona!</span>
         <?php
             vf_printmsgheader();
 
@@ -41,5 +40,6 @@
         </div>
         <div class="mainfooter"> <?php vf_printfooter(); ?> </div>
     </div>
+    
     </body>
 </html>

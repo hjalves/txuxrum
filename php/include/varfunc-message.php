@@ -4,6 +4,16 @@
     if (!$included)
         header('Location: .');
 
+    /* print HTML header */
+    function vf_printhtmlheader() {
+        echo <<<END
+<title> :: -- TXUXRUM -- ::</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<link href="css/gangnamstyle.css" rel="stylesheet" type="text/css" />
+<script src="js/scriptorium.js"></script>
+END;
+    }
+
     /* print message header */
     function vf_printmsgheader() {
         echo <<<END
@@ -68,7 +78,7 @@ END;
             </div>
             <div class="textframe-ival">
                 <input type="date" name="date" class="input" />
-                <input type="time" name="time" class="input" />
+                <input type="time" name="time" class=" msg-input" />
             </div>
             <div id="nextSetOfContent"></div>
         </div>

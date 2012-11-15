@@ -136,6 +136,28 @@
                 width:              40%;
                 text-align:         right;
             }
+.msg-input
+            {
+                background-color:   #FAFAFA;
+                color:              #282850;
+                font:               11px arial, sans-serif;
+                text-decoration:    none;
+                border:             solid 1px #82A6BE;
+            }
+.msg-newicon
+            {
+                background-color:   #DD0000;
+                color:              #FFFFFF;
+                font-size:          10px;
+                text-align:         center;
+                padding:            0px;
+                margin:             0px;
+                width:              14px;
+                height:             14px;
+                float:              right;
+                border-radius:      50%;
+                display:            none;
+            }
 .msg-body
             {
             }
