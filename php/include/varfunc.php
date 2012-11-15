@@ -94,4 +94,14 @@ END;
 <div id="nextSetOfContent"></div>
 END;
     }
+
+    /* make ajax search autocomplete */
+    function vf_makesearch($id) {
+        return "incremental list=\"$id\" autocomplete=\"off\" onkeyup=\"getusersearch(this.value, '$id')\"";
+    }
+
+    /* make ajax datalist */
+    function vf_makedatalist($id) {
+        return "<datalist id=\"$id\"></datalist>";
+    }
 ?>

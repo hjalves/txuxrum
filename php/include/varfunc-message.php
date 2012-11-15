@@ -60,6 +60,8 @@ END;
 
     /* print message post form */
     function vf_printmsgpost($user) {
+        $input = vf_makesearch("msgdatalistpost");
+        $datalist = vf_makedatalist("msgdatalistpost");
         echo <<<END
 <form method="POST">
     <div class="textframe postbox">
@@ -68,7 +70,7 @@ END;
                 To:
             </div>
             <div class="textframe-ival">
-                <input name="to" type="text" class="input" value="$user" />
+                <input $input name="to" type="text" class="input" value="$user" />$datalist
             </div>
             <div id="nextSetOfContent"></div>
         </div>
@@ -99,7 +101,8 @@ END;
     /* print message panel */
     function vf_printmessagepanel($user) {
         $buser = !$user ? "everyone" : vf_usertolink($user);
-
+        $input = vf_makesearch("msgdatalistfilter");
+        $datalist = vf_makedatalist("msgdatalistfilter");
         echo <<<END
     </div>
     <div class="panelframe-right">
@@ -110,7 +113,7 @@ END;
                         Message of you and $buser
                     </div>
                     <div class="panelframe-item-body">
-                        <input name="user" type="text" class="input" value="$user" />
+                        <input $input type="text" name="user" class="input" value="$user" />$datalist
                         <input type="submit" value="filter" class="button" />
                     </div>
                 </div>
