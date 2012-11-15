@@ -1,29 +1,7 @@
+/* onload */
+checknewmsg();
 
-function showmsgicon(count) {
-    msgicon = document.getElementById("msgnewicon");
-    msgicon.innerHTML = count;
-    msgicon.style.display="inherit";
-}
-function hidemsgicon() {
-    msgicon.style.display = "none";
-}
-
-
-
-
-function updatemsgicon(count) {
-    if (count)
-        showmsgicon(count);
-    else
-        hidemsgicon();
-}
-
-
-
-
-
-
-
+/* check for new messages */
 function checknewmsg() {
     var xmlhttp = new XMLHttpRequest();
     var count;
@@ -45,18 +23,4 @@ function checknewmsg() {
     xmlhttp.open("GET","ajax/getcountnewmsg.php",true);
     xmlhttp.send();
 }
-
-
-checknewmsg();
-
-
-
-
-
-
-
-
-
-
-
 

@@ -26,7 +26,6 @@ require_once('include/include.php');
         <div class="maintitle"> Txuxrum </div>
         <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
         <div class="mainbody">
-        <span onclick="showmsgicon();">olha merda!</span><span onclick="hidemsgicon();">olha cona!</span>
         <?php
             vf_printmsgheader();
 
