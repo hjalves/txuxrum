@@ -8,7 +8,7 @@
         exit();
     }
 
-    $query = 'SELECT count(*) FROM privatemessages WHERE readtime IS NULL AND receiverid = $1';
+    $query = 'SELECT count(*) FROM privatemessages WHERE readtime IS NULL AND receiverid = $1 AND sendtime < current_timestamp';
     $result = pg_query_params($query, array($userid));
     $line = pg_fetch_row($result, null);
     echo $line[0];

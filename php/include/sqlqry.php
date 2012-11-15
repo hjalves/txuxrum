@@ -196,7 +196,8 @@
                            ON privatemessages.receiverid = receivers.userid
                     LEFT JOIN users "senders"
                            ON privatemessages.senderid = senders.userid
-                    WHERE senderid = $1 OR receiverid = $1
+                    WHERE  senderid = $1 OR receiverid = $1 AND 
+                           privatemessages.sendtime < current_timestamp
                     ORDER BY sendtime DESC';
 
         $result = pg_query_params($query, array($userid)) or die('Query failed: ' . pg_last_error());
@@ -217,8 +218,9 @@
                            ON privatemessages.receiverid = receivers.userid
                     LEFT JOIN users "senders"
                            ON privatemessages.senderid = senders.userid
-                    WHERE senderid = $1 AND receiverid = $2 OR
-                          senderid = $2 AND receiverid = $1
+                    WHERE (senderid = $1 AND receiverid = $2) OR
+                          (senderid = $2 AND receiverid = $1) AND
+                          privatemessages.sendtime < current_timestamp
                     ORDER BY sendtime DESC';
 
         $result = pg_query_params($query, array($userida, $useridb)) or die('Query failed: ' . pg_last_error());
@@ -227,18 +229,25 @@
 
     function sql_message_send($fromid, $to, $date, $time, $text) {
         $to = sql_get_userid($to);
-        $query = 'INSERT INTO privatemessages (senderid, receiverid, msgtext) VALUES ($1, $2, $3)';
-        $result = pg_query_params($query, array($fromid, $to, $text)) or die('Query failed: ' . pg_last_error());
+        
+        if($date && $time){
+            $ts = $date." ".$time;
+            $query = 'INSERT INTO privatemessages (senderid, receiverid, msgtext, sendtime) VALUES ($1, $2, $3, $4)';
+            $result = pg_query_params($query, array($fromid, $to, $text, $ts)) or die('Query failed: ' . pg_last_error());
+        }else{
+            $query = 'INSERT INTO privatemessages (senderid, receiverid, msgtext) VALUES ($1, $2, $3)';
+            $result = pg_query_params($query, array($fromid, $to, $text)) or die('Query failed: ' . pg_last_error());
+        }
     }
 
     function sql_update_setreadtime_all($userid) {
-        $query = 'UPDATE privatemessages SET readtime = now() WHERE readtime IS NULL AND receiverid = $1';
+        $query = 'UPDATE privatemessages SET readtime = now() WHERE readtime IS NULL AND receiverid = $1 AND sendtime < current_timestamp';
         $result = pg_query_params($query, array($userid)) or die ('Update failed: ' . pg_last_error());
     }
 
     function sql_update_setreadtime_user($userid, $user) {
         $user = sql_get_userid($user);
-        $query = 'UPDATE privatemessages SET readtime = now() WHERE readtime IS NULL AND receiverid = $1 AND senderid = $2';
+        $query = 'UPDATE privatemessages SET readtime = now() WHERE readtime IS NULL AND receiverid = $1 AND senderid = $2 AND sendtime < current_timestamp';
         $result = pg_query_params($query, array($userid, $user)) or die ('Update failed: ' . pg_last_error());
     }
 ?>
