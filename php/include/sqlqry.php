@@ -57,6 +57,7 @@
     function sql_search_users($username, $name, $sex, $mail, $location, $birthday, $agemin, $agemax, $birthage){
         
         $sqlwhere = "";
+        
         if ($username){
             $username = pg_escape_literal($username);
             $sqlwhere .= "username ILIKE $username AND ";
@@ -151,12 +152,12 @@
 
     function sql_profile_update($username, $password, $name, $sex, $mail, $location, $birthday, $usernamepublic, $profilepublic) {
         
-        $username = pg_escape_literal($username);
-        $password = pg_escape_literal($password);
-        $name = pg_escape_literal($name);
-        $mail = pg_escape_literal($mail);
-        $location = pg_escape_literal($location);
-        $birthday = pg_escape_literal($birthday);
+        if($username)   $username = pg_escape_literal($username);
+        if($password)   $password = pg_escape_literal($password);
+        if($name)       $name = pg_escape_literal($name);
+        if($mail)       $mail = pg_escape_literal($mail);
+        if($location)   $location = pg_escape_literal($location);
+        if($birthday)   $birthday = pg_escape_literal($birthday);
         
         $sqlset = "";
         
