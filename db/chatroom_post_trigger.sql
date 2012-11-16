@@ -5,7 +5,7 @@ AS $$
 
 DECLARE
     perm_rec permissions%ROWTYPE;
-    n_rec   BOOLEAN;
+    
 BEGIN
 
     SELECT * INTO perm_rec FROM permissions WHERE userid = NEW.userid AND roomid = NEW.roomid;
@@ -21,6 +21,6 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER chatroom_post_trigger 
-BEFORE INSERT OR UPDATE OR DELETE ON messages
+BEFORE INSERT OR UPDATE ON messages
 FOR EACH ROW EXECUTE PROCEDURE post_permission_check();
 
