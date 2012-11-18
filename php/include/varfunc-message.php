@@ -126,7 +126,7 @@ END;
     }
 
     /* print ajax script get new messages */
-    function vf_printjsgetmsg($user) {
+    function vf_printjsgetmsg() {
         echo <<<END
 <script>
     igetnewmsg = setInterval(getnewmsg, 2500);
