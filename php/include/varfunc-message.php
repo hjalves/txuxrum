@@ -21,7 +21,7 @@ END;
     <div class="textframe-title">
         Private messages
     </div>
-    <div class="panelframe-left">
+    <div class="panelframe-left" id="msglist">
 END;
     }
 
@@ -124,4 +124,13 @@ END;
 </div>
 END;
     }
+
+    /* print ajax script get new messages */
+    function vf_printjsgetmsg($user) {
+        echo <<<END
+<script>
+    igetnewmsg = setInterval(getnewmsg, 2500);
+</script>
+END;
+}
 ?>
