@@ -33,6 +33,7 @@ require_once('include/include.php');
         <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
         <div class="mainbody">
         <?php
+            vf_printjsgetmsg();
             vf_printmsgheader();
 
             while ($row = pg_fetch_row($resmsgs, null))
@@ -40,7 +41,7 @@ require_once('include/include.php');
 
             vf_printmsgpost($user);
 
-            vf_printmessagepanel($user); 
+            vf_printmessagepanel($user);
         ?>
         </div>
         <div class="mainfooter"> <?php vf_printfooter(); ?> </div>

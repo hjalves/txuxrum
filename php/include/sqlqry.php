@@ -27,6 +27,13 @@
         return $line[0];
     }
 
+    function sql_countnewmsg($userid) {
+        $query = 'SELECT count(*) FROM privatemessages WHERE readtime IS NULL AND receiverid = $1 AND sendtime < current_timestamp';
+        $result = pg_query_params($query, array($userid));
+        $line = pg_fetch_row($result, null);
+        return $line[0];
+    }
+
     function sql_query_chatrooms($page, $user, $title) {
         $perpage = 10;
         $query = ' SELECT title,
@@ -240,9 +247,11 @@
         }
     }
 
-    function sql_update_setreadtime_all($userid) {
-        $query = 'UPDATE privatemessages SET readtime = now() WHERE readtime IS NULL AND receiverid = $1 AND sendtime < current_timestamp';
+    function sql_update_setreadtime_all($userid) { // TODO resolve RETURNING workaround
+        $query = 'UPDATE privatemessages SET readtime = current_timestamp WHERE readtime IS NULL AND receiverid = $1 AND sendtime < current_timestamp RETURNING current_timestamp';
         $result = pg_query_params($query, array($userid)) or die ('Update failed: ' . pg_last_error());
+        $line = pg_fetch_row($result, null);
+        return $line[0];
     }
 
     function sql_update_setreadtime_user($userid, $user) {
