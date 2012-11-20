@@ -10,7 +10,7 @@
         header('Location: .');
 
     /* LOGIN */
-    if ($_REQUEST['login']) {
+    if (isset($_REQUEST['login'])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
         $result = sql_login($username, $password);
@@ -19,7 +19,7 @@
         if ($_SESSION['userid'])
             $_SESSION['username'] = $username;
     }
-    if ($_REQUEST['logout']) {
+    if (isset($_REQUEST['logout'])) {
         unset($_SESSION['userid'], $_SESSION['username']);
     }
 ?>

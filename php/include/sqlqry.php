@@ -4,11 +4,13 @@
         header('Location: .');
 
     function sql_edit_title($userid, $roomid, $title) {
-        
+        $query = 'UPDATE chatrooms SET title = $1 WHERE roomid = $2 AND ownerid = $3';
+        $result = pg_query_params($query, array($title, $roomid, $userid));
     }
 
     function sql_edit_description($userid, $roomid, $description) {
-        
+        $query = 'UPDATE chatrooms SET description = $1 WHERE roomid = $2 AND ownerid = $3';
+        $result = pg_query_params($query, array($description, $roomid, $userid));
     }
 
     function sql_get_user_suggestions($user) {
@@ -110,7 +112,7 @@
     }
 
     function sql_query_chatroom($id) {
-        $query = 'SELECT Title, Description FROM Chatrooms WHERE RoomID = $1';
+        $query = 'SELECT Title, Description, Username, To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\') FROM Chatrooms LEFT JOIN Users ON (userid = ownerid) WHERE RoomID = $1';
         $result = pg_query_params($query, array($id)) or die('Query failed: ' . pg_last_error());
         return $result;
     }

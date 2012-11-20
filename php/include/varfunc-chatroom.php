@@ -58,61 +58,104 @@ END;
 END;
     }
 
-    /* print chatroom panel */
-    function vf_printchatpanel() {
+    function vf_printratetopic() {
         echo <<<END
+<div class="panelframe-item">
+    <div class="panelframe-item-title">
+        Is this topic relevant?
     </div>
-    <div class="panelframe-right">
-        <div class="panelframe">
-            <div class="panelframe-item">
-                <div class="panelframe-item-title">
-                    Is this topic relevant?
-                </div>
-                <div class="panelframe-item-body">
-                    No | Maybe | Yes
-                </div>
-            </div>
-            <div class="panelframe-item">
-                <div class="panelframe-item-title">
-                    Users in this topic
-                </div>
-                <div class="panelframe-item-body">
-                    (TODO)<br> user1<br>user2
-                </div>
-                <div class="panelframe-item-title">
-                    Add new user
-                </div>
-                <div class="panelframe-item-body">
-                    <input type="text" class="input" />
-                    <input type="submit" value="add" class="button" />
-                </div>
-            </div>
-            <div class="panelframe-item">
-                <div class="panelframe-item-title">
-                    Close this topic
-                </div>
-                <div class="panelframe-item-body">
-                    <input type="submit" value="close topic" class="button" />
-                </div>
-            </div>
-            <div class="panelframe-item">
-                <div class="panelframe-item-title">
-                    Edit this topic
-                </div>
-                <form method="POST" class="panelframe-item-body">
-                    Title <br />
-                    <input type="text" class="input" />
-                    <input type="submit" name="title" value="edit" class="button" />
-                    <br /><br />
-                    Description <br />
-                    <input type="text" class="input" />
-                    <input type="submit" name="description" value="edit" class="button" />
-                </form>
-            </div>
-        </div>
+    <div class="panelframe-item-body">
+        No | Maybe | Yes
     </div>
-    <div id="nextSetOfContent"></div>
 </div>
 END;
+    }
+
+    function vf_printpermissions() {
+        echo <<<END
+<div class="panelframe-item">
+    <div class="panelframe-item-title">
+        Permissions
+    </div>
+    <div class="panelframe-item-body">
+    User manel <br /> Wololo
+    </div>
+    <div class="panelframe-item-title">
+        Add new user
+    </div>
+    <div class="panelframe-item-body">
+        <input type="text" class="input" />
+        <input type="submit" value="add" class="button" />
+    </div>
+</div>
+END;
+    }
+
+    function vf_printclosetopic() {
+        echo <<<END
+<div class="panelframe-item">
+    <div class="panelframe-item-title">
+        Close this topic
+    </div>
+    <div class="panelframe-item-body">
+        <input type="submit" value="close topic" class="button" />
+    </div>
+</div>
+END;
+    }
+
+    function vf_printinfotopic($title, $description, $owner, $date) {
+        $link = vf_usertolink($owner);
+        echo <<<END
+<div class="panelframe-item">
+    <div class="panelframe-item-title">
+        About this topic
+    </div>
+    <div class="panelframe-item-body">
+        Title: $title <br />
+        Description: $description <br />
+        Owner: $link <br />
+        Created on: $date <br />
+    </div>
+</div>
+END;
+    }
+
+    function vf_printedittopic($title, $description) {
+        echo <<<END
+<div class="panelframe-item">
+    <div class="panelframe-item-title">
+        Edit this topic
+    </div>
+    <form method="POST" class="panelframe-item-body">
+        Title <br />
+        <input type="text" name="title" value="$title" class="input" />
+        <input type="submit" value="edit" class="button" />
+        <br /><br />
+        Description <br />
+        <input type="text" name="description" value="$description" class="input" />
+        <input type="submit" value="edit" class="button" />
+    </form>
+</div>
+END;
+    }
+
+    /* print chatroom panel */
+    function vf_printchatpanel($title, $description, $owner, $date) {
+        echo '</div>';
+        echo '<div class="panelframe-right">';
+        echo '<div class="panelframe">';
+
+        vf_printinfotopic($title, $description, $owner, $date);
+        vf_printedittopic($title, $description);
+        vf_printratetopic();
+        vf_printpermissions();
+        vf_printclosetopic();
+        
+
+        echo '</div>';
+        echo '</div>';
+        echo '<div id="nextSetOfContent"></div>';
+        echo '</div>';
     }
 ?>
