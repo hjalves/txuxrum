@@ -1,12 +1,26 @@
--- Faz associação entre o id da ultima mensagem postada e o id do chatroom
+-- Dripping wiews
 DROP VIEW lastmsg CASCADE;
+DROP VIEW chattotalmsg CASCADE;
+DROP VIEW usertotalmsg CASCADE;
 DROP VIEW chatrooms_lastposts CASCADE;
 
+-- Último post por chatroom
 CREATE VIEW lastmsg AS
-  SELECT messages.roomid, max(messages.msgid) AS msgid
+  SELECT roomid, MAX(msgid) "msgid"
   FROM messages
-  JOIN chatrooms ON messages.roomid = chatrooms.roomid
-  GROUP BY messages.roomid;
+  GROUP BY roomid;
+
+-- Número de posts por chatroom
+CREATE VIEW chattotalmsg AS
+  SELECT roomid, COUNT(*) "numposts"
+  FROM messages
+  GROUP BY roomid;
+
+-- Número de posts por user
+CREATE VIEW usertotalmsg AS
+  SELECT userid, COUNT(*) "numposts"
+  FROM messages
+  GROUP BY userid;
 
 -- Chatrooms com os ultimos posts
 CREATE VIEW chatrooms_lastposts AS
@@ -20,3 +34,4 @@ CREATE VIEW chatrooms_lastposts AS
   LEFT JOIN users "owners" ON chatrooms.ownerid = owners.userid
   LEFT JOIN users "posters" ON messages.userid = posters.userid
   ORDER BY coalesce(messages.posttime, creationdate) DESC;
+
