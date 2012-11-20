@@ -13,6 +13,18 @@
         sql_post_message($userid, $roomid, $text);
     }
 
+    /* edit title and description */
+    if ($_POST["title"]) {
+        $text = $_POST["title"];
+        sql_edit_title($userid, $roomid, $title);
+    }
+
+    if ($_POST["description"]) {
+        $text = $_POST["description"];
+        sql_edit_description($userid, $roomid, $description);
+    }
+
+
     /* get chatroom's messages */
     $resmsgs = sql_query_messages($roomid);
 

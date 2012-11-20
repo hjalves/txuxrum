@@ -47,7 +47,7 @@
 
 <html>
     <head>
-    <?php vf_printhtmlheader("Profile", $_SESSION['userid']); #apenas inclui scripts para users ?>
+    <?php vf_printhtmlheader("$rowprofile[0]", $_SESSION['userid']); #apenas inclui scripts para users ?>
     </head>
     <body>
     <div class="mainframe">

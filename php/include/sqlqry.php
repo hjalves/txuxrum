@@ -3,6 +3,14 @@
     if (!$included)
         header('Location: .');
 
+    function sql_edit_title($userid, $roomid, $title) {
+        
+    }
+
+    function sql_edit_description($userid, $roomid, $description) {
+        
+    }
+
     function sql_get_user_suggestions($user) {
         $query = 'SELECT username FROM users WHERE username ILIKE $1 ORDER BY username';
         $result = pg_query_params($query, array("$user%"));

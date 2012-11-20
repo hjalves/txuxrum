@@ -99,15 +99,15 @@ END;
                 <div class="panelframe-item-title">
                     Edit this topic
                 </div>
-                <div class="panelframe-item-body">
+                <form method="POST" class="panelframe-item-body">
                     Title <br />
                     <input type="text" class="input" />
-                    <input type="submit" value="edit" class="button" />
+                    <input type="submit" name="title" value="edit" class="button" />
                     <br /><br />
-                    Theme <br />
+                    Description <br />
                     <input type="text" class="input" />
-                    <input type="submit" value="edit" class="button" />
-                </div>
+                    <input type="submit" name="description" value="edit" class="button" />
+                </form>
             </div>
         </div>
     </div>
