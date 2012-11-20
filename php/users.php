@@ -22,7 +22,7 @@
 
 <html>
     <head>
-    <?php vf_printhtmlheader(); ?>
+    <?php vf_printhtmlheader("Users", $_SESSION['userid']); #apenas inclui scripts para users ?>
     </head>
     <body>
     <div class="mainframe">

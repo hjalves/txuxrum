@@ -5,7 +5,7 @@
     if ($_POST["newtopic"] && $_SESSION["userid"] && $_POST["title"])
         sql_new_topic($_SESSION["userid"], $_POST["title"], $_POST["description"]);
 
-    /* set $selected >= 1 */
+    /* pagination - set $selected >= 1 */
     $selected = $_GET['page'];
     if ($selected < 1)
         $selected = 1;
@@ -33,7 +33,7 @@
 
 <html>
     <head>
-    <?php vf_printhtmlheader(); ?>
+    <?php vf_printhtmlheader("Forum", $_SESSION['userid']); #apenas inclui scripts para users ?>
     </head>
     <body>
     <div class="mainframe">

@@ -12,6 +12,18 @@
 
 
     /* ## Functions ## */
+    
+    /* print HTML header */
+    function vf_printhtmlheader($page_title, $include_scripts) {
+        echo <<<END
+<title> Txuxrum: $page_title </title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<link href="css/gangnamstyle.css" rel="stylesheet" type="text/css" />
+END;
+        if ($include_scripts)
+            echo '<script src="js/scriptorium.js"></script>';
+    }
+    
     /* make link to search the $user */
     function vf_usertolink($user) {
         if (!$user)

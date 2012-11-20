@@ -26,9 +26,7 @@
 
 <html>
     <head>
-        <title> :: -- TXUXRUM -- ::</title>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <link href="css/gangnamstyle.css" rel="stylesheet" type="text/css" />
+    <?php vf_printhtmlheader("Register", $_SESSION['userid']); #apenas inclui scripts para users ?>
     </head>
     <body>
     <div class="mainframe">
