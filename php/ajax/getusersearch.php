@@ -3,13 +3,9 @@
 
     $user = $_GET['user'];
 
-    /*if (!$user) {
-        exit();
-    }*/
-
-    $query = 'SELECT username FROM users WHERE username ILIKE $1 ORDER BY username';
-    $result = pg_query_params($query, array("$user%"));
+    $result = sql_get_user_suggestions($user);
+    
     while ($row = pg_fetch_row($result, null))
-                echo "<option value=\"$row[0]\">";
+        echo "<option value=\"$row[0]\">";
 
 ?>

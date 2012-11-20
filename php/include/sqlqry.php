@@ -3,6 +3,12 @@
     if (!$included)
         header('Location: .');
 
+    function sql_get_user_suggestions($user) {
+        $query = 'SELECT username FROM users WHERE username ILIKE $1 ORDER BY username';
+        $result = pg_query_params($query, array("$user%"));
+        return $result;
+    }
+
     function sql_get_chatrooms_pages($user, $title) {
         $perpage = 10;
         if ($user || $title) {
@@ -210,7 +216,30 @@
         $result = pg_query_params($query, array($userid)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
+    
+    /* functions */
+    function sql_message_getnew($userid, $readtime) {
+        $query = '  SELECT CASE WHEN privatemessages.receiverid = $1 THEN \'rec\'
+                                ELSE \'sent\' END "direction",
+                           CASE WHEN privatemessages.receiverid = $1 THEN senders.username
+                                ELSE receivers.username END,
+                           privatemessages.msgtext,
+                           To_char(privatemessages.sendtime, \'DD-Mon, HH24:MI:SS\'),
+                           To_char(privatemessages.readtime, \'DD-Mon, HH24:MI:SS\')
+                    FROM   privatemessages
+                    LEFT JOIN users "receivers"
+                           ON privatemessages.receiverid = receivers.userid
+                    LEFT JOIN users "senders"
+                           ON privatemessages.senderid = senders.userid
+                    WHERE  (senderid = $1 OR receiverid = $1) AND 
+                           (privatemessages.sendtime < current_timestamp) AND
+                           (privatemessages.readtime = $2)
+                    ORDER BY sendtime DESC';
 
+        $result = pg_query_params($query, array($userid, $readtime)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+    
     function sql_message_getchat($userida, $useridb) {
         $useridb = sql_get_userid($useridb);
         $query = '  SELECT CASE WHEN privatemessages.receiverid = $1 THEN \'rec\'
