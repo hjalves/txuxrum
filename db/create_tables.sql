@@ -47,8 +47,8 @@ CREATE TABLE chatrooms (
 CREATE TABLE permissions (
     UserID          integer     REFERENCES users,
     RoomID          integer     REFERENCES chatrooms,
-    CanPost         boolean     DEFAULT FALSE,
-    Banned          boolean     DEFAULT FALSE,
+    CanPost         boolean,
+    CanRead         boolean,
     PRIMARY KEY (UserID, RoomID)
 );
 
