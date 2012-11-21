@@ -121,18 +121,27 @@ END;
 END;
     }
 
-    function vf_printedittopic($title, $description) {
+    function vf_printedittitle($title) {
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
-        Edit this topic
+        Edit title
     </div>
     <form method="POST" class="panelframe-item-body">
-        Title <br />
         <input type="text" name="title" value="$title" class="input" />
         <input type="submit" value="edit" class="button" />
-        <br /><br />
-        Description <br />
+    </form>
+</div>
+END;
+    }
+
+    function vf_printeditdescription($description) {
+        echo <<<END
+<div class="panelframe-item">
+    <div class="panelframe-item-title">
+        Edit description
+    </div>
+    <form method="POST" class="panelframe-item-body">
         <input type="text" name="description" value="$description" class="input" />
         <input type="submit" value="edit" class="button" />
     </form>
@@ -147,7 +156,8 @@ END;
         echo '<div class="panelframe">';
 
         vf_printinfotopic($title, $description, $owner, $date);
-        vf_printedittopic($title, $description);
+        vf_printedittitle($title);
+        vf_printeditdescription($description);
         vf_printratetopic();
         vf_printpermissions();
         vf_printclosetopic();

@@ -90,7 +90,7 @@
  
 .panelframe
             {
-                background-color:   #C2C2FF;
+                background-color:   #B2C2FF;
                 padding:            5px;
                 margin-bottom:      10px;
             }
@@ -99,7 +99,8 @@
                 background-color:   #E7EDED;
                 margin-bottom:      5px;
                 padding:            5px;
-                border-left:        solid 2px #282850;
+                /* todo ver isto */
+                border-left:        solid 0px #282850;
             }
 .panelframe-item-title
             {
@@ -181,7 +182,7 @@
                 text-decoration:    none;
 
                 border:             solid 1px #82A6BE;
-                width:              125px;
+                width:              150px;
                 padding:            1px;
                 margin:             2px;
             }
