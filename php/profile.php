@@ -57,8 +57,11 @@
         <?php
             if ($_GET["edit"])
                 vf_printeditprofile($rowprofile[0], $rowprofile[1], $rowprofile[2], $rowprofile[3], $rowprofile[4], $rowprofile[5], $rowprofile[7], $rowprofile[8]);
-            else
+            else {
+                if (!$_SESSION["userid"])
+                    $rowprofile[3] = "[hidden]";
                 vf_printprofile($rowprofile[0], $rowprofile[1], $rowprofile[2], $rowprofile[3], $rowprofile[4], $rowprofile[5], $rowprofile[6], $editable);
+            }
 
             vf_printstatus($status, $style);
         ?>
