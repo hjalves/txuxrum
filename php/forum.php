@@ -10,21 +10,20 @@
     if ($selected < 1)
         $selected = 1;
 
-    $user = $_GET["user"];
+    $userid = $_SESSION["userid"];
+    $owner = $_GET["user"];
     $title = $_GET["title"];
 
     /* get forum threads */
-    $reschatrooms = sql_query_chatrooms($selected - 1, $user, $title);
+    $reschatrooms = sql_query_chatrooms($userid, $selected - 1, $title, $owner);
 
     /* get max pages */
-    $maxpages = sql_get_chatrooms_pages($user, $title);
+    $maxpages = sql_get_chatrooms_pages($userid, $title, $owner);
 
     /* check page selected out of bounds */
-    if ($selected > $maxpages) {
-        $query_arr = $_GET;
-
-        $query_arr["page"] = $maxpages;
-        $url = http_build_query($query_arr);
+    if ($selected > $maxpages && $maxpages>=1) {
+        $$_GET["page"] = $maxpages;
+        $url = http_build_query($$_GET);
         header("Location: ?$url");
     }
 ?>
