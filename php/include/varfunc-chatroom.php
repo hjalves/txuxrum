@@ -138,6 +138,8 @@ END;
         Description: $description <br />
         Owner: $link <br />
         Created on: $date <br />
+        Anyone can access <br />
+        Users can post <br />
     </div>
 </div>
 END;
