@@ -101,8 +101,8 @@
             vf_printratetopic();
             vf_printedittitle($title);
             vf_printeditdescription($description);
-            vf_printeditreadingperm();
-            vf_printeditpostingperm();
+            vf_printeditperm();
+            
             vf_printpermissions(pg_fetch_all($resperm));
             vf_printclosetopic();
 

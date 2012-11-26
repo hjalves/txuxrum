@@ -74,34 +74,24 @@ END;
     }
 
 
-    function vf_printeditreadingperm() {
+    function vf_printeditperm() {
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
-        Edit access permission
+        Generic permissions
     </div>
     <form method="POST" class="panelframe-item-body">
-        <select name="permval" class="select">
-            <option value="t">Everyone</option>
-            <option value="d">All users</option>
-            <option value="f">Restricted</option>
+        <select name="permval" class="select perm">
+            <option value="t">Anyone can access</option>
+            <option value="d">Users can access</option>
+            <option value="f">Restricted access</option>
         </select>
         <input type="submit" name="readingperm" value="edit" class="button" />
     </form>
-</div>
-END;
-    }
-
-    function vf_printeditpostingperm() {
-        echo <<<END
-<div class="panelframe-item">
-    <div class="panelframe-item-title">
-        Edit posting permission
-    </div>
     <form method="POST" class="panelframe-item-body">
-        <select name="permval" class="select">
-            <option value="t">All users</option>
-            <option value="f">Restricted</option>
+        <select name="permval" class="select perm">
+            <option value="t">Users can post</option>
+            <option value="f">Restricted posting</option>
         </select>
         <input type="submit" name="postingperm" value="edit" class="button" />
     </form>
@@ -113,7 +103,7 @@ END;
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
-        Permissions
+        User permissions
     </div>
     <div class="panelframe-item-body">
 END;
