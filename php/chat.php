@@ -17,10 +17,27 @@
         $result = sql_edit_title($userid, $roomid, $title);
     }
 
+    #verificar permissoes
     if ($_POST["description"]) {
         $description = $_POST["description"];
         sql_edit_description($userid, $roomid, $description);
     }
+
+    // permissao reading e writing - verific permissoes
+    if ($_POST["readingperm"] || $_POST["postingperm"]) {
+        $perm = NULL;
+        if ($_POST["permval"] == 'f' || $_POST["permval"] == 't')
+            $perm = $_POST["permval"];
+        
+        if ($_POST["readingperm"])
+            sql_edit_reading_permission($userid, $roomid, $perm);
+        else if ($_POST["postingperm"])
+            sql_edit_posting_permission($userid, $roomid, $perm);
+    }
+
+
+
+
 
     # verificar permissoes
     if ($_POST["perm_add"]) {
@@ -37,6 +54,8 @@
 
         sql_update_permission($permuser, $roomid, $readperm, $writeperm);
     }
+
+
 
     /* get title and description */
     $result = sql_query_chatroom($userid, $roomid);

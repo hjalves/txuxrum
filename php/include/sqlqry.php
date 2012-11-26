@@ -19,9 +19,9 @@
         $result = pg_query_params($query, array($readingperm, $roomid, $userid));
     }
 
-    function sql_edit_posting_permission($userid, $roomid, $readingperm) {
+    function sql_edit_posting_permission($userid, $roomid, $postingperm) {
         $query = 'UPDATE chatrooms SET postingperm = $1 WHERE roomid = $2 AND ownerid = $3';
-        $result = pg_query_params($query, array($posting, $roomid, $userid));
+        $result = pg_query_params($query, array($postingperm, $roomid, $userid));
     }
 
     function sql_get_user_suggestions($user) {

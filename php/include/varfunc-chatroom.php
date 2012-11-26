@@ -81,9 +81,9 @@ END;
         Edit access permission
     </div>
     <form method="POST" class="panelframe-item-body">
-        <select name="readingperm_value" class="select">
-            <option value="t">Anyone</option>
-            <option value="d">Only Users</option>
+        <select name="permval" class="select">
+            <option value="t">Everyone</option>
+            <option value="d">All users</option>
             <option value="f">Restricted</option>
         </select>
         <input type="submit" name="readingperm" value="edit" class="button" />
@@ -99,8 +99,8 @@ END;
         Edit posting permission
     </div>
     <form method="POST" class="panelframe-item-body">
-        <select name="postingperm_value" class="select">
-            <option value="t">Only Users</option>
+        <select name="permval" class="select">
+            <option value="t">All users</option>
             <option value="f">Restricted</option>
         </select>
         <input type="submit" name="postingperm" value="edit" class="button" />
