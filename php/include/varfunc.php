@@ -19,6 +19,10 @@
 <title> Txuxrum: $page_title </title>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <link href="css/gangnamstyle.css" rel="stylesheet" type="text/css" />
+<meta name="keywords" content="txuxrum, txux, rum, forum, chat, rooms, messages, depraved, drunk">
+<meta name="description" content="A forum with private messages and chatrooms for depraved and drunk people :)">
+<meta name="author" content="Bernardo Marques, Humberto Alves, Tiago Levita">
+
 END;
         if ($include_scripts)
             echo '<script src="js/scriptorium.js"></script>';
