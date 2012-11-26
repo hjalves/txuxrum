@@ -73,6 +73,42 @@ END;
 END;
     }
 
+
+    function vf_printeditreadingperm() {
+        echo <<<END
+<div class="panelframe-item">
+    <div class="panelframe-item-title">
+        Edit access permission
+    </div>
+    <form method="POST" class="panelframe-item-body">
+        <select name="readingperm_value" class="select">
+            <option value="t">Anyone</option>
+            <option value="d">Only Users</option>
+            <option value="f">Restricted</option>
+        </select>
+        <input type="submit" name="readingperm" value="edit" class="button" />
+    </form>
+</div>
+END;
+    }
+
+    function vf_printeditpostingperm() {
+        echo <<<END
+<div class="panelframe-item">
+    <div class="panelframe-item-title">
+        Edit posting permission
+    </div>
+    <form method="POST" class="panelframe-item-body">
+        <select name="postingperm_value" class="select">
+            <option value="t">Only Users</option>
+            <option value="f">Restricted</option>
+        </select>
+        <input type="submit" name="postingperm" value="edit" class="button" />
+    </form>
+</div>
+END;
+    }
+
     function vf_printpermissions($permissions) {
         echo <<<END
 <div class="panelframe-item">
@@ -94,7 +130,7 @@ END;
         echo <<<END
     </div>
     <div class="panelframe-item-title">
-        Modify permission
+        Add users
     </div>
     <form method="POST" class="panelframe-item-body">
         <input type="text" name="perm_user" class="input" id="perminput" />

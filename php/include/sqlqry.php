@@ -13,6 +13,17 @@
         $result = pg_query_params($query, array($description, $roomid, $userid));
     }
 
+    // isto esta uma confusao de metodos e convecoes... tem de se resolver
+    function sql_edit_reading_permission($userid, $roomid, $readingperm) {
+        $query = 'UPDATE chatrooms SET readingperm = $1 WHERE roomid = $2 AND ownerid = $3';
+        $result = pg_query_params($query, array($readingperm, $roomid, $userid));
+    }
+
+    function sql_edit_posting_permission($userid, $roomid, $readingperm) {
+        $query = 'UPDATE chatrooms SET postingperm = $1 WHERE roomid = $2 AND ownerid = $3';
+        $result = pg_query_params($query, array($posting, $roomid, $userid));
+    }
+
     function sql_get_user_suggestions($user) {
         $query = 'SELECT username FROM users WHERE username ILIKE $1 ORDER BY username';
         $result = pg_query_params($query, array("$user%"));

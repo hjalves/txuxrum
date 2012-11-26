@@ -79,9 +79,11 @@
             vf_startchatpanel();
 
             vf_printinfotopic($title, $description, $owner, $date, $reading, $posting);
+            vf_printratetopic();
             vf_printedittitle($title);
             vf_printeditdescription($description);
-            vf_printratetopic();
+            vf_printeditreadingperm();
+            vf_printeditpostingperm();
             vf_printpermissions(pg_fetch_all($resperm));
             vf_printclosetopic();
 
