@@ -73,22 +73,42 @@ END;
 END;
     }
 
-    function vf_printpermissions() {
+    function vf_printpermissions($permissions) {
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
         Permissions
     </div>
     <div class="panelframe-item-body">
-    User manel <br /> Wololo
+END;
+    foreach ($permissions as $p) {
+        echo vf_usertolink($p['username']), " : ";
+        if ($p['canread'] == 't') echo "(CAN access)";
+        else if ($p['canread'] == 'f') echo "(NO access)";
+        echo " ";
+        if ($p['canpost'] == 't') echo "(CAN post)";
+        else if ($p['canpost'] == 'f') echo "(NO post)";
+        echo '<br />';
+    }
+
+        echo <<<END
     </div>
     <div class="panelframe-item-title">
-        Add new user
+        Modify permission
     </div>
-    <div class="panelframe-item-body">
-        <input type="text" class="input" />
-        <input type="submit" value="add" class="button" />
-    </div>
+    <form method="POST" class="panelframe-item-body">
+        <input type="text" name="perm_user" class="input" id="perminput" />
+        <select name="perm_value" class="select">
+          <option value="RW">RW</option>
+          <option value="dW">dW</option>
+          <option value="Rd">Rd</option>
+          <option selected value="dd">dd</option>
+          <option value="Rx">R-</option>
+          <option value="dx">d-</option>
+          <option value="xx">--</option>
+        </select>
+        <input type="submit" name="perm_add" value="add" class="button" />
+    </form>
 </div>
 END;
     }

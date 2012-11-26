@@ -22,6 +22,22 @@
         sql_edit_description($userid, $roomid, $description);
     }
 
+    # verificar permissoes
+    if ($_POST["perm_add"]) {
+        $permuser = $_POST["perm_user"];
+        $perm = $_POST["perm_value"];
+
+        if ($perm[0] == 'R') $readperm = "t";
+        else if ($perm[0] == 'x') $readperm = "f";
+        else $readperm = NULL;
+
+        if ($perm[1] == 'W') $writeperm = "t";
+        else if ($perm[1] == 'x') $writeperm = "f";
+        else $writeperm = NULL;
+
+        sql_update_permission($permuser, $roomid, $readperm, $writeperm);
+    }
+
     /* get title and description */
     $result = sql_query_chatroom($userid, $roomid);
 
@@ -33,6 +49,8 @@
         $date = $rows[3];
         /* get chatroom's messages */
         $resmsgs = sql_query_messages($roomid);
+        /* get chatroom permissions */
+        $resperm = sql_query_permissions($roomid);
     }
 
 ?>
@@ -49,14 +67,11 @@
         <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
         <div class="mainbody">
         <?php
-            
             vf_printchatheader($title, $description);
-
             
             while ($line = pg_fetch_row($resmsgs, null))
                 vf_printchatmsg($line[0], $line[1], $line[2]);
             
-
             vf_printchatpost();
             
             vf_startchatpanel();
@@ -65,7 +80,7 @@
             vf_printedittitle($title);
             vf_printeditdescription($description);
             vf_printratetopic();
-            vf_printpermissions();
+            vf_printpermissions(pg_fetch_all($resperm));
             vf_printclosetopic();
 
             vf_endchatpanel();

@@ -294,4 +294,37 @@
         $query = 'UPDATE privatemessages SET readtime = now() WHERE readtime IS NULL AND receiverid = $1 AND senderid = $2 AND sendtime < current_timestamp';
         $result = pg_query_params($query, array($userid, $user)) or die ('Update failed: ' . pg_last_error());
     }
+
+    function sql_query_permissions($roomid) {
+        $query = 'SELECT username, canread, canpost FROM permissions JOIN users ON users.userid = permissions.userid WHERE roomid = $1';
+        $result = pg_query_params($query, array($roomid)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
+    function sql_update_permission($username, $roomid, $readperm, $writeperm) {
+        // se readperm e writeperm forem null apaga o registo
+        if (!$readperm && !$writeperm) {
+            $query = 'DELETE FROM permissions WHERE userid IN (SELECT userid FROM users WHERE username = $1) AND roomid = $2';
+            $result = pg_query_params($query, array($username, $roomid)) or die('Query failed: ' . pg_last_error());
+            return $result;
+        }
+
+        // faz um update em cond normais (ou tenta fazer)
+        $query = 'UPDATE permissions
+                      SET canread = $3, canpost = $4
+                      FROM permissions "p" JOIN users ON p.userid = users.userid
+                      WHERE username = $1 AND p.roomid = $2';
+        $result = pg_query_params($query, array($username, $roomid, $readperm, $writeperm)) or die('Query failed: ' . pg_last_error());
+        if (pg_affected_rows($result) > 0)
+            return $result;
+        
+        // insert caso update falhe
+        $query = 'INSERT INTO permissions (userid, roomid, canread, canpost)
+                     SELECT userid, $2, $3, $4
+                     FROM users WHERE username = $1';
+        $result = pg_query_params($query, array($username, $roomid, $readperm, $writeperm)) or die('Query failed: ' . pg_last_error());
+        return $result;
+        
+    }
+
 ?>
