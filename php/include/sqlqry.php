@@ -312,8 +312,7 @@
         // faz um update em cond normais (ou tenta fazer)
         $query = 'UPDATE permissions
                       SET canread = $3, canpost = $4
-                      FROM permissions "p" JOIN users ON p.userid = users.userid
-                      WHERE username = $1 AND p.roomid = $2';
+                      WHERE userid IN (SELECT userid FROM users WHERE username = $1) AND roomid = $2';
         $result = pg_query_params($query, array($username, $roomid, $readperm, $writeperm)) or die('Query failed: ' . pg_last_error());
         if (pg_affected_rows($result) > 0)
             return $result;
