@@ -33,6 +33,12 @@
         return $line[0];
     }
 
+    function sql_query_chatroom($userid, $chatroomid) {
+        $query = 'SELECT Title, Description, Owner, To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\') FROM getChatrooms($1) WHERE RoomID = $2';
+        $result = pg_query_params($query, array($userid, $chatroomid)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
     function sql_query_chatrooms($userid, $page, $title, $owner) {
         $perpage = 10;
         $select = 'title, roomid, owner, to_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),
@@ -104,17 +110,14 @@
         return $result;
     }
 
-    function sql_query_chatroom($id) {
-        $query = 'SELECT Title, Description, Username, To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\') FROM Chatrooms LEFT JOIN Users ON (userid = ownerid) WHERE RoomID = $1';
-        $result = pg_query_params($query, array($id)) or die('Query failed: ' . pg_last_error());
-        return $result;
-    }
-
     function sql_query_messages($chatroomid) {
         $query = 'SELECT Username,
                          To_char(PostTime, \'DD-Mon-YYYY, HH24:MI:SS\'),
                          MsgText
-                  FROM   messages LEFT JOIN users USING (userid) WHERE RoomID = $1 ORDER BY MsgID ASC';
+                  FROM   messages
+                  LEFT JOIN users USING (userid)
+                  WHERE RoomID = $1
+                  ORDER BY MsgID ASC';
         $result = pg_query_params($query, array($chatroomid)) or die('Query failed: ' . pg_last_error());
         return $result;
     }

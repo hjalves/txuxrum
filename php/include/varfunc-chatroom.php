@@ -48,11 +48,13 @@ END;
             <textarea rows="4" cols="50" name="text" class="input postbox-textarea"></textarea>
         </div>
         <div class="postbox-attach">
-            (TODO) Attach files
+            Attach files
         </div>
         <div class="postbox-submit">
             <input type="submit" name="post" value="post" class="button" />
         </div>
+    </div>
+
     </div>
 </form>
 END;
@@ -149,23 +151,17 @@ END;
 END;
     }
 
-    /* print chatroom panel */
-    function vf_printchatpanel($title, $description, $owner, $date) {
-        echo '</div>';
+    function vf_startchatpanel() {
         echo '<div class="panelframe-right">';
         echo '<div class="panelframe">';
+    }
 
-        vf_printinfotopic($title, $description, $owner, $date);
-        vf_printedittitle($title);
-        vf_printeditdescription($description);
-        vf_printratetopic();
-        vf_printpermissions();
-        vf_printclosetopic();
+    function vf_endchatpanel() {
+        echo '</div>';
+        echo '</div>';
         
-
-        echo '</div>';
-        echo '</div>';
         echo '<div id="nextSetOfContent"></div>';
         echo '</div>';
     }
+
 ?>

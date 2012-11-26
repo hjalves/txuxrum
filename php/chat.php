@@ -23,14 +23,17 @@
     }
 
     /* get title and description */
-    $result = sql_query_chatroom($roomid);
-    $rows = pg_fetch_row($result, null);
-    $title = $rows[0];
-    $description = $rows[1];
-    $owner = $rows[2];
-    $date = $rows[3];
-    /* get chatroom's messages */
-    $resmsgs = sql_query_messages($roomid);
+    $result = sql_query_chatroom($userid, $roomid);
+
+    if (pg_num_rows($result) > 0) {
+        $rows = pg_fetch_row($result, null);
+        $title = $rows[0];
+        $description = $rows[1];
+        $owner = $rows[2];
+        $date = $rows[3];
+        /* get chatroom's messages */
+        $resmsgs = sql_query_messages($roomid);
+    }
 
 ?>
 
@@ -46,13 +49,30 @@
         <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
         <div class="mainbody">
         <?php
+            
             vf_printchatheader($title, $description);
 
+            
             while ($line = pg_fetch_row($resmsgs, null))
                 vf_printchatmsg($line[0], $line[1], $line[2]);
+            
 
             vf_printchatpost();
-            vf_printchatpanel($title, $description, $owner, $date);
+            
+            vf_startchatpanel();
+
+            vf_printinfotopic($title, $description, $owner, $date);
+            vf_printedittitle($title);
+            vf_printeditdescription($description);
+            vf_printratetopic();
+            vf_printpermissions();
+            vf_printclosetopic();
+
+            vf_endchatpanel();
+
+
+            echo '<div id="nextSetOfContent"></div>';
+            echo '</div>';
         ?>
         </div>
         <div class="mainfooter"> <?php vf_printfooter(); ?> </div>
