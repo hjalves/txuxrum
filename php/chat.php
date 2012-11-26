@@ -47,6 +47,8 @@
         $description = $rows[1];
         $owner = $rows[2];
         $date = $rows[3];
+        $reading = $rows[4];
+        $posting = $rows[5];
         /* get chatroom's messages */
         $resmsgs = sql_query_messages($roomid);
         /* get chatroom permissions */
@@ -76,7 +78,7 @@
             
             vf_startchatpanel();
 
-            vf_printinfotopic($title, $description, $owner, $date);
+            vf_printinfotopic($title, $description, $owner, $date, $reading, $posting);
             vf_printedittitle($title);
             vf_printeditdescription($description);
             vf_printratetopic();

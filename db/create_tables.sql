@@ -41,7 +41,9 @@ CREATE TABLE chatrooms (
     Title           varchar     NOT NULL,
     Closed          boolean     DEFAULT FALSE,
     CreationDate    timestamp   DEFAULT current_timestamp,
-    Description     varchar
+    Description     varchar,
+    PostingPerm     boolean     DEFAULT TRUE,       -- Se for true, os users podem criar posts por defeito
+    ReadingPerm     boolean     DEFAULT TRUE        -- Se for true, toda a gente pode ler os posts
 );
 
 CREATE TABLE permissions (
