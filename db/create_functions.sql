@@ -12,7 +12,8 @@ AS $$
                FROM permissions
                WHERE userid = $1 ) rdperm
     ON (cr.roomid = rdperm.roomid)
-    WHERE (rdperm.canread = TRUE OR rdperm.canread IS NULL)
+    WHERE (coalesce(rdperm.canread, cr.readingperm) <> FALSE OR
+        cr.ownerid = userid)
     ORDER BY coalesce(lastposttime, creationdate) DESC
 $$ LANGUAGE SQL;
 
