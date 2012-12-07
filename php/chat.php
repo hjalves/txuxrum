@@ -36,9 +36,6 @@
     }
 
 
-
-
-
     # verificar permissoes
     if ($_POST["perm_add"]) {
         $permuser = $_POST["perm_user"];
@@ -53,6 +50,17 @@
         else $writeperm = NULL;
 
         sql_update_permission($permuser, $roomid, $readperm, $writeperm);
+    }
+
+    # ratings
+    if ($_POST["rating"]) {
+        switch ($_POST["rating"]) {
+            case 'no':      $rating_value = 0;      break;
+            case 'maybe':   $rating_value = 1;      break;
+            case 'yes':     $rating_value = 2;      break;
+            default:        $rating_value = NULL;   break;
+        }
+        sql_update_rating($userid, $roomid, $rating_value);
     }
 
 
@@ -99,7 +107,7 @@
             vf_startchatpanel();
 
             vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating);
-            vf_printratetopic();
+            vf_printratetopic($rating);
             vf_printedittitle($title);
             vf_printeditdescription($description);
             vf_printeditperm($reading, $posting);

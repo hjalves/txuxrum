@@ -60,17 +60,26 @@ END;
 END;
     }
 
-    function vf_printratetopic() {
+    function vf_printratetopic($rating) {
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
         Is this topic relevant?
     </div>
-    <div class="panelframe-item-body">
-        No | Maybe | Yes
-    </div>
+    <form method="POST" class="panelframe-item-body">
+        <input type="submit" name="rating" value="no" class="button" />
+        <input type="submit" name="rating" value="maybe" class="button" />
+        <input type="submit" name="rating" value="yes" class="button" />
+        <input type="submit" name="rating" value="dunno" class="button" />
+    </form>
 </div>
 END;
+        // <div class="panelframe-item-body">
+        //echo "You currently don't think so :("    
+        //echo "You currently think so! :)"
+        //echo "You currently think it might be."
+        //echo "You didn't express your opinion."
+
     }
 
 

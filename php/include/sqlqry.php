@@ -336,4 +336,20 @@
         return $result;
     }
 
+    function sql_update_rating($userid, $roomid, $value) {
+        if (is_null($value)) {
+            $query = 'DELETE FROM ratings WHERE userid = $1 AND roomid = $2';
+            $result = pg_query_params($query, array($userid, $roomid)) or die('Query failed: ' . pg_last_error());
+            return $result;
+        }
+
+        // faz um update em cond normais (ou tenta fazer)
+
+        // insert caso update falhe
+        $query = 'INSERT INTO ratings (userid, roomid, value)
+                  VALUES ($1, $2, $3)';
+        $result = pg_query_params($query, array($userid, $roomid, $value)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
 ?>
