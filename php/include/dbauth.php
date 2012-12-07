@@ -11,7 +11,7 @@
     $dbname = "txux";
     /* user auth */
     $dbuser = "txux";
-    $dbpass = "txux";
+    $dbpass = "";
     /* verbose */
     $dbverb = FALSE;
 
