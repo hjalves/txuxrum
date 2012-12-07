@@ -74,7 +74,18 @@ END;
     }
 
 
-    function vf_printeditperm() {
+    function vf_printeditperm($reading, $posting) {
+        $rt = $rd = $rf = $pt = $pf = "";
+        $sel = " selected";
+        switch ($reading) {
+            case 'f': $rf = $sel; break;
+            case 't': $rt = $sel; break;
+            default:  $rd = $sel;
+        }
+        switch ($posting) {
+            case 'f': $pf = $sel; break;
+            default:  $pt = $sel;
+        }
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
@@ -82,16 +93,16 @@ END;
     </div>
     <form method="POST" class="panelframe-item-body">
         <select name="permval" class="select perm">
-            <option value="t">Anyone can access</option>
-            <option value="d">Users can access</option>
-            <option value="f">Restricted access</option>
+            <option value="t"$rt>Anyone can access</option>
+            <option value="d"$rd>Users can access</option>
+            <option value="f"$rf>Restricted access</option>
         </select>
         <input type="submit" name="readingperm" value="edit" class="button" />
     </form>
     <form method="POST" class="panelframe-item-body">
         <select name="permval" class="select perm">
-            <option value="t">Users can post</option>
-            <option value="f">Restricted posting</option>
+            <option value="t"$pt>Users can post</option>
+            <option value="f"$pf>Restricted posting</option>
         </select>
         <input type="submit" name="postingperm" value="edit" class="button" />
     </form>
