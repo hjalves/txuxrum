@@ -140,20 +140,20 @@ END;
         echo <<<END
     </div>
     <div class="panelframe-item-title">
-        Add users
+        Edit permissions
     </div>
     <form method="POST" class="panelframe-item-body">
         <input type="text" name="perm_user" class="input" id="perminput" />
-        <select name="perm_value" class="select">
-          <option value="RW">RW</option>
-          <option value="dW">dW</option>
-          <option value="Rd">Rd</option>
-          <option selected value="dd">dd</option>
-          <option value="Rx">R-</option>
-          <option value="dx">d-</option>
-          <option value="xx">--</option>
+        <select name="perm_value" class="select perm">
+          <option value="RW">[RW] access & post</option>
+          <option value="dW">[dW] post</option>
+          <option value="Rd">[Rd] access</option>
+          <option selected value="dd">[dd] default</option>
+          <option value="Rx">[Rx] only access</option>
+          <option value="dx">[dx] no post</option>
+          <option value="xx">[xx] banned</option>
         </select>
-        <input type="submit" name="perm_add" value="add" class="button" />
+        <input type="submit" name="perm_add" value="edit" class="button" />
     </form>
 </div>
 END;
