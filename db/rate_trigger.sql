@@ -1,3 +1,7 @@
+-- TODO: colocar isto no max_val
+-- select COUNT(DISTINCT userid) from messages
+-- where roomid = 4
+
 DROP TRIGGER rate_trigger ON ratings;
 
 CREATE OR REPLACE FUNCTION rate_limit_check()
