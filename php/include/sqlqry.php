@@ -13,6 +13,16 @@
         $result = pg_query_params($query, array($description, $roomid, $userid));
     }
 
+    function sql_close_chatroom($roomid) {
+        $query = 'UPDATE chatrooms SET closed = TRUE WHERE roomid = $1';
+        $result = pg_query_params($query, array($roomid));
+    }
+
+    function sql_open_chatroom($roomid) {
+        $query = 'UPDATE chatrooms SET closed = FALSE WHERE roomid = $1';
+        $result = pg_query_params($query, array($roomid));
+    }
+
     // isto esta uma confusao de metodos e convecoes... tem de se resolver
     function sql_edit_reading_permission($userid, $roomid, $readingperm) {
         $query = 'UPDATE chatrooms SET readingperm = $1 WHERE roomid = $2 AND ownerid = $3';
@@ -45,7 +55,7 @@
     }
 
     function sql_query_chatroom($userid, $chatroomid) {
-        $query = 'SELECT Title, Description, Owner, To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'), readingperm, postingperm, rating FROM getChatrooms($1) WHERE RoomID = $2';
+        $query = 'SELECT Title, Description, Owner, To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'), readingperm, postingperm, rating, closed FROM getChatrooms($1) WHERE RoomID = $2';
         $result = pg_query_params($query, array($userid, $chatroomid)) or die('Query failed: ' . pg_last_error());
         return $result;
     }

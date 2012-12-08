@@ -23,6 +23,15 @@
         sql_edit_description($userid, $roomid, $description);
     }
 
+    #fechar o topico
+    if ($_POST["close"]) {
+        sql_close_chatroom($roomid);
+    }
+
+    if ($_POST["open"]) {
+        sql_open_chatroom($roomid);
+    }
+
     // permissao reading e writing - verific permissoes
     if ($_POST["readingperm"] || $_POST["postingperm"]) {
         $perm = NULL;
@@ -77,6 +86,7 @@
         $reading = $rows[4];
         $posting = $rows[5];
         $rating = $rows[6];
+        $closed = $rows[7];
         /* get chatroom's messages */
         $resmsgs = sql_query_messages($roomid);
         /* get chatroom permissions */
@@ -106,7 +116,7 @@
             
             vf_startchatpanel();
 
-            vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating);
+            vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating, $closed);
             vf_printratetopic($rating);
             vf_printedittitle($title);
             vf_printeditdescription($description);

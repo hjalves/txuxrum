@@ -54,9 +54,8 @@ END;
             <input type="submit" name="post" value="post" class="button" />
         </div>
     </div>
-
-    </div>
 </form>
+    </div>
 END;
     }
 
@@ -165,14 +164,15 @@ END;
     <div class="panelframe-item-title">
         Close this topic
     </div>
-    <div class="panelframe-item-body">
-        <input type="submit" value="close topic" class="button" />
-    </div>
+    <form method="POST" class="panelframe-item-body">
+        <input type="submit" name="close" value="close topic" class="button" />
+        <input type="submit" name="open" value="open topic" class="button" />
+    </form>
 </div>
 END;
     }
 
-    function vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating) {
+    function vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating, $closed) {
         $link = vf_usertolink($owner);
         echo <<<END
 <div class="panelframe-item">
@@ -187,6 +187,7 @@ END;
         Anyone can access: $reading <br />
         Anyone can post: $posting <br />
         Rating: $rating <br />
+        Closed: $closed <br />
     </div>
 </div>
 END;
