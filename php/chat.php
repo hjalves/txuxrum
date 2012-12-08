@@ -87,6 +87,7 @@
         $posting = $rows[5];
         $rating = $rows[6];
         $closed = $rows[7];
+        $canpost = $rows[8];
         /* get chatroom's messages */
         $resmsgs = sql_query_messages($roomid);
         /* get chatroom permissions */
@@ -116,7 +117,7 @@
             
             vf_startchatpanel();
 
-            vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating, $closed);
+            vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating, $closed, $canpost);
             vf_printratetopic($rating);
             vf_printedittitle($title);
             vf_printeditdescription($description);

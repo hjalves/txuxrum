@@ -172,7 +172,7 @@ END;
 END;
     }
 
-    function vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating, $closed) {
+    function vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating, $closed, $canpost) {
         $link = vf_usertolink($owner);
         echo <<<END
 <div class="panelframe-item">
@@ -188,6 +188,7 @@ END;
         Anyone can post: $posting <br />
         Rating: $rating <br />
         Closed: $closed <br />
+        Can I post?: $canpost <br />
     </div>
 </div>
 END;

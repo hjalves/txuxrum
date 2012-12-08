@@ -3,10 +3,11 @@ DROP VIEW lastmsg CASCADE;
 DROP VIEW chattotalmsg CASCADE;
 DROP VIEW usertotalmsg CASCADE;
 DROP VIEW chatrating CASCADE;
-DROP VIEW chatrooms_lastposts CASCADE;
+DROP VIEW chatrooms_extended CASCADE;
 DROP VIEW current_permissions CASCADE;
 DROP VIEW users_permissions CASCADE;
 DROP VIEW guest_permissions CASCADE;
+DROP VIEW chatrooms_extended_user CASCADE;
 
 -- Último post por chatroom
 CREATE VIEW lastmsg AS
@@ -32,8 +33,8 @@ CREATE VIEW chatrating AS
   FROM ratings
   GROUP BY roomid;
 
--- Chatrooms com os ultimos posts - TODO: devia chamar-se "chatrooms_extended"
-CREATE VIEW chatrooms_lastposts AS
+-- Chatrooms com muito mais informacao associada
+CREATE VIEW chatrooms_extended AS
   SELECT chatrooms.*, owners.username "owner",
          posters.username "lastposter",
          messages.posttime "lastposttime",
@@ -44,8 +45,7 @@ CREATE VIEW chatrooms_lastposts AS
   LEFT JOIN messages ON lastmsg.msgid = messages.msgid
   LEFT JOIN users "owners" ON chatrooms.ownerid = owners.userid
   LEFT JOIN users "posters" ON messages.userid = posters.userid
-  LEFT JOIN chatrating ON chatrooms.roomid = chatrating.roomid
-  ORDER BY coalesce(messages.posttime, creationdate) DESC;
+  LEFT JOIN chatrating ON chatrooms.roomid = chatrating.roomid;
 
 -- Vista das permissões atuais dos utilizadores
 CREATE VIEW users_permissions AS
@@ -63,15 +63,22 @@ CREATE VIEW users_permissions AS
 
 -- Vista das permissões do convidado (user não autenticado)
 CREATE VIEW guest_permissions AS
-SELECT 0 "userid",
-       c.roomid "roomid",
-       coalesce(c.readingperm, FALSE) "canread",
-       FALSE "canpost"
-FROM chatrooms c;
+  SELECT 0 "userid",
+         c.roomid "roomid",
+         coalesce(c.readingperm, FALSE) "canread",
+         FALSE "canpost"
+  FROM chatrooms c;
 
 -- Vista das permissões atuais
 CREATE VIEW current_permissions AS
   SELECT * FROM users_permissions
     UNION ALL
   SELECT * FROM guest_permissions;
+
+-- Chatrooms extended mais informacao respetiva do utilizador (permissions + rating)
+CREATE VIEW chatrooms_extended_user AS
+  SELECT cr.*, p.userid, p.canread, p.canpost
+  FROM chatrooms_extended cr
+  INNER JOIN current_permissions p
+  ON p.roomid = cr.roomid;
 
