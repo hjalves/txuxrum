@@ -45,8 +45,10 @@ body
                 color:              #EAF5FF;
                 font-size:          25px;
                 text-align:         center;
-                font-weight:        bold;
+                font-weight:        normal;
                 padding:            5px;
+                text-transform:     uppercase;
+                letter-spacing:     2px;
             }
 .mainmenu, a .menuitem, a .menuitem:visited, a .menuitem:link, a .menuitem:active
             {
