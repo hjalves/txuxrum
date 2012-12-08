@@ -1,3 +1,5 @@
+DROP TRIGGER rate_trigger ON ratings;
+
 CREATE OR REPLACE FUNCTION rate_limit_check()
 RETURNS trigger
 AS $$
