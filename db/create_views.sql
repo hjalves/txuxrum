@@ -4,6 +4,9 @@ DROP VIEW chattotalmsg CASCADE;
 DROP VIEW usertotalmsg CASCADE;
 DROP VIEW chatrating CASCADE;
 DROP VIEW chatrooms_lastposts CASCADE;
+DROP VIEW current_permissions CASCADE;
+DROP VIEW users_permissions CASCADE;
+DROP VIEW guest_permissions CASCADE;
 
 -- Último post por chatroom
 CREATE VIEW lastmsg AS
@@ -29,7 +32,7 @@ CREATE VIEW chatrating AS
   FROM ratings
   GROUP BY roomid;
 
--- Chatrooms com os ultimos posts
+-- Chatrooms com os ultimos posts - TODO: devia chamar-se "chatrooms_extended"
 CREATE VIEW chatrooms_lastposts AS
   SELECT chatrooms.*, owners.username "owner",
          posters.username "lastposter",
@@ -43,4 +46,32 @@ CREATE VIEW chatrooms_lastposts AS
   LEFT JOIN users "posters" ON messages.userid = posters.userid
   LEFT JOIN chatrating ON chatrooms.roomid = chatrating.roomid
   ORDER BY coalesce(messages.posttime, creationdate) DESC;
+
+-- Vista das permissões atuais dos utilizadores
+CREATE VIEW users_permissions AS
+  SELECT u.userid "userid",
+         c.roomid "roomid",
+         (coalesce(pp.canread, c.readingperm, TRUE)
+          OR c.ownerid = u.userid) "canread",
+         (coalesce(pp.canpost, c.postingperm, TRUE)
+          OR c.ownerid = u.userid) AND NOT c.closed "canpost"
+  FROM chatrooms c
+  CROSS JOIN users u
+  LEFT JOIN (SELECT userid, roomid, canread, canpost
+             FROM permissions) pp
+  ON (c.roomid = pp.roomid AND u.userid = pp.userid);
+
+-- Vista das permissões do convidado (user não autenticado)
+CREATE VIEW guest_permissions AS
+SELECT 0 "userid",
+       c.roomid "roomid",
+       coalesce(c.readingperm, FALSE) "canread",
+       FALSE "canpost"
+FROM chatrooms c;
+
+-- Vista das permissões atuais
+CREATE VIEW current_permissions AS
+  SELECT * FROM users_permissions
+    UNION ALL
+  SELECT * FROM guest_permissions;
 

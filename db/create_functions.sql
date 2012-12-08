@@ -7,13 +7,11 @@ DROP FUNCTION searchChatrooms(userid integer, title varchar, owner varchar) CASC
 CREATE FUNCTION getChatrooms(userid integer)
 RETURNS SETOF chatrooms_lastposts
 AS $$
-    SELECT cr.* FROM chatrooms_lastposts cr
-    LEFT JOIN (SELECT roomid, canread
-               FROM permissions
-               WHERE userid = $1) rdperm
-    ON (cr.roomid = rdperm.roomid)
-    WHERE ((coalesce(rdperm.canread, cr.readingperm, TRUE) OR
-        cr.ownerid = $1) AND ($1 <> 0 OR cr.readingperm = TRUE))
+    SELECT cr.*
+    FROM chatrooms_lastposts cr
+    JOIN current_permissions p
+    ON p.roomid = cr.roomid
+    WHERE canread AND p.userid = COALESCE($1,0)
     ORDER BY coalesce(lastposttime, creationdate) DESC
 $$ LANGUAGE SQL;
 

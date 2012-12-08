@@ -32,7 +32,8 @@ CREATE TABLE users (
     Male            boolean,
     Mail            varchar,
     Location        varchar,
-    Birthday        date
+    Birthday        date,
+    CHECK(UserID > 0)
 );
 
 CREATE TABLE chatrooms (
