@@ -1,18 +1,19 @@
+DROP TRIGGER chatroom_post_trigger ON messages;
 
 CREATE OR REPLACE FUNCTION post_permission_check()
 RETURNS trigger
 AS $$
 
 DECLARE
-    perm_rec permissions%ROWTYPE;
+    perm_rec current_permissions%ROWTYPE;
     
 BEGIN
 
-    SELECT * INTO perm_rec FROM permissions WHERE userid = NEW.userid AND roomid = NEW.roomid;
+    SELECT * INTO perm_rec FROM current_permissions WHERE userid = NEW.userid AND roomid = NEW.roomid;
 
-    IF (FOUND AND (NOT perm_rec.canpost OR perm_rec.banned))
+    IF (FOUND AND (NOT perm_rec.canpost))
         THEN
-            RAISE EXCEPTION 'user does not have permission to post';
+            RAISE EXCEPTION 'Cannot post in this chatroom';
     END IF;
     
     RETURN NEW;
