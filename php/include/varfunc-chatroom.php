@@ -47,7 +47,9 @@ END;
         echo "<div class=\"chatmsg-attachments\">";
         foreach ($attachments as $a) {
             // echo $a['docid']
-            echo  "<b> [o] </b>" . $a['filename'] . "<br>";
+            $docid = $a['docid'];
+            $filename = $a['filename'];
+            echo  "<a class=\"attachlink\" href=/~txux/uploaded_files/$filename> <b>✗</b> $filename </a> <br>";
         }
         echo "</div>";
     }

@@ -228,6 +228,16 @@
  *
  ***************/
 
+.attachlink
+            {
+                text-decoration:    none;
+                color:              #282850;
+            }
+.attachlink:hover
+            {
+                text-decoration:    underline;
+            }
+
 .userlink, .userlink:visited, .userlink:link, .userlink:active
             {
                 font-size:          12px;
