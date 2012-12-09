@@ -42,13 +42,14 @@ END;
     /* print chatroom post form */
     function vf_printchatpost() {
         echo <<<END
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     <div class="textframe postbox">
         <div class="postbox-text">
             <textarea rows="4" cols="50" name="text" class="input postbox-textarea"></textarea>
         </div>
         <div class="postbox-attach">
-            Attach files
+            <label for="file">Attach files:</label>
+            <input type="file" name="files[]" multiple id="file" class="file"/>
         </div>
         <div class="postbox-submit">
             <input type="submit" name="post" value="post" class="button" />

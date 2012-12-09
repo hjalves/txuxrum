@@ -4,10 +4,28 @@
     $userid = $_SESSION['userid'];
     $roomid = $_GET["thread"];
 
+
     /* post new post into chatroom */
     if ($_POST["post"] && $_SESSION['userid']) {
         $text = $_POST["text"];
-        sql_post_message($userid, $roomid, $text);
+        $result = sql_post_message($userid, $roomid, $text);
+        /* TODO: Verifica se o post foi bem efetuado */
+        $msgid = pg_fetch_result($result, 0);
+
+        /* send attachments */
+        if ($_FILES["files"]) {
+            for ($filei = 0; $filei < count($_FILES["files"]['name']); $filei++) {
+                if ($_FILES["files"]["error"][$filei])
+                    break;
+                $filename = $_FILES["files"]['name'][$filei];
+                $filetype = $_FILES["files"]['type'][$filei];
+                $filepath = $_FILES["files"]['tmp_name'][$filei];
+                $filesize = $_FILES["files"]['size'][$filei];
+                //echo $filei, $filename, $filetype, $filepath, $filesize, " . ";
+                sql_attach_document($msgid, $filename);
+            }
+            //echo "Number of files i:", $filei;
+        }
     }
 
     /* edit title and description */
@@ -72,11 +90,8 @@
         sql_update_rating($userid, $roomid, $rating_value);
     }
 
-
-
-    /* get title and description */
+    /* get chatroom info */
     $result = sql_query_chatroom($userid, $roomid);
-
     if (pg_num_rows($result) > 0) {
         $rows = pg_fetch_row($result, null);
         $title = $rows[0];

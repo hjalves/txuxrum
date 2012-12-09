@@ -174,7 +174,7 @@
 .button:hover {
                 background-color:   #9EA8B2;
                 color:              #FFFFFF;
-}
+            }
 
 .input
             {
@@ -205,7 +205,7 @@
 
                 padding:            1px;
                 margin:             2px;
-}
+            }
 
 .perm
             {
@@ -215,7 +215,11 @@
 #perminput
             {
                 width:              202px;
-}
+            }
+
+.file       {
+                font:               11px arial, sans-serif;
+            }
 /***************
  *
  * LINKS

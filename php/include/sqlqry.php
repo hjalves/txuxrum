@@ -168,7 +168,7 @@
     }
 
     function sql_post_message($userid, $roomid, $msgtext) {
-        $query = 'INSERT INTO messages (UserID, RoomID, MsgText) VALUES ($1, $2, $3)';
+        $query = 'INSERT INTO messages (UserID, RoomID, MsgText) VALUES ($1, $2, $3) RETURNING MsgID';
         $result = pg_query_params($query, array($userid, $roomid, $msgtext)) or die('Insert failed: ' . pg_last_error());
         return $result;
     }
@@ -359,6 +359,13 @@
         $query = 'INSERT INTO ratings (userid, roomid, value)
                   VALUES ($1, $2, $3)';
         $result = pg_query_params($query, array($userid, $roomid, $value)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
+    // =============== FILES ===============
+    function sql_attach_document($msgid, $filename) {
+        $query = 'INSERT INTO documents (MsgID, Filename) VALUES ($1, $2) RETURNING DocID';
+        $result = pg_query_params($query, array($msgid, $filename)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
 
