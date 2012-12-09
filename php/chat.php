@@ -23,6 +23,8 @@
                 $filepath = $_FILES["files"]['tmp_name'][$filei];
                 $filesize = $_FILES["files"]['size'][$filei];
                 //echo $filei, $filename, $filetype, $filepath, $filesize, " . ";
+                move_uploaded_file($filepath, '/home/txux/public_html/uploaded_files/' . $filename);
+
                 sql_attach_document($msgid, $filename);
             }
             //echo "Number of files i:", $filei;
