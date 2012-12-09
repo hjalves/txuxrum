@@ -49,7 +49,7 @@ END;
             // echo $a['docid']
             $docid = $a['docid'];
             $filename = $a['filename'];
-            echo  "<a class=\"attachlink\" href=/~txux/uploaded_files/$filename> <b>✗</b> $filename </a> <br>";
+            echo  "<a class=\"attachlink\" href=\"/~txux/uploaded_files/$filename\"> <b>✗</b> $filename </a> <br>";
         }
         echo "</div>";
     }
