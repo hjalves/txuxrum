@@ -15,6 +15,7 @@
         /* send attachments */
         if ($_FILES["files"]) {
             for ($filei = 0; $filei < count($_FILES["files"]['name']); $filei++) {
+                // TODO: devia mostrar erros como deve ser
                 if ($_FILES["files"]["error"][$filei])
                     break;
                 $filename = $_FILES["files"]['name'][$filei];
@@ -125,8 +126,15 @@
         <?php
             vf_printchatheader($title, $description);
             
-            while ($line = pg_fetch_row($resmsgs, null))
-                vf_printchatmsg($line[0], $line[1], $line[2]);
+            while ($line = pg_fetch_row($resmsgs, null)) {
+                $attachments = NULL;
+                if ($line[4]) {
+                    $resdocs = sql_query_documents($line[3]);
+                    $attachments = pg_fetch_all($resdocs);
+                    //vf_printattachments($attachments);
+                }
+                vf_printchatmsg($line[0], $line[1], $line[2], $attachments);
+            }
             
             vf_printchatpost();
             

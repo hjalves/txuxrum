@@ -72,6 +72,15 @@
             }
 .chatmsg-body
             {
+
+            }
+
+.chatmsg-attachments
+            {
+                font:               11px tahoma, arial, sans-serif;
+                color:              #222;
+                background-color:   #C4C4CF;
+                margin-top:         5px;
             }
 
 .postbox
@@ -86,7 +95,7 @@
             }
 .postbox-submit
             {
-                text-align:         right;
+                float:              right;
             }
 .postbox-text
             {

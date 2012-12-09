@@ -19,7 +19,7 @@ END;
     }
 
     /* print chatroom message item */
-    function vf_printchatmsg($user, $date, $msg) {
+    function vf_printchatmsg($user, $date, $msg, $attachments) {
         $user = vf_usertolink($user);
         echo <<<END
 <div class="textframe-inside chatmsg">
@@ -35,8 +35,21 @@ END;
     <div class="chatmsg-msg">
         $msg
     </div>
-</div>
+    
 END;
+        if ($attachments)
+            vf_printattachments($attachments);
+        echo "</div>";
+    }
+
+    /* print multiple attachments */
+    function vf_printattachments($attachments) {
+        echo "<div class=\"chatmsg-attachments\">";
+        foreach ($attachments as $a) {
+            // echo $a['docid']
+            echo  "<b> [o] </b>" . $a['filename'] . "<br>";
+        }
+        echo "</div>";
     }
 
     /* print chatroom post form */
@@ -50,10 +63,11 @@ END;
         <div class="postbox-attach">
             <label for="file">Attach files:</label>
             <input type="file" name="files[]" multiple id="file" class="file"/>
+            <span class="postbox-submit">
+                <input type="submit" name="post" value="post" class="button" />
+            </span>
         </div>
-        <div class="postbox-submit">
-            <input type="submit" name="post" value="post" class="button" />
-        </div>
+
     </div>
 </form>
     </div>

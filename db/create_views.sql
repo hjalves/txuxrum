@@ -3,6 +3,7 @@ DROP VIEW lastmsg CASCADE;
 DROP VIEW chattotalmsg CASCADE;
 DROP VIEW usertotalmsg CASCADE;
 DROP VIEW chatrating CASCADE;
+DROP VIEW msgdocuments;
 DROP VIEW chatrooms_extended CASCADE;
 DROP VIEW current_permissions CASCADE;
 DROP VIEW users_permissions CASCADE;
@@ -32,6 +33,12 @@ CREATE VIEW chatrating AS
   SELECT roomid, SUM(value)/COUNT(*)::float "mean"
   FROM ratings
   GROUP BY roomid;
+
+-- Número de documentos anexados às mensagens
+CREATE VIEW msgdocuments AS
+  SELECT msgid, COUNT(*) "numdocs"
+  FROM documents
+  GROUP BY msgid;
 
 -- Chatrooms com muito mais informacao associada
 CREATE VIEW chatrooms_extended AS

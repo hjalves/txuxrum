@@ -134,9 +134,12 @@
     function sql_query_messages($chatroomid) {
         $query = 'SELECT Username,
                          To_char(PostTime, \'DD-Mon-YYYY, HH24:MI:SS\'),
-                         MsgText
+                         MsgText,
+                         msgid,
+                         numdocs
                   FROM   messages
                   LEFT JOIN users USING (userid)
+                  LEFT JOIN msgdocuments USING (msgid)
                   WHERE RoomID = $1
                   ORDER BY MsgID ASC';
         $result = pg_query_params($query, array($chatroomid)) or die('Query failed: ' . pg_last_error());
@@ -366,6 +369,12 @@
     function sql_attach_document($msgid, $filename) {
         $query = 'INSERT INTO documents (MsgID, Filename) VALUES ($1, $2) RETURNING DocID';
         $result = pg_query_params($query, array($msgid, $filename)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
+    function sql_query_documents($msgid) {
+        $query = 'SELECT docid, filename FROM documents WHERE msgid = $1';
+        $result = pg_query_params($query, array($msgid)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
 
