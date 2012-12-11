@@ -1,6 +1,6 @@
 -- TODO: colocar isto no max_val
 -- select COUNT(DISTINCT userid) from messages
--- where roomid = 4
+-- where roomid = NEW.roomid
 
 DROP TRIGGER rate_trigger ON ratings;
 
