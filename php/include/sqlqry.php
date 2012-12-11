@@ -357,6 +357,10 @@
         }
 
         // faz um update em cond normais (ou tenta fazer)
+        $query = 'UPDATE ratings SET value = $3 WHERE userid = $1 AND roomid = $2';
+        $result = pg_query_params($query, array($userid, $roomid, $value))  or die('Query failed: ' . pg_last_error());
+        if (pg_affected_rows($result) > 0)
+            return $result;
 
         // insert caso update falhe
         $query = 'INSERT INTO ratings (userid, roomid, value)
