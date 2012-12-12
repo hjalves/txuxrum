@@ -2,6 +2,7 @@
 
 DROP FUNCTION getChatrooms(userid integer) CASCADE;
 DROP FUNCTION searchChatrooms(userid integer, title varchar, owner varchar) CASCADE;
+DROP FUNCTION deleteUserData(uid integer) CASCADE;
 
 -- Devolve as chatrooms em que user tem permissão para ler posts
 CREATE FUNCTION getChatrooms(userid integer)
@@ -23,3 +24,34 @@ AS $$
 $$ LANGUAGE SQL;
 
 
+CREATE FUNCTION deleteUserData(uid integer)
+RETURNS void
+AS $$
+
+--'apaga' os dados pessoais
+	UPDATE users SET deleted='t', 
+					 usernamepublic='t', 
+					 profilepublic='t', 
+					 male=null, 
+					 name=null, 
+					 mail=null, 
+					 location = null, 
+					 birthday=null
+				WHERE
+					 userid = uid;
+
+--apaga as chatrooms criadas pelo utilizador nas quais não houve interação com outros utilizadores
+--não sei se justifica, é um caso a pensar!
+			DELETE FROM messages WHERE roomid = 
+			(SELECT DISTINCT roomid FROM chatrooms 
+			WHERE ownerid=$1 
+			AND (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid) 
+			<= (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid AND messages.userid = chatrooms.ownerid));
+
+			DELETE FROM chatrooms 
+			WHERE ownerid=$1 
+			AND (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid) 
+			<= (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid AND messages.userid = chatrooms.ownerid);
+
+
+$$ LANGUAGE SQL;

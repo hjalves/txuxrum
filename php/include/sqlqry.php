@@ -170,13 +170,10 @@
         return $result;
     }
 
-    function sql_delete_account($userid, $delPersonalData, $delAll) {
+    function sql_delete_account($userid, $delPersonalData) {
         
         if($delPersonalData){
-            $query ='UPDATE users SET deleted=$1, usernamepublic=$1, profilepublic=$1, ';
-            $query.='male=$2, name=$2, mail=$2, location=$2, password=$2, birthday=$2, username=$3';
-        }else if($delAll){
-            $query='DELETE FROM users WHERE userid = $3';
+            $query = 'deleteUserData($3)';
         }else{
             $query='UPDATE users SET deleted=$1 WHERE userid=$3';
         }
