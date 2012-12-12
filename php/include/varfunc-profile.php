@@ -1,4 +1,4 @@
-s<?php /* Global vars and functions - PROFILE */
+<?php /* Global vars and functions - PROFILE */
     /* stop execution ifnot included */
     $included = strtolower(realpath(__FILE__)) != strtolower(realpath($_SERVER['SCRIPT_FILENAME']));
     if (!$included)
