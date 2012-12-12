@@ -19,6 +19,11 @@ require_once('include/include.php');
         $resmsgs = sql_message_getchat($_SESSION['userid'], $user);
     else
         $resmsgs = sql_message_get($_SESSION['userid']);
+
+    if ($_POST["delete"]) {
+        sql_delete_message($_POST["pvtmsgid"]);
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +42,7 @@ require_once('include/include.php');
             vf_printmsgheader();
 
             while ($row = pg_fetch_row($resmsgs, null))
-                vf_printmessage($row[0], $row[1], $row[2], $row[3], $row[4]);
+                vf_printmessage($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 
             vf_printmsgpost($user);
 

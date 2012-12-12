@@ -16,11 +16,20 @@ END;
     }
 
     /* print message item */
-    function vf_printmessage($direction, $user, $text, $sendtime, $rectime) {
+    function vf_printmessage($direction, $user, $text, $sendtime, $rectime, $msgid) {
         $user = vf_usertolink($user);
         $dirstr = $direction == "rec" ? "From: " : "To: ";
-        if (!$rectime)
+        $deletebtn = "";
+        if (!$rectime){
             $rectime = "unread";
+            $deletebtn = '  <br>
+                            <form method="POST">
+                                <div class="postbox-submit">
+                                    <input type="hidden" name="pvtmsgid" value = '.$msgid.' />
+                                    <input type="submit" name="delete" value="delete" class="button" />
+                                </div>
+                            </form>';
+        }
         echo <<<END
 <div class="textframe-inside msg-$direction">
     <div class="msg-header">
@@ -39,6 +48,7 @@ END;
         <div class="msg-date">
             $rectime
         </div>
+        $deletebtn
         <div id="nextSetOfContent"></div>
     </div>
     <div class="msg-msg">

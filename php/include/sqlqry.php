@@ -247,7 +247,8 @@
                                 ELSE receivers.username END,
                            privatemessages.msgtext,
                            To_char(privatemessages.sendtime, \'DD-Mon, HH24:MI:SS\'),
-                           To_char(privatemessages.readtime, \'DD-Mon, HH24:MI:SS\')
+                           To_char(privatemessages.readtime, \'DD-Mon, HH24:MI:SS\'),
+                           pvtmsgid
                     FROM   privatemessages
                     LEFT JOIN users "receivers"
                            ON privatemessages.receiverid = receivers.userid
@@ -261,6 +262,12 @@
         return $result;
     }
     
+    function sql_delete_message($msgid){
+        $query = 'DELETE FROM privatemessages WHERE pvtmsgid=$1';
+        $result = pg_query_params($query, array($msgid)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
     /* functions */
     function sql_message_getnew($userid, $readtime) {
         $query = '  SELECT CASE WHEN privatemessages.receiverid = $1 THEN \'rec\'
@@ -292,7 +299,8 @@
                                 ELSE receivers.username END,
                            privatemessages.msgtext,
                            To_char(privatemessages.sendtime, \'DD-Mon, HH24:MI:SS\'),
-                           To_char(privatemessages.readtime, \'DD-Mon, HH24:MI:SS\')
+                           To_char(privatemessages.readtime, \'DD-Mon, HH24:MI:SS\'),
+                           pvtmsgid
                     FROM   privatemessages
                     LEFT JOIN users "receivers"
                            ON privatemessages.receiverid = receivers.userid
