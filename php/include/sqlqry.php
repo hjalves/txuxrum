@@ -173,12 +173,14 @@
     function sql_delete_account($userid, $delPersonalData) {
         
         if($delPersonalData){
-            $query = 'deleteUserData($3)';
+            $query = 'SELECT deleteUserData($1)';
+            $params= array($userid);
         }else{
-            $query='UPDATE users SET deleted=$1 WHERE userid=$3';
+            $query='UPDATE users SET deleted=$1 WHERE userid=$2';
+            $params= array(true, $userid);
         }
 
-        $result = pg_query_params($query, array('t',null,$userid)) or die('Query failed: ' . pg_last_error());
+        $result = pg_query_params($query, $params) or die('Query failed: ' . pg_last_error());
         return $result;
     }
 

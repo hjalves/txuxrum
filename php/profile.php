@@ -34,7 +34,11 @@
 
     /* close user account */
     if ($_POST['closeprofile']) {
-        //TODO close account
+        if($_POST['deleleAccData'])
+            sql_delete_account($_SESSION["userid"], true);
+        else
+            sql_delete_account($_SESSION["userid"], false);
+        header("Location: index.php?logout");
     }
 
     /* gets profile's info */

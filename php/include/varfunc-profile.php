@@ -1,4 +1,4 @@
-<?php /* Global vars and functions - PROFILE */
+s<?php /* Global vars and functions - PROFILE */
     /* stop execution ifnot included */
     $included = strtolower(realpath(__FILE__)) != strtolower(realpath($_SERVER['SCRIPT_FILENAME']));
     if (!$included)
@@ -217,6 +217,7 @@ END;
                 <input name="profileedit" type="submit" value="save" class="button" />
                 <input name="cancel" type="submit" value="cancel" class="button" />
                 <input name="closeprofile" type="submit" value="close account" class="button" />
+                <input type="radio" name="deleleAccData" value="true" /> delete account data
             </div>
         </div>
     </div>

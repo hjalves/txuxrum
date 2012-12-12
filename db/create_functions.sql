@@ -37,8 +37,8 @@ AS $$
 					 mail=null, 
 					 location = null, 
 					 birthday=null
-				WHERE
-					 userid = uid;
+				WHERE 
+					 userid = $1;
 
 --apaga as chatrooms criadas pelo utilizador nas quais não houve interação com outros utilizadores
 --não sei se justifica, é um caso a pensar!
