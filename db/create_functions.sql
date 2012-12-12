@@ -42,16 +42,16 @@ AS $$
 
 --apaga as chatrooms criadas pelo utilizador nas quais não houve interação com outros utilizadores
 --não sei se justifica, é um caso a pensar!
-			DELETE FROM messages WHERE roomid = 
-			(SELECT DISTINCT roomid FROM chatrooms 
-			WHERE ownerid=$1 
-			AND (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid) 
-			<= (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid AND messages.userid = chatrooms.ownerid));
-
-			DELETE FROM chatrooms 
-			WHERE ownerid=$1 
-			AND (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid) 
-			<= (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid AND messages.userid = chatrooms.ownerid);
+--			DELETE FROM messages WHERE roomid = 
+--			(SELECT DISTINCT roomid FROM chatrooms 
+--			WHERE ownerid=$1 
+--			AND (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid) 
+--			<= (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid AND messages.userid = chatrooms.ownerid));
+--
+--			DELETE FROM chatrooms 
+--			WHERE ownerid=$1 
+--			AND (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid) 
+--			<= (SELECT COUNT(msgid) from messages where messages.roomid = chatrooms.roomid AND messages.userid = chatrooms.ownerid);
 
 
 $$ LANGUAGE SQL;
