@@ -165,8 +165,23 @@
     }
 
     function sql_login($username, $password) {
-        $query = 'SELECT UserID FROM users WHERE username=$1 AND password=md5($2)';
+        $query = 'SELECT UserID FROM users WHERE username=$1 AND password=md5($2) AND NOT deleted';
         $result = pg_query_params($query, array($username, $password)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
+    function sql_delete_account($userid, $delPersonalData, $delAll) {
+        
+        if($delPersonalData){
+            $query ='UPDATE users SET deleted=$1, usernamepublic=$1, profilepublic=$1, ';
+            $query.='male=$2, name=$2, mail=$2, location=$2, password=$2, birthday=$2, username=$3';
+        }else if($delAll){
+            $query='DELETE FROM users WHERE userid = $3';
+        }else{
+            $query='UPDATE users SET deleted=$1 WHERE userid=$3';
+        }
+
+        $result = pg_query_params($query, array('t',null,$userid)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
 

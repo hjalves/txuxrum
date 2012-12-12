@@ -10,16 +10,16 @@ AS $$
 
 DECLARE
 
-    max_val CONSTANT INTEGER NOT NULL := 5;
+    max_val INTEGER;
     n_rates INTEGER;
 
 BEGIN
 
     LOCK TABLE ratings IN EXCLUSIVE MODE;
 
-    PERFORM * FROM ratings WHERE roomid = NEW.roomid;
+    select COUNT(DISTINCT userid) from messages into max_val where roomid = NEW.roomid;
 
-    GET DIAGNOSTICS n_rates = ROW_COUNT;
+    select COUNT(DISTINCT userid) from ratings into n_rates where roomid = NEW.roomid;
 
     IF n_rates >= max_val
         THEN
