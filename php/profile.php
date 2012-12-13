@@ -42,7 +42,10 @@
     }
 
     /* gets profile's info */
-    $result = sql_query_user($username);
+    if ($editable)
+        $result = sql_query_user_raw_data($username);
+    else
+        $result = sql_query_user($username);
     $rowprofile = pg_fetch_row($result, null);
 
 ?>

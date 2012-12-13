@@ -158,6 +158,12 @@
         return $result;
     }
 
+    function sql_query_user_raw_data($username) {
+        $query = 'SELECT Username, Name, Male, Mail, Location, Birthday, date_part(\'year\',age(Birthday)), Usernamepublic, Profilepublic FROM users WHERE Username = $1';
+        $result = pg_query_params($query, array($username)) or die('Query failed: ' . pg_last_error());
+        return $result;
+    }
+
     function sql_query_user_id($userid) {
         $query = 'SELECT Username FROM users WHERE UserID = $1';
         $result = pg_query_params($query, array($userid));
