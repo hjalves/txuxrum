@@ -25,7 +25,7 @@ END;
             $deletebtn = '  <br>
                             <form method="POST">
                                 <div class="postbox-submit">
-                                    <input type="hidden" name="pvtmsgid" value = '.$msgid.' />
+                                    <input type="hidden" name="pvtmsgid" value="'.$msgid.'" />
                                     <input type="submit" name="delete" value="delete" class="button" />
                                 </div>
                             </form>';
@@ -84,10 +84,10 @@ END;
             </div>
             <div id="nextSetOfContent"></div>
         </div>
-        <div class="postbox-text">
+        <div class="textframe-inside postbox-text">
             <textarea rows="4" cols="50" name="text" class="input postbox-textarea"></textarea>
         </div>
-        <div class="postbox-attach">
+        <div class="textframe-inside postbox-attach">
             (TODO) Attach files
         </div>
         <div class="postbox-submit">
