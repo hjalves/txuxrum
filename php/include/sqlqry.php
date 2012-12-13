@@ -124,7 +124,7 @@
         }if (!$sqlwhere)
             return sql_query_users();
 
-        $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM users WHERE '
+        $query = 'SELECT username, name, date_part(\'year\',age(Birthday)), Location FROM usersprotected WHERE '
                 . substr($sqlwhere, 0, -5);
 
         $result = pg_query($query) or die('Query failed: ' . pg_last_error());
@@ -138,7 +138,7 @@
                          msgid,
                          numdocs
                   FROM   messages
-                  LEFT JOIN users USING (userid)
+                  LEFT JOIN usersprotected USING (userid)
                   LEFT JOIN msgdocuments USING (msgid)
                   WHERE RoomID = $1
                   ORDER BY MsgID ASC';
@@ -147,13 +147,13 @@
     }
 
     function sql_query_users() {
-        $query = 'SELECT Username, Name, date_part(\'year\',age(Birthday)), Location FROM users';
+        $query = 'SELECT Username, Name, date_part(\'year\',age(Birthday)), Location FROM usersprotected';
         $result = pg_query($query) or die('Query failed: ' . pg_last_error());
         return $result;
     }
 
     function sql_query_user($username) {
-        $query = 'SELECT Username, Name, Male, Mail, Location, Birthday, date_part(\'year\',age(Birthday)), Usernamepublic, Profilepublic FROM users WHERE Username = $1';
+        $query = 'SELECT Username, Name, Male, Mail, Location, Birthday, date_part(\'year\',age(Birthday)), Usernamepublic, Profilepublic FROM usersprotected WHERE Username = $1';
         $result = pg_query_params($query, array($username)) or die('Query failed: ' . pg_last_error());
         return $result;
     }
@@ -250,8 +250,10 @@
                            To_char(privatemessages.readtime, \'DD-Mon, HH24:MI:SS\'),
                            pvtmsgid
                     FROM   privatemessages
+                    --LEFT JOIN usersprotected "receivers"
                     LEFT JOIN users "receivers"
                            ON privatemessages.receiverid = receivers.userid
+                    --LEFT JOIN usersprotected "senders" (se for para fazer assim, alterar as funções abaixo)
                     LEFT JOIN users "senders"
                            ON privatemessages.senderid = senders.userid
                     WHERE  senderid = $1 OR receiverid = $1 AND 

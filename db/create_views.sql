@@ -9,6 +9,19 @@ DROP VIEW current_permissions CASCADE;
 DROP VIEW users_permissions CASCADE;
 DROP VIEW guest_permissions CASCADE;
 DROP VIEW chatrooms_extended_user CASCADE;
+DROP VIEW usersprotected CASCADE;
+
+-- Users com privacidade
+CREATE VIEW usersprotected AS
+  SELECT userid,  
+         CASE usernamepublic WHEN 't' THEN username ELSE '[hidden]' END "username",
+         password, deleted, usernamepublic, profilepublic,
+         CASE profilepublic WHEN 't' THEN name ELSE '[hidden]' END "name",
+         CASE profilepublic WHEN 't' THEN male ELSE 'f' END "male",
+         CASE profilepublic WHEN 't' THEN mail ELSE '[hidden]' END "mail",
+         CASE profilepublic WHEN 't' THEN location ELSE '[hidden]' END "location",
+         CASE profilepublic WHEN 't' THEN birthday ELSE null END "birthday"
+  from users;
 
 -- Último post por chatroom
 CREATE VIEW lastmsg AS
@@ -50,8 +63,8 @@ CREATE VIEW chatrooms_extended AS
   FROM chatrooms
   LEFT JOIN lastmsg ON chatrooms.roomid = lastmsg.roomid
   LEFT JOIN messages ON lastmsg.msgid = messages.msgid
-  LEFT JOIN users "owners" ON chatrooms.ownerid = owners.userid
-  LEFT JOIN users "posters" ON messages.userid = posters.userid
+  LEFT JOIN usersprotected "owners" ON chatrooms.ownerid = owners.userid
+  LEFT JOIN usersprotected "posters" ON messages.userid = posters.userid
   LEFT JOIN chatrating ON chatrooms.roomid = chatrating.roomid;
 
 -- Vista das permissões atuais dos utilizadores
