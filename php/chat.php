@@ -4,7 +4,6 @@
     $userid = $_SESSION['userid'];
     $roomid = $_GET["thread"];
 
-
     /* post new post into chatroom */
     if ($_POST["post"] && $_SESSION['userid']) {
         $text = $_POST["text"];
@@ -106,6 +105,7 @@
         $rating = $rows[6];
         $closed = $rows[7];
         $canpost = $rows[8];
+        $iamowner = $rows[9];
         /* get chatroom's messages */
         $resmsgs = sql_query_messages($roomid);
         /* get chatroom permissions */
@@ -142,7 +142,7 @@
             
             vf_startchatpanel();
 
-            vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating, $closed, $canpost);
+            vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating, $closed, $canpost, $iamowner);
             vf_printratetopic($rating);
             vf_printedittitle($title);
             vf_printeditdescription($description);

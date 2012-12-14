@@ -1,4 +1,4 @@
--- Dripping wiews
+-- Dropping views
 DROP VIEW lastmsg CASCADE;
 DROP VIEW chattotalmsg CASCADE;
 DROP VIEW usertotalmsg CASCADE;
@@ -17,7 +17,7 @@ CREATE VIEW usersprotected AS
          CASE usernamepublic WHEN 't' THEN username ELSE '[hidden]' END "username",
          password, deleted, usernamepublic, profilepublic,
          CASE profilepublic WHEN 't' THEN name ELSE '[hidden]' END "name",
-         CASE profilepublic WHEN 't' THEN male ELSE 'f' END "male",
+         CASE profilepublic WHEN 't' THEN male ELSE null END "male",
          CASE profilepublic WHEN 't' THEN mail ELSE '[hidden]' END "mail",
          CASE profilepublic WHEN 't' THEN location ELSE '[hidden]' END "location",
          CASE profilepublic WHEN 't' THEN birthday ELSE null END "birthday"
@@ -71,6 +71,7 @@ CREATE VIEW chatrooms_extended AS
 CREATE VIEW users_permissions AS
   SELECT u.userid "userid",
          c.roomid "roomid",
+         c.ownerid = u.userid "iamowner",
          (coalesce(pp.canread, c.readingperm, TRUE)
           OR c.ownerid = u.userid) "canread",
          (coalesce(pp.canpost, c.postingperm, TRUE)
@@ -85,6 +86,7 @@ CREATE VIEW users_permissions AS
 CREATE VIEW guest_permissions AS
   SELECT 0 "userid",
          c.roomid "roomid",
+         FALSE "iamowner",
          coalesce(c.readingperm, FALSE) "canread",
          FALSE "canpost"
   FROM chatrooms c;
@@ -97,7 +99,7 @@ CREATE VIEW current_permissions AS
 
 -- Chatrooms extended mais informacao respetiva do utilizador (permissions + rating)
 CREATE VIEW chatrooms_extended_user AS
-  SELECT cr.*, p.userid, p.canread, p.canpost
+  SELECT cr.*, p.userid, p.canread, p.canpost, p.iamowner
   FROM chatrooms_extended cr
   INNER JOIN current_permissions p
   ON p.roomid = cr.roomid;
