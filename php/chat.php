@@ -93,25 +93,23 @@
     }
 
     /* get chatroom info */
-    $result = sql_query_chatroom($userid, $roomid);
-    if (pg_num_rows($result) > 0) {
-        $rows = pg_fetch_row($result, null);
-        $title = $rows[0];
-        $description = $rows[1];
-        $owner = $rows[2];
-        $date = $rows[3];
-        $reading = $rows[4];
-        $posting = $rows[5];
-        $rating = $rows[6];
-        $closed = $rows[7];
-        $canpost = $rows[8];
-        $iamowner = $rows[9];
+    $cr = sql_query_chatroom($userid, $roomid);
+    if ($cr) {
+        $title = $cr[0];
+        $description = $cr[1];
+        $owner = $cr[2];
+        $date = $cr[3];
+        $reading = $cr[4];
+        $posting = $cr[5];
+        $rating = $cr[6];
+        $closed = $cr[7];
+        $canpost = $cr[8];
+        $iamowner = $cr[9];
         /* get chatroom's messages */
         $resmsgs = sql_query_messages($roomid);
         /* get chatroom permissions */
         $resperm = sql_query_permissions($roomid);
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -126,7 +124,7 @@
         <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
         <div class="mainbody">
         <?php
-            vf_printchatheader($title, $description);
+            vf_printchatheader($cr);
             
             while ($line = pg_fetch_row($resmsgs, null)) {
                 $attachments = NULL;

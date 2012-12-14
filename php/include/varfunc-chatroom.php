@@ -5,13 +5,16 @@
         header('Location: .');
 
     /* print chatroom header */
-    function vf_printchatheader($title, $theme) {
+    function vf_printchatheader($chatroom) {
+        $title = $chatroom ? $chatroom['title'] : "Access Denied";
+        $description = $chatroom ? $chatroom['description'] : "";
+        $error = $chatroom ? "" : " error";
         echo <<<END
 <div class="textframe">
-    <div class="textframe-title">
+    <div class="textframe-title$error">
         $title
         <div class="textframe-subtitle">
-            $theme
+            $description
         </div>
     </div>
     <div class="panelframe-left">
