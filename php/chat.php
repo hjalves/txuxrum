@@ -124,31 +124,32 @@
         <?php
             vf_printchatheader($cr);
             
-            $messages = sql_query_messages($roomid);
-            /* mostra as mensagens e anexos, se houver */
-            foreach ($messages as $message) {
-                $attachments = NULL;
-                if ($message["numdocs"] > 0)
-                    $attachments = sql_query_documents($message["msgid"]);
-                vf_printchatmsg($message, $attachments);
+            if ($cr) {
+                $messages = sql_query_messages($roomid);
+                /* mostra as mensagens e anexos, se houver */
+                foreach ($messages as $message) {
+                    $attachments = NULL;
+                    if ($message["numdocs"] > 0)
+                        $attachments = sql_query_documents($message["msgid"]);
+                    vf_printchatmsg($message, $attachments);
+                }
+
+                vf_printchatpost();
+                
+                vf_startchatpanel();
+
+                vf_printinfotopic($cr);
+                vf_printratetopic($cr['rating']);
+                vf_printedittitle($cr['title']);
+                vf_printeditdescription($cr['description']);
+                vf_printeditperm($cr['readingperm'], $cr['writingperm']);
+                
+                /* get chatroom permissions */
+                vf_printpermissions( sql_query_permissions($roomid) );
+                vf_printclosetopic();
+
+                vf_endchatpanel();
             }
-
-            vf_printchatpost();
-            
-            vf_startchatpanel();
-
-            vf_printinfotopic($cr);
-            vf_printratetopic($rating);
-            vf_printedittitle($title);
-            vf_printeditdescription($description);
-            vf_printeditperm($reading, $posting);
-            
-            /* get chatroom permissions */
-            vf_printpermissions( sql_query_permissions($roomid) );
-            vf_printclosetopic();
-
-            vf_endchatpanel();
-
 
             echo '<div id="nextSetOfContent"></div>';
             echo '</div>';
