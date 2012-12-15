@@ -122,9 +122,12 @@
         <div class="mainmenu"> <?php vf_printmainmenu(); ?> </div>
         <div class="mainbody">
         <?php
+            echo '<div class="textframe">';
             vf_printchatheader($cr);
-            
+
             if ($cr) {
+                echo '<div class="panelframe-left">';
+
                 $messages = sql_query_messages($roomid);
                 /* mostra as mensagens e anexos, se houver */
                 foreach ($messages as $message) {
@@ -134,24 +137,29 @@
                     vf_printchatmsg($message, $attachments);
                 }
 
-                vf_printchatpost();
+                /* imprime a caixa para post */
+                if ($cr['canpost'] == 't')
+                    vf_printchatpost();
+                
+                echo '</div>';
                 
                 vf_startchatpanel();
-
                 vf_printinfotopic($cr);
-                vf_printratetopic($cr['rating']);
-                vf_printedittitle($cr['title']);
-                vf_printeditdescription($cr['description']);
-                vf_printeditperm($cr['readingperm'], $cr['writingperm']);
-                
+                /* apenas mostra rate topic para users registados */
+                if ($userid)
+                    vf_printratetopic($cr['rating']);
+                /* paineis do owner */
+                if ($cr['iamowner'] == 't') {
+                    vf_printedittitle($cr['title']);
+                    vf_printeditdescription($cr['description']);
+                    vf_printeditperm($cr['readingperm'], $cr['writingperm']);
+                    vf_printpermissions( sql_query_permissions($roomid) );
+                    vf_printclosetopic();
+                }
                 /* get chatroom permissions */
-                vf_printpermissions( sql_query_permissions($roomid) );
-                vf_printclosetopic();
-
                 vf_endchatpanel();
             }
 
-            echo '<div id="nextSetOfContent"></div>';
             echo '</div>';
         ?>
         </div>

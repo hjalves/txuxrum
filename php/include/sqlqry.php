@@ -56,9 +56,10 @@
 
     function sql_query_chatroom($userid, $chatroomid) {
         $query = 'SELECT title, description, owner,
-                         to_char(creationdate, \'DD-Mon-YYYY, HH24:MI\') "date",
+                         to_char(creationdate, \'DD-Mon-YYYY, HH24:MI:SS\') "date",
                          readingperm, postingperm,
-                         rating, closed, canpost, iamowner
+                         rating, closed, canpost, iamowner, numposts,
+                         to_char(lastposttime, \'DD-Mon-YYYY, HH24:MI:SS\') "lastposttime"
                   FROM getChatrooms($1)
                   WHERE RoomID = $2';
         $result = pg_query_params($query, array($userid, $chatroomid)) or die('Query failed: ' . pg_last_error());

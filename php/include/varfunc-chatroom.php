@@ -10,14 +10,14 @@
         $description = $chatroom ? $chatroom['description'] : "";
         $error = $chatroom ? "" : " error";
         echo <<<END
-<div class="textframe">
+
     <div class="textframe-title$error">
         $title
         <div class="textframe-subtitle">
             $description
         </div>
     </div>
-    <div class="panelframe-left">
+    
 END;
     }
 
@@ -72,10 +72,9 @@ END;
                 <input type="submit" name="post" value="post" class="button" />
             </span>
         </div>
-
     </div>
 </form>
-    </div>
+    
 END;
     }
 
@@ -194,6 +193,7 @@ END;
 
     function vf_printinfotopic($cr) {
         $link = vf_usertolink($cr['owner']);
+        $postmsg = $cr['canpost'] == 't' ? "You can post." : "You <b>cannot</b> post.";
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
@@ -204,12 +204,18 @@ END;
         Description: $cr[description] <br />
         Owner: $link <br />
         Created on: $cr[date] <br />
-        Anyone can access: $cr[readingperm] <br />
-        Anyone can post: $cr[postingperm] <br />
+        Last post on: $cr[lastposttime] <br />
+        Number of posts: $cr[numposts] <br />
         Rating: $cr[rating] <br />
-        Closed: $cr[closed] <br />
-        Can I post?: $cr[canpost] <br />
-        Am I the owner?: $cr[iamowner] <br />
+
+        <!--
+        Anyone can access: $cr[readingperm] <br />
+        Anyone can post: $cr[postingperm] <br /> -->
+        
+        $postmsg <br />
+        <!-- Am I the owner?: $cr[iamowner] <br /> -->
+        <!-- Closed: $cr[closed] <br /> -->
+        
     </div>
 </div>
 END;
@@ -251,9 +257,7 @@ END;
     function vf_endchatpanel() {
         echo '</div>';
         echo '</div>';
-        
         echo '<div id="nextSetOfContent"></div>';
-        echo '</div>';
     }
 
 ?>

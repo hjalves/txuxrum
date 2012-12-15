@@ -59,9 +59,11 @@ CREATE VIEW chatrooms_extended AS
          posters.username "lastposter",
          messages.posttime "lastposttime",
          messages.msgtext "lastmsgtext",
-         chatrating.mean "rating"
+         chatrating.mean "rating",
+         chattotalmsg.numposts "numposts"
   FROM chatrooms
   LEFT JOIN lastmsg ON chatrooms.roomid = lastmsg.roomid
+  LEFT JOIN chattotalmsg ON chatrooms.roomid = chattotalmsg.roomid
   LEFT JOIN messages ON lastmsg.msgid = messages.msgid
   LEFT JOIN usersprotected "owners" ON chatrooms.ownerid = owners.userid
   LEFT JOIN usersprotected "posters" ON messages.userid = posters.userid
