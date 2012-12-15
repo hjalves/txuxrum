@@ -106,9 +106,7 @@
         $canpost = $cr[8];
         $iamowner = $cr[9];
         /* get chatroom's messages */
-        $resmsgs = sql_query_messages($roomid);
-        /* get chatroom permissions */
-        $resperm = sql_query_permissions($roomid);
+        
     }
 ?>
 
@@ -126,27 +124,27 @@
         <?php
             vf_printchatheader($cr);
             
-            while ($line = pg_fetch_row($resmsgs, null)) {
+            $messages = sql_query_messages($roomid);
+            /* mostra as mensagens e anexos, se houver */
+            foreach ($messages as $message) {
                 $attachments = NULL;
-                if ($line[4]) {
-                    $resdocs = sql_query_documents($line[3]);
-                    $attachments = pg_fetch_all($resdocs);
-                    //vf_printattachments($attachments);
-                }
-                vf_printchatmsg($line[0], $line[1], $line[2], $attachments);
+                if ($message["numdocs"] > 0)
+                    $attachments = sql_query_documents($message["msgid"]);
+                vf_printchatmsg($message, $attachments);
             }
-            
+
             vf_printchatpost();
             
             vf_startchatpanel();
 
-            vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating, $closed, $canpost, $iamowner);
+            vf_printinfotopic($cr);
             vf_printratetopic($rating);
             vf_printedittitle($title);
             vf_printeditdescription($description);
             vf_printeditperm($reading, $posting);
             
-            vf_printpermissions(pg_fetch_all($resperm));
+            /* get chatroom permissions */
+            vf_printpermissions( sql_query_permissions($roomid) );
             vf_printclosetopic();
 
             vf_endchatpanel();

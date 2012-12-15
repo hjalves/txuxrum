@@ -22,21 +22,21 @@ END;
     }
 
     /* print chatroom message item */
-    function vf_printchatmsg($user, $date, $msg, $attachments) {
-        $user = vf_usertolink($user);
+    function vf_printchatmsg($message, $attachments) {
+        $userlink = vf_usertolink($message['username']);
         echo <<<END
 <div class="textframe-inside chatmsg">
     <div class="chatmsg-header">
         <div class="chatmsg-from">
-            $user
+            $userlink
         </div>
         <div class="chatmsg-date">
-            $date
+            $message[date]
         </div>
         <div id="nextSetOfContent"></div>
     </div>
     <div class="chatmsg-msg">
-        $msg
+        $message[msgtext]
     </div>
     
 END;
@@ -192,24 +192,24 @@ END;
 END;
     }
 
-    function vf_printinfotopic($title, $description, $owner, $date, $reading, $posting, $rating, $closed, $canpost, $iamowner) {
-        $link = vf_usertolink($owner);
+    function vf_printinfotopic($cr) {
+        $link = vf_usertolink($cr['owner']);
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
         About this topic
     </div>
     <div class="panelframe-item-body">
-        Title: $title <br />
-        Description: $description <br />
+        Title: $cr[title] <br />
+        Description: $cr[description] <br />
         Owner: $link <br />
-        Created on: $date <br />
-        Anyone can access: $reading <br />
-        Anyone can post: $posting <br />
-        Rating: $rating <br />
-        Closed: $closed <br />
-        Can I post?: $canpost <br />
-        Am I the owner?: $iamowner <br />
+        Created on: $cr[date] <br />
+        Anyone can access: $cr[readingperm] <br />
+        Anyone can post: $cr[postingperm] <br />
+        Rating: $cr[rating] <br />
+        Closed: $cr[closed] <br />
+        Can I post?: $cr[canpost] <br />
+        Am I the owner?: $cr[iamowner] <br />
     </div>
 </div>
 END;

@@ -55,16 +55,10 @@
     }
 
     function sql_query_chatroom($userid, $chatroomid) {
-        $query = 'SELECT Title,
-                         Description,
-                         Owner,
-                         To_char(creationdate, \'DD-Mon-YYYY, HH24:MI\') "date",
-                         readingperm,
-                         postingperm,
-                         rating,
-                         closed,
-                         canpost,
-                         iamowner
+        $query = 'SELECT title, description, owner,
+                         to_char(creationdate, \'DD-Mon-YYYY, HH24:MI\') "date",
+                         readingperm, postingperm,
+                         rating, closed, canpost, iamowner
                   FROM getChatrooms($1)
                   WHERE RoomID = $2';
         $result = pg_query_params($query, array($userid, $chatroomid)) or die('Query failed: ' . pg_last_error());
@@ -144,9 +138,9 @@
     }
 
     function sql_query_messages($chatroomid) {
-        $query = 'SELECT Username,
-                         To_char(PostTime, \'DD-Mon-YYYY, HH24:MI:SS\'),
-                         MsgText,
+        $query = 'SELECT username,
+                         to_char(PostTime, \'DD-Mon-YYYY, HH24:MI:SS\') "date",
+                         msgtext,
                          msgid,
                          numdocs
                   FROM   messages
@@ -155,7 +149,8 @@
                   WHERE RoomID = $1
                   ORDER BY MsgID ASC';
         $result = pg_query_params($query, array($chatroomid)) or die('Query failed: ' . pg_last_error());
-        return $result;
+        $messages = pg_fetch_all($result);
+        return $messages;
     }
 
     function sql_query_users() {
@@ -364,7 +359,8 @@
     function sql_query_permissions($roomid) {
         $query = 'SELECT username, canread, canpost FROM permissions JOIN users ON users.userid = permissions.userid WHERE roomid = $1';
         $result = pg_query_params($query, array($roomid)) or die('Query failed: ' . pg_last_error());
-        return $result;
+        $permissions = pg_fetch_all($result);
+        return $permissions;
     }
 
     function sql_update_permission($username, $roomid, $readperm, $writeperm) {
@@ -421,7 +417,8 @@
     function sql_query_documents($msgid) {
         $query = 'SELECT docid, filename FROM documents WHERE msgid = $1';
         $result = pg_query_params($query, array($msgid)) or die('Query failed: ' . pg_last_error());
-        return $result;
+        $documents = pg_fetch_all($result);
+        return $documents;
     }
 
 ?>
