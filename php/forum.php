@@ -7,6 +7,8 @@
 
     /* pagination - set $selected >= 1 */
     $selected = $_GET['page'];
+    if (!$selected)
+        $selected = 1;
 
     $userid = $_SESSION["userid"];
     $owner = $_GET["user"];
