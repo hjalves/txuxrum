@@ -43,7 +43,7 @@ CREATE VIEW usertotalmsg AS
 
 -- Média de rating por chatroom
 CREATE VIEW chatrating AS
-  SELECT roomid, SUM(value)/COUNT(*)::float "mean"
+  SELECT roomid, SUM(value)/COUNT(*)::numeric "mean", COUNT(*) "count"
   FROM ratings
   GROUP BY roomid;
 
@@ -60,6 +60,7 @@ CREATE VIEW chatrooms_extended AS
          messages.posttime "lastposttime",
          messages.msgtext "lastmsgtext",
          chatrating.mean "rating",
+         coalesce(chatrating.count, 0) "ratingcount",
          chattotalmsg.numposts "numposts"
   FROM chatrooms
   LEFT JOIN lastmsg ON chatrooms.roomid = lastmsg.roomid

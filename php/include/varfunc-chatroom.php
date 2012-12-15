@@ -98,7 +98,7 @@ END;
         <input type="submit" name="rating" value="no" class="button rate$no" />
         <input type="submit" name="rating" value="maybe" class="button rate$mb" />
         <input type="submit" name="rating" value="yes" class="button rate$ye" />
-        <input type="submit" name="rating" value="n/a" class="button rate$na" disabled />
+        <input type="submit" name="rating" value="n/a" class="button rate$na" />
     </form>
 </div>
 END;
@@ -206,9 +206,9 @@ END;
 
     function vf_printinfotopic($cr) {
         $link = vf_usertolink($cr['owner']);
-        $postmsg = $cr['canpost'] == 't' ? "You <b>can</b> post like a boss" : "You <b>cannot</b> post";
+        $postmsg = $cr['canpost'] == 't' ? "You <b>can</b> post <br>" : "You <b>cannot</b> post <br />";
         $closed = $cr['closed'] == 't' ? "Topic is <b>closed</b> <br />" : "";
-
+        $rating = $cr['ratingcount'] ? "Rating: $cr[percent_rating] by $cr[ratingcount] user(s)" : "No one rated yet";
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
@@ -221,9 +221,8 @@ END;
         Created on: $cr[date] <br />
         Last post on: $cr[lastposttime] <br />
         Number of posts: $cr[numposts] <br />
-        Rating: $cr[rating] <br />
-        My Rating: $cr[myrating] <br />
-        $postmsg <br />
+        $rating <br />
+        $postmsg
         $closed
 
         <!-- Anyone can access: $cr[readingperm] <br /> -->
