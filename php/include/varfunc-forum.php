@@ -5,27 +5,53 @@
         header('Location: .');
 
     /* print chatroom list header */
-    function vf_printchatlistheader() {
+    function vf_printchatlistheader($chatrooms) {
+        $error = $chatrooms ? "" : " error";
+        $n_chatrooms = count($chatrooms);
+        if (!$chatrooms) {
+            $msg = "No topics";
+        } else if ($n_chatrooms == 1) {
+            $msg = "1 topic";
+        } else {
+            $msg = $n_chatrooms . " topics";
+        }
+
         echo <<<END
 <div class="textframe">
-    <div class="textframe-title">
-        Chat rooms
+    <div class="textframe-title$error">
+        $msg
     </div>
 END;
     }
 
+    /* print chat room list */
+    function vf_printchatrooms($chatrooms) {
+        foreach ($chatrooms as $chatroom) {
+            vf_printchatitem($chatroom);
+        }
+    }
+
     /* print chat room list item */
-    function vf_printchatitem($title, $id, $user, $date, $postuser, $postdate, $postprev, $topic) {
-        $user = vf_usertolink($user);
-        $postuser = vf_usertolink($postuser);
-        $lastpostup = $postdate ? "Last post by $postuser on $postdate" : "No posts in this topic";
-        $title = vf_stdlink($title, "chat.php?thread=$id");
+    function vf_printchatitem($chatroom) {
+        $user = vf_usertolink($chatroom['owner']);
+        $postuser = vf_usertolink($chatroom['lastposter']);
+        $lastpostup = $chatroom['lastposttime'] ? "Last post by $postuser on $chatroom[lastposttime]" : "No posts in this topic";
+        $title = vf_stdlink($chatroom['title'], "chat.php?thread=$chatroom[roomid]");
+        $postprev = $chatroom['lastmsg'];
+        $numposts = " <span class=\"chatroom-numposts\">$chatroom[numposts]</span> ";
+        $color = "";
+        if ($chatroom['iamowner'] == 't')
+            $color = " chatroom-blue";
+        else if ($chatroom['closed'] == 't')
+            $color = " chatroom-red";
+        else if ($chatroom['canpost'] == 'f')
+            $color = " chatroom-gray";
         if (!$postprev)
             $postprev = "&nbsp;";
         echo <<<END
     <div class="textframe-inside">
         <div class="chatroom-left">
-            <div class="chatroom-left-inside">
+            <div class="chatroom-left-inside$color">
                 <div class="chatroom-leftsmal">
                     $title
                 </div>
@@ -34,10 +60,10 @@ END;
                 </div>
                 <div id="nextSetOfContent"></div>
                 <div class="chatroom-leftsmal">
-                    $topic
+                    $chatroom[description]
                 </div>
                 <div class="chatroom-rightsmal">
-                    $date
+                    $chatroom[date]
                 </div>
                 <div id="nextSetOfContent"></div>
             </div>
@@ -46,6 +72,7 @@ END;
             <div class="chatroom-right-inside">
                 <div class="chatroom-lastpost-up">
                     $lastpostup
+                    $numposts
                 </div>
                 <div class="chatroom-lastpost-down">
                     $postprev

@@ -64,19 +64,20 @@
                   FROM getChatrooms($1)
                   WHERE RoomID = $2';
         $result = pg_query_params($query, array($userid, $chatroomid)) or die('Query failed: ' . pg_last_error());
-        $chatrooms = pg_fetch_array($result);
-        return $chatrooms;
+        $chatroom = pg_fetch_array($result);
+        return $chatroom;
     }
 
     function sql_query_chatrooms($userid, $page, $title, $owner) {
         $perpage = 10;
-        $select = 'title, roomid, owner, to_char(creationdate, \'DD-Mon-YYYY, HH24:MI\'),
-                   lastposter, to_char(lastposttime, \'DD-Mon, HH24:MI:SS\'),
+        $select = 'title, roomid, owner, to_char(creationdate, \'DD-Mon-YYYY, HH24:MI\') "date",
+                   lastposter, to_char(lastposttime, \'DD-Mon, HH24:MI:SS\') "lastposttime",
                    CASE WHEN char_length(lastmsgtext) <= 40 THEN lastmsgtext
-                    ELSE left(lastmsgtext, 40) || \'...\' END,
+                    ELSE left(lastmsgtext, 40) || \'...\' END "lastmsg",
                    CASE WHEN char_length(description) <= 40 THEN description
-                    ELSE left(description, 40) || \'...\' END';
-        $offset = $perpage * $page;
+                    ELSE left(description, 40) || \'...\' END "description",
+                   numposts, rating, iamowner, canpost, closed';
+        $offset = $perpage * ($page-1);
         
         if ($title || $owner) {
             // Para pesquisa
@@ -87,7 +88,8 @@
             $query = 'SELECT ' . $select . ' FROM getChatrooms($1) LIMIT $2 OFFSET $3';
             $result = pg_query_params($query, array($userid, $perpage, $offset)) or die('Query failed: ' . pg_last_error());
         }
-        return $result;
+        $chatrooms = pg_fetch_all($result);
+        return $chatrooms;
     }
 
     function sql_get_chatrooms_pages($userid, $title, $owner) {

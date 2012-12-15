@@ -20,11 +20,26 @@
             }
 .chatroom-left-inside
             {
-                background-color:   #C4C4CF;;
+                background-color:   #C4C4CF;
                 border-left:        4px solid #282850;
                 padding:            5px;
                 margin-right:       5px;
             }
+.chatroom-red    { background-color:   #CFC4C4; }
+.chatroom-yellow { background-color:   #CFCFC4; }
+.chatroom-green  { background-color:   #C4CFC4; }
+.chatroom-cyan   { background-color:   #C4CFCF; }
+.chatroom-blue   { background-color:   #C4CAD8; }
+.chatroom-purple { background-color:   #CFC4CF; }
+.chatroom-gray   { background-color:   #C4C4C4; }
+
+.chatroom-numposts
+            {
+                font-size:  10px;
+                float:      right;
+                color:      #666;
+            }
+
 .chatroom-right-inside
             {
                 background-color:   #C1C2C2;
