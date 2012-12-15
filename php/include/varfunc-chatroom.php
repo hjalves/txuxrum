@@ -208,7 +208,7 @@ END;
         $link = vf_usertolink($cr['owner']);
         $postmsg = $cr['canpost'] == 't' ? "You <b>can</b> post <br>" : "You <b>cannot</b> post <br />";
         $closed = $cr['closed'] == 't' ? "Topic is <b>closed</b> <br />" : "";
-        $rating = $cr['ratingcount'] ? "Rating: $cr[percent_rating] by $cr[ratingcount] user(s)" : "No one rated yet";
+        $rating = $cr['ratingcount'] ? "Relevancy: $cr[percent_rating] by $cr[ratingcount] user(s)" : "No one rated yet";
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">

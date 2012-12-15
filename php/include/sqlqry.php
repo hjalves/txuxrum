@@ -60,7 +60,7 @@
                          readingperm, postingperm,
                          rating, closed, canpost, iamowner, numposts,
                          to_char(lastposttime, \'DD-Mon-YYYY, HH24:MI:SS\') "lastposttime",
-                         myrating, ratingcount, round(rating*50, 1) || \'%\' "percent_rating"
+                         myrating, ratingcount, round(rating*50, 0) || \'%\' "percent_rating"
                   FROM getChatrooms($1)
                   WHERE RoomID = $2';
         $result = pg_query_params($query, array($userid, $chatroomid)) or die('Query failed: ' . pg_last_error());
