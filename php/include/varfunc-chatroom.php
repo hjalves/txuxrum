@@ -85,10 +85,10 @@ END;
         Is this topic relevant?
     </div>
     <form method="POST" class="panelframe-item-body">
-        <input type="submit" name="rating" value="no" class="button" />
-        <input type="submit" name="rating" value="maybe" class="button" />
-        <input type="submit" name="rating" value="yes" class="button" />
-        <input type="submit" name="rating" value="dunno" class="button" />
+        <input type="submit" name="rating" value="no" class="button rate" />
+        <input type="submit" name="rating" value="maybe" class="button rate" />
+        <input type="submit" name="rating" value="yes" class="button rate" />
+        <input type="submit" name="rating" value="n/a" class="button rate" />
     </form>
 </div>
 END;
@@ -145,6 +145,7 @@ END;
     </div>
     <div class="panelframe-item-body">
 END;
+
     foreach ($permissions as $p) {
         echo vf_usertolink($p['username']), " : ";
         if ($p['canread'] == 't') echo "(CAN access)";
@@ -154,6 +155,8 @@ END;
         else if ($p['canpost'] == 'f') echo "(NO post)";
         echo '<br />';
     }
+    if (!$permissions)
+        echo "No individual permissions specified.";
 
         echo <<<END
     </div>
@@ -193,7 +196,9 @@ END;
 
     function vf_printinfotopic($cr) {
         $link = vf_usertolink($cr['owner']);
-        $postmsg = $cr['canpost'] == 't' ? "You can post." : "You <b>cannot</b> post.";
+        $postmsg = $cr['canpost'] == 't' ? "You <b>can</b> post like a boss" : "You <b>cannot</b> post";
+        $closed = $cr['closed'] == 't' ? "Topic is <b>closed</b> <br />" : "";
+
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
@@ -207,14 +212,12 @@ END;
         Last post on: $cr[lastposttime] <br />
         Number of posts: $cr[numposts] <br />
         Rating: $cr[rating] <br />
-
-        <!--
-        Anyone can access: $cr[readingperm] <br />
-        Anyone can post: $cr[postingperm] <br /> -->
-        
         $postmsg <br />
+        $closed
+
+        <!-- Anyone can access: $cr[readingperm] <br /> -->
+        <!-- Anyone can post: $cr[postingperm] <br /> -->
         <!-- Am I the owner?: $cr[iamowner] <br /> -->
-        <!-- Closed: $cr[closed] <br /> -->
         
     </div>
 </div>

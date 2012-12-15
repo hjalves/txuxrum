@@ -31,26 +31,16 @@
     }
 
     /* edit title and description */
-    // TODO - mudar a form, verificar o usar owner
-    if ($_POST["title"]) {
-        $title = $_POST["title"];
-        $result = sql_edit_title($userid, $roomid, $title);
-    }
-
+    if ($_POST["title"])
+        sql_edit_title($userid, $roomid, $_POST["title"]);
     #verificar permissoes
-    if ($_POST["description"]) {
-        $description = $_POST["description"];
-        sql_edit_description($userid, $roomid, $description);
-    }
-
+    if ($_POST["description"])
+        sql_edit_description($userid, $roomid, $_POST["description"]);
     #fechar o topico
-    if ($_POST["close"]) {
+    if ($_POST["close"])
         sql_close_chatroom($roomid);
-    }
-
-    if ($_POST["open"]) {
+    if ($_POST["open"])
         sql_open_chatroom($roomid);
-    }
 
     // permissao reading e writing - verific permissoes
     if ($_POST["readingperm"] || $_POST["postingperm"]) {
@@ -63,7 +53,6 @@
         else if ($_POST["postingperm"])
             sql_edit_posting_permission($userid, $roomid, $perm);
     }
-
 
     # verificar permissoes
     if ($_POST["perm_add"]) {
@@ -94,27 +83,13 @@
 
     /* get chatroom info */
     $cr = sql_query_chatroom($userid, $roomid);
-    if ($cr) {
-        $title = $cr[0];
-        $description = $cr[1];
-        $owner = $cr[2];
-        $date = $cr[3];
-        $reading = $cr[4];
-        $posting = $cr[5];
-        $rating = $cr[6];
-        $closed = $cr[7];
-        $canpost = $cr[8];
-        $iamowner = $cr[9];
-        /* get chatroom's messages */
-        
-    }
 ?>
 
 <!DOCTYPE html>
 
 <html>
     <head>
-    <?php vf_printhtmlheader($title, $_SESSION['userid']); #apenas inclui scripts para users ?>
+    <?php vf_printhtmlheader($cr['title'], $_SESSION['userid']); #apenas inclui scripts para users ?>
     </head>
     <body>
     <div class="mainframe">

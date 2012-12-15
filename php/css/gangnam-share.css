@@ -180,6 +180,15 @@
                 color:              #FFFFFF;
             }
 
+.rate       {
+                padding-left:       12px;
+                padding-right:      12px;
+            }
+
+.chosen     {
+                background-color:   #9EA8B2;
+            }
+
 .input
             {
                 background-color:   #FAFAFA;
