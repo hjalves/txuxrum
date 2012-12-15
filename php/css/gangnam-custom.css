@@ -95,7 +95,7 @@
             }
 .postbox-submit
             {
-                text-align:         right;
+                float:              right;
             }
 .postbox-text
             {
@@ -169,6 +169,10 @@
             }
 .msg-body
             {
+            }
+
+.msg-submit {
+                text-align:         right;
             }
 
 /***************

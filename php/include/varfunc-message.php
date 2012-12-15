@@ -24,7 +24,7 @@ END;
             $rectime = "unread";
             $deletebtn = '  <br>
                             <form method="POST">
-                                <div class="postbox-submit">
+                                <div class="msg-submit">
                                     <input type="hidden" name="pvtmsgid" value="'.$msgid.'" />
                                     <input type="submit" name="delete" value="delete" class="button" />
                                 </div>
@@ -90,7 +90,7 @@ END;
         <div class="textframe-inside postbox-attach">
             (TODO) Attach files
         </div>
-        <div class="postbox-submit">
+        <div class="msg-submit">
             <input type="submit" name="msgsent" value="sent" class="button" />
         </div>
     </div>
