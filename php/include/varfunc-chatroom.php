@@ -79,16 +79,26 @@ END;
     }
 
     function vf_printratetopic($rating) {
+    $no = $mb = $ye = $na = "";
+    $sel = " chosen";
+    switch ($rating) {
+        case null: $na = $sel; break;
+        case 0: $no = $sel; break;
+        case 1: $mb = $sel; break;
+        case 2: $ye = $sel; break;
+        default: $na = $sel; break;
+    }
+
         echo <<<END
 <div class="panelframe-item">
     <div class="panelframe-item-title">
         Is this topic relevant?
     </div>
     <form method="POST" class="panelframe-item-body">
-        <input type="submit" name="rating" value="no" class="button rate" />
-        <input type="submit" name="rating" value="maybe" class="button rate" />
-        <input type="submit" name="rating" value="yes" class="button rate" />
-        <input type="submit" name="rating" value="n/a" class="button rate" />
+        <input type="submit" name="rating" value="no" class="button rate$no" />
+        <input type="submit" name="rating" value="maybe" class="button rate$mb" />
+        <input type="submit" name="rating" value="yes" class="button rate$ye" />
+        <input type="submit" name="rating" value="n/a" class="button rate$na" disabled />
     </form>
 </div>
 END;
@@ -212,6 +222,7 @@ END;
         Last post on: $cr[lastposttime] <br />
         Number of posts: $cr[numposts] <br />
         Rating: $cr[rating] <br />
+        My Rating: $cr[myrating] <br />
         $postmsg <br />
         $closed
 

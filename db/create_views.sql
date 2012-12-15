@@ -84,6 +84,7 @@ CREATE VIEW users_permissions AS
              FROM permissions) pp
   ON (c.roomid = pp.roomid AND u.userid = pp.userid);
 
+
 -- Vista das permissões do convidado (user não autenticado)
 CREATE VIEW guest_permissions AS
   SELECT 0 "userid",
@@ -101,8 +102,10 @@ CREATE VIEW current_permissions AS
 
 -- Chatrooms extended mais informacao respetiva do utilizador (permissions + rating)
 CREATE VIEW chatrooms_extended_user AS
-  SELECT cr.*, p.userid, p.canread, p.canpost, p.iamowner
+  SELECT cr.*, p.userid, p.canread, p.canpost, p.iamowner, r.value "myrating"
   FROM chatrooms_extended cr
   INNER JOIN current_permissions p
-  ON p.roomid = cr.roomid;
+  ON p.roomid = cr.roomid
+  LEFT JOIN (SELECT userid, roomid, value FROM ratings) r
+  ON (cr.roomid = r.roomid AND p.userid = r.userid);
 

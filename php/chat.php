@@ -122,7 +122,7 @@
                 vf_printinfotopic($cr);
                 /* apenas mostra rate topic para users registados */
                 if ($userid)
-                    vf_printratetopic($cr['rating']);
+                    vf_printratetopic($cr['myrating']);
                 /* paineis do owner */
                 if ($cr['iamowner'] == 't') {
                     vf_printedittitle($cr['title']);
