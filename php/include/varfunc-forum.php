@@ -42,8 +42,6 @@ END;
         $color = "";
         if ($chatroom['iamowner'] == 't')
             $color = " chatroom-blue";
-        else if ($chatroom['closed'] == 't')
-            $color = " chatroom-red";
         else if ($chatroom['canpost'] == 'f')
             $color = " chatroom-gray";
         if (!$postprev)
