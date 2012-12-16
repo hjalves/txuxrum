@@ -15,7 +15,9 @@
     $title = $_GET["title"];
 
     /* get max pages */
-    $maxpages = sql_get_chatrooms_pages($userid, $title, $owner);
+    $num_chatrooms = sql_get_chatrooms_num($userid, $title, $owner);
+    $perpage = 10;
+    $maxpages = ceil($num_chatrooms/$perpage);
 
     /* check page selected out of bounds */
     if (($selected > $maxpages || $selected < 1) && $selected != 1) {
@@ -25,7 +27,7 @@
     }
 
     /* get forum threads */
-    $chatrooms = sql_query_chatrooms($userid, $selected, $title, $owner);
+    $chatrooms = sql_query_chatrooms($userid, $selected, $perpage, $title, $owner);
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +43,7 @@
         <div class="mainbody">
         <?php
             vf_printsearchbox($user, $title);
-            vf_printchatlistheader($chatrooms);
+            vf_printchatlistheader($num_chatrooms);
             vf_printchatrooms($chatrooms);
             vf_printchatlistfooter($maxpages, $selected);
             vf_printcreatethread();

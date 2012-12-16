@@ -5,15 +5,14 @@
         header('Location: .');
 
     /* print chatroom list header */
-    function vf_printchatlistheader($chatrooms) {
-        $error = $chatrooms ? "" : " error";
-        $n_chatrooms = count($chatrooms);
-        if (!$chatrooms) {
+    function vf_printchatlistheader($chatroom_num) {
+        $error = $chatroom_num ? "" : " error";
+        if (!$chatroom_num) {
             $msg = "No topics";
-        } else if ($n_chatrooms == 1) {
+        } else if ($chatroom_num == 1) {
             $msg = "1 topic";
         } else {
-            $msg = $n_chatrooms . " topics";
+            $msg = $chatroom_num . " topics";
         }
 
         echo <<<END

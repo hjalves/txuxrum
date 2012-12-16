@@ -68,8 +68,7 @@
         return $chatroom;
     }
 
-    function sql_query_chatrooms($userid, $page, $title, $owner) {
-        $perpage = 10;
+    function sql_query_chatrooms($userid, $page, $perpage, $title, $owner) {
         $select = 'title, roomid, owner, to_char(creationdate, \'DD-Mon-YYYY, HH24:MI\') "date",
                    lastposter, to_char(lastposttime, \'DD-Mon, HH24:MI:SS\') "lastposttime",
                    CASE WHEN char_length(lastmsgtext) <= 40 THEN lastmsgtext
@@ -92,8 +91,7 @@
         return $chatrooms;
     }
 
-    function sql_get_chatrooms_pages($userid, $title, $owner) {
-        $perpage = 10;
+    function sql_get_chatrooms_num($userid, $title, $owner) {
         if ($title || $owner) {
             // Para pesquisa
             $query = 'SELECT count(*) FROM searchChatrooms($1, $2, $3)';
@@ -104,7 +102,7 @@
             $result = pg_query_params($query, array($userid)) or die('Query failed: ' . pg_last_error());
         }
         $line = pg_fetch_row($result, null);
-        return ceil($line[0]/$perpage);
+        return $line[0];
     }
 
     function sql_search_users($username, $name, $sex, $mail, $location, $birthday, $agemin, $agemax, $birthage){
