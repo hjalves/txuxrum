@@ -5,11 +5,13 @@
         header('Location: .');
 
     /* print message header */
-    function vf_printmsgheader() {
+    function vf_printmsgheader($user) {
+        $msg = $user ? "Private messages" : "You need to login to send/receive PM's!";
+        $error = $user ? "" : " error";
         echo <<<END
 <div class="textframe">
-    <div class="textframe-title">
-        Private messages
+    <div class="textframe-title$error">
+        $msg
     </div>
     <div class="panelframe-left" id="msglist">
 END;

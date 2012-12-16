@@ -39,14 +39,18 @@ require_once('include/include.php');
         <div class="mainbody">
         <?php
             vf_printjsgetmsg();
-            vf_printmsgheader();
+            vf_printmsgheader($_SESSION['userid']);
+            
+            if ($_SESSION['userid']) {
+                while ($row = pg_fetch_row($resmsgs, null))
+                    vf_printmessage($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 
-            while ($row = pg_fetch_row($resmsgs, null))
-                vf_printmessage($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
-
-            vf_printmsgpost($user);
-
-            vf_printmessagepanel($user);
+                vf_printmsgpost($user);
+                vf_printmessagepanel($user);
+            } else {
+                echo "</div>";
+                echo "</div>";
+            }
         ?>
         </div>
         <div class="mainfooter"> <?php vf_printfooter(); ?> </div>
